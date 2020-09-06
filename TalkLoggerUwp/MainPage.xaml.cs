@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Tono.Gui.Uwp;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -25,6 +26,14 @@ namespace TalkLoggerUwp
         public MainPage()
         {
             this.InitializeComponent();
+
+
+
+            var ver = Windows.ApplicationModel.Package.Current.Id.Version;
+            LOG.AddMes(LLV.INF, "Start-Welcome", $"{ver.Build}.{ver.Major}.{ver.Minor}.{ver.Revision}", DateTime.Now.Year);
+            LOG.AddMes(LLV.INF, new LogAccessor.Image { Key = "Lump16" }, "Start-Quickhelp");
         }
+
+        
     }
 }
