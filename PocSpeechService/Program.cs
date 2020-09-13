@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Drawing;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
 using PocSpeechService;
 
 namespace Speech.Recognition
@@ -9,38 +12,47 @@ namespace Speech.Recognition
     {
         static async Task Main()
         {
-            Console.WriteLine("Talk to mic...");
+            Console.OutputEncoding = Encoding.UTF8;
+
             await RecognizeSpeechAsync();
+            Console.WriteLine("Talk to mic...Push Enter key to exit.");
+
+            Console.In.ReadLine();
+            Console.WriteLine($"Stopping....");
+            await recognizer.StopContinuousRecognitionAsync();
+
+            Console.WriteLine($"END OF PROGRAM");
         }
 
-        static async Task RecognizeSpeechAsync()
+        private static SpeechRecognizer recognizer;
+
+        private static async Task RecognizeSpeechAsync()
         {
             var param = new MySecretParameter();
-            var config = SpeechConfig.FromSubscription(param.SubscriptionKey, param.ServiceRegion);
+            var spconfig = SpeechConfig.FromSubscription(param.SubscriptionKey, param.ServiceRegion);
+            spconfig.SpeechRecognitionLanguage = "ja-JP";
 
-            using var recognizer = new SpeechRecognizer(config);
+            recognizer = new SpeechRecognizer(spconfig);
+            recognizer.Recognizing += OnRecognizing;
+            recognizer.Recognized += OnRecognized;
+            recognizer.Canceled += OnCancel;
 
-            var result = await recognizer.RecognizeOnceAsync();
-            switch (result.Reason)
-            {
-                case ResultReason.RecognizedSpeech:
-                    Console.WriteLine($"We recognized: {result.Text}");
-                    break;
-                case ResultReason.NoMatch:
-                    Console.WriteLine($"NOMATCH: Speech could not be recognized.");
-                    break;
-                case ResultReason.Canceled:
-                    var cancellation = CancellationDetails.FromResult(result);
-                    Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
+            Console.WriteLine($"Starting....");
+            await recognizer.StartContinuousRecognitionAsync();
+        }
 
-                    if (cancellation.Reason == CancellationReason.Error)
-                    {
-                        Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
-                        Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-                        Console.WriteLine($"CANCELED: Did you update the subscription info?");
-                    }
-                    break;
-            }
+        private static void OnRecognizing(object sender, SpeechRecognitionEventArgs e)
+        {
+            Console.WriteLine($"OnRecognizing : {e.Result.Text}");
+        }
+
+        private static void OnRecognized(object sender, SpeechRecognitionEventArgs e)
+        {
+            Console.WriteLine($"OnRecognized : {e.Result.Text}");
+        }
+        private static void OnCancel(object sender, SpeechRecognitionEventArgs e)
+        {
+            Console.WriteLine($"OnCancel : {e.Result.Text}");
         }
     }
 }
