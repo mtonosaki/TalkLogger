@@ -29,16 +29,44 @@ namespace Speech.Recognition
         private static async Task RecognizeSpeechAsync()
         {
             var param = new MySecretParameter();
-            var spconfig = SpeechConfig.FromSubscription(param.SubscriptionKey, param.ServiceRegion);
-            spconfig.SpeechRecognitionLanguage = "ja-JP";
+            //var audioformat = AudioStreamFormat.GetWaveFormatPCM(samplesPerSecond: 16000, bitsPerSample: 16, channels: 1);
+            //var audioStream = AudioInputStream.CreatePushStream(audioformat);
+            //var audioConfig = AudioConfig.FromStreamInput(audioStream);
 
-            recognizer = new SpeechRecognizer(spconfig);
+            //var audioConfig = AudioConfig.FromWavFileInput(@"D:\Users\ManabuTonosaki\Documents\tono.wav");
+
+            var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
+
+            recognizer = new SpeechRecognizer(SpeechConfig.FromSubscription(param.SubscriptionKey, param.ServiceRegion), "ja-JP", audioConfig);
             recognizer.Recognizing += OnRecognizing;
             recognizer.Recognized += OnRecognized;
             recognizer.Canceled += OnCancel;
+            recognizer.SessionStarted += OnSessionStarted;
+            recognizer.SessionStopped += OnSessionStopped;
+            recognizer.SpeechStartDetected += OnSpeechStartDetected;
+            recognizer.SpeechEndDetected += OnSpeechEndDetected;
 
             Console.WriteLine($"Starting....");
             await recognizer.StartContinuousRecognitionAsync();
+        }
+
+        private static void OnSpeechStartDetected(object sender, RecognitionEventArgs e)
+        {
+            Console.WriteLine($"OnSpeechStartDetected : {e}");
+        }
+        private static void OnSpeechEndDetected(object sender, RecognitionEventArgs e)
+        {
+            Console.WriteLine($"OnSpeechStartDetected : {e}");
+        }
+
+        private static void OnSessionStarted(object sender, SessionEventArgs e)
+        {
+            Console.WriteLine($"OnSessionStarted : {e}");
+        }
+
+        private static void OnSessionStopped(object sender, SessionEventArgs e)
+        {
+            Console.WriteLine($"OnSessionStopped : {e}");
         }
 
         private static void OnRecognizing(object sender, SpeechRecognitionEventArgs e)
