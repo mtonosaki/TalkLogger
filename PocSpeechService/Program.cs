@@ -48,6 +48,8 @@ namespace Speech.Recognition
             public SpeechRecognizer Recognizer { get; set; }
             public PushAudioInputStream AudioInputStream { get; set; }
             public AudioConfig AudioConfig { get; set; }
+            
+            public byte[] buf = new byte[1024 * 80];
 
             public event EventHandler StopRequested;
 
@@ -104,8 +106,7 @@ namespace Speech.Recognition
             var wavein = new WasapiLoopbackCapture(handler.Device);
             var waveoutFormat = new WaveFormat(16000, 16, 1);
             var lastSpeakDT = DateTime.Now;
-            var buf = new byte[1024 * 48];
-            var a = false;
+            var willStop = DateTime.MaxValue;
 
             wavein.DataAvailable += (s, e) =>
             {
@@ -115,21 +116,29 @@ namespace Speech.Recognition
                     using var rs = new RawSourceWaveStream(ms, wavein.WaveFormat);
                     using var freq = new MediaFoundationResampler(rs, waveoutFormat.SampleRate);
                     var w16 = freq.ToSampleProvider().ToMono().ToWaveProvider16();
-                    var len = w16.Read(buf, 0, buf.Length);
-                    handler.AudioInputStream.Write(buf, len);
+                    var len = w16.Read(handler.buf, 0, handler.buf.Length);
+                    handler.AudioInputStream.Write(handler.buf, len);
+
                     lastSpeakDT = DateTime.Now;
-                    a = true;
+                    willStop = DateTime.MaxValue;
                 }
                 else
                 {
-                    var silence = new SilenceProvider(waveoutFormat);
-                    var len = silence.Read(buf, 0, waveoutFormat.BitsPerSample * waveoutFormat.SampleRate / 8 / 100);    // 10ms
-                    var cnt = (int)((DateTime.Now - lastSpeakDT).TotalMilliseconds / 10);
-                    for (var i = 0; i < cnt; i++)
+                    if (DateTime.Now < willStop)
                     {
-                        handler.AudioInputStream.Write(buf, len);
+                        if (willStop == DateTime.MaxValue)
+                        {
+                            willStop = DateTime.Now + TimeSpan.FromSeconds(10);
+                        }
+                        var silence = new SilenceProvider(waveoutFormat);
+                        var len = silence.Read(handler.buf, 0, waveoutFormat.BitsPerSample * waveoutFormat.SampleRate / 8 / 100);    // 10ms
+                        var cnt = (int)((DateTime.Now - lastSpeakDT).TotalMilliseconds / 10);
+                        for (var i = 0; i < cnt; i++)
+                        {
+                            handler.AudioInputStream.Write(handler.buf, len);
+                        }
+                        lastSpeakDT = DateTime.Now;
                     }
-                    lastSpeakDT = DateTime.Now;
                 }
             };
 
