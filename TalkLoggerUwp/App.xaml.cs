@@ -5,8 +5,10 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -41,9 +43,14 @@ namespace TalkLoggerUwp
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             // Set Window Size
-            ApplicationView.PreferredLaunchViewSize = new Size(192, 480);
+            var di = DisplayInformation.GetForCurrentView();
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(320, 80));
+            ApplicationView.PreferredLaunchViewSize = new Size(di.ScreenWidthInRawPixels - 16, 80);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(192, 192));
+            ApplicationView.GetForCurrentView().ExitFullScreenMode();
+
+            // Hide title bar
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
             Frame rootFrame = Window.Current.Content as Frame;
 

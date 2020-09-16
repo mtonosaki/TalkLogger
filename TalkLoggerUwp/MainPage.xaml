@@ -6,9 +6,9 @@
     xmlns:tg="using:Tono.Gui.Uwp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" RequestedTheme="Dark" d:DesignWidth="320">
+    mc:Ignorable="d" RequestedTheme="Dark" d:DesignHeight="160">
     <Page.Background>
-        <ImageBrush ImageSource="/Assets/Border5.jpg" Stretch="Fill"/>
+        <ImageBrush ImageSource="/Assets/bg1.png"/>
     </Page.Background>
 
     <tg:TGuiView x:Name="GuiView" x:Uid="GuiView" BorderThickness="1" BorderBrush="#8000" >
@@ -19,14 +19,38 @@
             <local:DataHot />
         </tg:TGuiView.DataHot>
         <tg:TGuiView.Features>
-            <tg:FeatureLogPanel Name="MainLogPanel" TargetPane="LogPanel" BackgroundColor1="#CC202B3E" BackgroundColor2="#CC202B3E" />
+            <local:FeatureTimeline />
+            <local:FeatureAutoScroll FPS="4.0" />
+            <tg:FeatureScrollDrag />
+            <tg:FeatureZoomDrag SpeedX="16" />
+            <tg:FeatureLogPanel Name="MainLogPanel" TargetPane="LogPanel" BackgroundColor1="#300000FF" BackgroundColor2="#304400FF">
+                <tg:FeatureLogPanel.LogParts>
+                    <local:PartsLogCustom />
+                </tg:FeatureLogPanel.LogParts>
+            </tg:FeatureLogPanel>
             <tg:FeatureLogOpenAsText ListeningButtonNames="OpenLogText" />
         </tg:TGuiView.Features>
-        <tg:TPane Name="LogPanel" Margin="8,8,8,8" Height="100" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" />
-        <tg:TPane Name="ChatPanel" BorderThickness="1" BorderBrush="#c000" Margin="8,8,8,8" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWith="LogPanel" RelativePanel.AlignBottomWithPanel="True" RequestedTheme="Dark" >
+        <tg:TPane Name="LogPanel" Width="320" Margin="4,4,4,4" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" >
+            <tg:TPane.Background>
+                <ImageBrush/>
+            </tg:TPane.Background>
+        </tg:TPane>
+        <tg:TPane Name="ChatPanel" BorderThickness="1" BorderBrush="#c000" Margin="4,4,4,4" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWith="LogPanel" RelativePanel.AlignBottomWithPanel="True" RequestedTheme="Dark" >
             <tg:TPane.Background>
                 <AcrylicBrush TintColor="#CC16210E"/>
             </tg:TPane.Background>
         </tg:TPane>
+        <tg:TButton Name="ClockStart" Height="32" Width="32" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Margin="4,4,4,10" FontFamily="Segoe UI Symbol">
+            <tg:TButton.Background>
+                <AcrylicBrush TintColor="#3324423F"/>
+            </tg:TButton.Background>
+            <FontIcon Name="ClockStartCaption" FontFamily="Segoe UI Symbol" Glyph="&#x25b6;" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="{x:Null}" Width="32" Height="32" FontSize="18" Opacity="0.1"/>
+        </tg:TButton>
+        <tg:TButton Name="ClockStop" Height="32" Width="32" RelativePanel.LeftOf="ClockStart" RelativePanel.AlignBottomWithPanel="True" Margin="4,4,4,10" FontFamily="Segoe UI Symbol">
+            <tg:TButton.Background>
+                <AcrylicBrush TintColor="#3324423F"/>
+            </tg:TButton.Background>
+            <FontIcon Name="ClockStopCaption" FontFamily="Segoe UI Symbol" Glyph="&#x23f9;" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="{x:Null}" Width="32" Height="32" FontSize="18" Opacity="0.75"/>
+        </tg:TButton>
     </tg:TGuiView>
 </Page>
