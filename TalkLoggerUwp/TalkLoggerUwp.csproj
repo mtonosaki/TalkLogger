@@ -124,6 +124,7 @@
     <Compile Include="EventClockUpdatedTokenTrigger.cs" />
     <Compile Include="FeatureAutoScroll.cs" />
     <Compile Include="FeatureCommonBase.cs" />
+    <Compile Include="FeatureSpeechCaptureFromSpeaker.cs" />
     <Compile Include="FeatureTimeline.cs" />
     <Compile Include="LAYERS.cs" />
     <Compile Include="MainPage.xaml.cs">

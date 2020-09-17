@@ -45,7 +45,7 @@ namespace TalkLoggerUwp
         {
             switch (lv)
             {
-                case LLV.ERR: return Color.FromArgb(0xff, 0xff, 0xee, 0xee);
+                case LLV.ERR: return Color.FromArgb(0xff, 0xff, 0x00, 0x00);
                 case LLV.WAR: return Color.FromArgb(0xff, 0xff, 0xff, 0xff);
                 case LLV.INF: return Color.FromArgb(0x80, 0xff, 0xff, 0xff);
                 default: return Color.FromArgb(0x40, 0x80, 0x80, 0x80);
