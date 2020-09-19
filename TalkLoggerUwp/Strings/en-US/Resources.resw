@@ -121,9 +121,17 @@
     <value>AudioGraph Creation Error below.</value>
     <comment>AudioGraph Creation Error below.</comment>
   </data>
+  <data name="Error-002" xml:space="preserve">
+    <value>Audio Device Input unavailable</value>
+    <comment>Audio Device Input unavailable</comment>
+  </data>
   <data name="Mes-001" xml:space="preserve">
     <value>Graph successfully created.</value>
     <comment>Graph successfully created!</comment>
+  </data>
+  <data name="Mes-002" xml:space="preserve">
+    <value>Device Input connection successfully created</value>
+    <comment>Device Input connection successfully created</comment>
   </data>
   <data name="Start-Quickhelp" xml:space="preserve">
     <value>You can select audio device →</value>

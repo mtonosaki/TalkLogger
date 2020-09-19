@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Tono.Gui.Uwp;
 using Windows.Devices.Enumeration;
 using Windows.Media.Audio;
+using Windows.Media.Capture;
 using Windows.Media.Devices;
 using Windows.Media.Render;
 using Windows.UI.Xaml.Controls;
@@ -18,6 +19,8 @@ namespace TalkLoggerUwp
     {
         private ComboBox cbDevices;
         private AudioGraph AudioGraph;
+        private AudioDeviceInputNode deviceInputNode;
+
 
         public override void OnInitialInstance()
         {
@@ -67,25 +70,52 @@ namespace TalkLoggerUwp
 
         private async Task SelectDevice(SpeakerDevice sd)
         {
-            if(AudioGraph != null)
+            if (AudioGraph != null)
             {
                 AudioGraph.Dispose();
                 AudioGraph = null;
             }
-            var settings = new AudioGraphSettings(AudioRenderCategory.Media);
-            settings.QuantumSizeSelectionMode = QuantumSizeSelectionMode.LowestLatency;
-            settings.PrimaryRenderDevice = sd.Device;
 
-            var result = await AudioGraph.CreateAsync(settings);
-            if (result.Status == AudioGraphCreationStatus.Success)
+            // STEP1 : Init AudioGraph
+            var settings = new AudioGraphSettings(AudioRenderCategory.Media)
             {
-                AudioGraph = result.Graph;
+                PrimaryRenderDevice = sd.Device,
+                QuantumSizeSelectionMode = QuantumSizeSelectionMode.LowestLatency,
+                DesiredRenderDeviceAudioProcessing = Windows.Media.AudioProcessing.Default,
+            };
+            var graphResult = await AudioGraph.CreateAsync(settings);
+            if (graphResult.Status == AudioGraphCreationStatus.Success)
+            {
+                AudioGraph = graphResult.Graph;
                 LOG.AddMes(LLV.INF, "Mes-001"); // Graph successfully created
             }
             else
             {
                 LOG.AddMes(LLV.INF, "Error-001");   // AudioGraph Creation Error below.
-                LOG.WriteLine(LLV.ERR, result.Status.ToString());
+                LOG.WriteLine(LLV.ERR, graphResult.Status.ToString());
+                return;
+            }
+
+            // STEP2 : Create Device input connection
+            var devices = await DeviceInformation.FindAllAsync(MediaDevice.GetAudioCaptureSelector());
+            var device = devices.Where(a => a.Name.ToUpper().Contains("MIX")).FirstOrDefault();
+            if (device == null)
+            {
+                LOG.WriteLine(LLV.ERR, "NOT FOUND MIXER DEVICE");
+                return;
+            }
+
+            var deviceInputNodeResult = await AudioGraph.CreateDeviceInputNodeAsync(MediaCategory.Media, AudioGraph.EncodingProperties, device);
+            if (deviceInputNodeResult.Status == AudioDeviceNodeCreationStatus.Success)
+            {
+                deviceInputNode = deviceInputNodeResult.DeviceInputNode;
+                LOG.AddMes(LLV.INF, "Mes-002"); // Graph successfully created
+            }
+            else
+            {
+                LOG.AddMes(LLV.INF, "Error-002");   // Audio Device Input unavailable
+                LOG.WriteLine(LLV.ERR, deviceInputNodeResult.Status.ToString());
+                return;
             }
         }
     }
