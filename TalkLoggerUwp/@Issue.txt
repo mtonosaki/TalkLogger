@@ -1,2 +1,0 @@
-﻿NAudio is not supported UWP
-https://github.com/naudio/NAudio/issues/431
