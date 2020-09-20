@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
@@ -18,7 +19,34 @@ namespace TalkLoggerWinform
             {
                 ConfigRegister.Current["LogPanelGroupHeight"] = 96;
             }
+            GetParentForm().SizeChanged += Pane_SizeChanged;
+            Timer.AddTrigger(200, () => {
+                Pane_SizeChanged(this, EventArgs.Empty);
+            });
         }
+        private Form GetParentForm()
+        {
+            Control root;
+            for (root = Pane.Control; root.Parent != null; root = root.Parent)
+            {
+                ;
+            }
+
+            return root.FindForm();
+        }
+
+        private dpLogPanelCustom LogParts = null;
+        protected override dpLogPanel createLogPartInstance(Dictionary<LLV, ScreenPos> clickArea)
+        {
+            return LogParts = new dpLogPanelCustom(clickArea);
+        }
+
+        private void Pane_SizeChanged(object sender, EventArgs e)
+        {
+            var r = Pane.GetPaneRect();
+            LogParts.SetMargin(ScreenRect.FromLTRB(r.RB.X - 320, 0, 0, 0));
+        }
+
         protected class dpLogPanelCustom : FeatureLogGroupPanel.dpLogPanel
         {
             static dpLogPanelCustom()
@@ -46,10 +74,6 @@ namespace TalkLoggerWinform
                     Color.FromArgb(32, 0, 0, 0)
                 );
             }
-        }
-        protected override dpLogPanel createLogPartInstance(Dictionary<LLV, ScreenPos> clickArea)
-        {
-            return new dpLogPanelCustom(clickArea);
         }
     }
 }

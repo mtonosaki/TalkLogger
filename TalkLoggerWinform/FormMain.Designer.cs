@@ -43,7 +43,6 @@
             this.GuiViewMain = new Tono.GuiWinForm.TGuiView(this.components);
             this.KeyEnablerMain = new Tono.GuiWinForm.TKeyEnabler();
             this.PaneChat = new Tono.GuiWinForm.TPane();
-            this.PaneTimeline = new Tono.GuiWinForm.TPane();
             this.contextMenuStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.GuiViewMain.SuspendLayout();
@@ -127,9 +126,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GuiViewMain.Controls.Add(this.KeyEnablerMain);
             this.GuiViewMain.Controls.Add(this.PaneChat);
-            this.GuiViewMain.Controls.Add(this.PaneTimeline);
             this.GuiViewMain.IdText = "GuiViewMain";
-            this.GuiViewMain.IsDrawEmptyBackground = true;
+            this.GuiViewMain.IsDrawEmptyBackground = false;
             this.GuiViewMain.Location = new System.Drawing.Point(12, 32);
             this.GuiViewMain.Name = "GuiViewMain";
             this.GuiViewMain.Scroll = ((Tono.GuiWinForm.ScreenPos)(resources.GetObject("GuiViewMain.Scroll")));
@@ -162,33 +160,14 @@
             this.PaneChat.IsScrollLockY = false;
             this.PaneChat.IsZoomLockX = false;
             this.PaneChat.IsZoomLockY = false;
-            this.PaneChat.Location = new System.Drawing.Point(0, 26);
+            this.PaneChat.Location = new System.Drawing.Point(0, 0);
+            this.PaneChat.Margin = new System.Windows.Forms.Padding(0);
             this.PaneChat.Name = "PaneChat";
             this.PaneChat.Scroll = ((Tono.GuiWinForm.ScreenPos)(resources.GetObject("PaneChat.Scroll")));
-            this.PaneChat.Size = new System.Drawing.Size(600, 102);
+            this.PaneChat.Size = new System.Drawing.Size(600, 128);
             this.PaneChat.TabIndex = 1;
             this.PaneChat.Visible = false;
             this.PaneChat.Zoom = ((Tono.GuiWinForm.XyBase)(resources.GetObject("PaneChat.Zoom")));
-            // 
-            // PaneTimeline
-            // 
-            this.PaneTimeline.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PaneTimeline.BackColor = System.Drawing.Color.Blue;
-            this.PaneTimeline.IdColor = System.Drawing.Color.Blue;
-            this.PaneTimeline.IdText = "Timeline";
-            this.PaneTimeline.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.PaneTimeline.IsScrollLockX = false;
-            this.PaneTimeline.IsScrollLockY = true;
-            this.PaneTimeline.IsZoomLockX = false;
-            this.PaneTimeline.IsZoomLockY = true;
-            this.PaneTimeline.Location = new System.Drawing.Point(0, 0);
-            this.PaneTimeline.Name = "PaneTimeline";
-            this.PaneTimeline.Scroll = ((Tono.GuiWinForm.ScreenPos)(resources.GetObject("PaneTimeline.Scroll")));
-            this.PaneTimeline.Size = new System.Drawing.Size(600, 24);
-            this.PaneTimeline.TabIndex = 0;
-            this.PaneTimeline.Visible = false;
-            this.PaneTimeline.Zoom = ((Tono.GuiWinForm.XyBase)(resources.GetObject("PaneTimeline.Zoom")));
             // 
             // FormMain
             // 
@@ -228,7 +207,6 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private Tono.GuiWinForm.TGuiView GuiViewMain;
         private Tono.GuiWinForm.TPane PaneChat;
-        private Tono.GuiWinForm.TPane PaneTimeline;
         private Tono.GuiWinForm.TKeyEnabler KeyEnablerMain;
         private System.Windows.Forms.ToolStripMenuItem toolToolStripMenuItem;
     }

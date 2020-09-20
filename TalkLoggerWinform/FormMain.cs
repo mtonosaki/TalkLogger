@@ -25,7 +25,6 @@ namespace TalkLoggerWinform
             // INIT Tono.Gui.WinForm
             GuiViewMain.IsDrawEmptyBackground = false;
             PaneChat.IdColor = Color.FromArgb(48, 48, 48);
-            PaneTimeline.IdColor = Color.FromArgb(48, 48, 48);
             Mes.SetDefault();
             FeatureLoader2.SetResources(Properties.Resources.ResourceManager);
             FeatureLoader2.SetUsingClass(GetType());
