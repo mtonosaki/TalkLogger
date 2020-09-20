@@ -15,12 +15,13 @@ namespace TalkLoggerWinform
         {
             base.OnInitInstance();
             var h = (int)ConfigRegister.Current["LogPanelGroupHeight", -1];
-            if( h < 0)
+            if (h < 0)
             {
                 ConfigRegister.Current["LogPanelGroupHeight"] = 96;
             }
             GetParentForm().SizeChanged += Pane_SizeChanged;
-            Timer.AddTrigger(200, () => {
+            Timer.AddTrigger(200, () =>
+            {
                 Pane_SizeChanged(this, EventArgs.Empty);
             });
         }
@@ -43,8 +44,18 @@ namespace TalkLoggerWinform
 
         private void Pane_SizeChanged(object sender, EventArgs e)
         {
-            var r = Pane.GetPaneRect();
-            LogParts.SetMargin(ScreenRect.FromLTRB(r.RB.X - 320, 0, 0, 0));
+            if (LogParts != null)
+            {
+                var r = Pane.GetPaneRect();
+                LogParts.SetMargin(ScreenRect.FromLTRB(r.RB.X - 320, 0, 0, 0));
+            }
+            else
+            {
+                Timer.AddTrigger(200, () =>
+                {
+                    Pane_SizeChanged(this, EventArgs.Empty);
+                });
+            }
         }
 
         protected class dpLogPanelCustom : FeatureLogGroupPanel.dpLogPanel

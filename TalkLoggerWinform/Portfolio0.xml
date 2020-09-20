@@ -19,6 +19,7 @@
   <GROUP name="APP">
     <feature class="FeatureChatBar" />
     <feature class="FeatureTimeline" />
+    <feature class="FeatureAudioLoopback" />
   </GROUP>
   <GROUP name="FileMenu">
     <feature class="FeatureApplicationQuit" menu="File/Exit" menuorder="99999" shortcut="AltF4"/>

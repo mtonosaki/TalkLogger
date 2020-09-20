@@ -4,12 +4,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Tono;
 using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
 {
     public class CoreFeatureBase : FeatureBase
     {
+        public static readonly NamedId TokenSettingsLoaded = NamedId.FromName("SettingsLoaded");
         protected IRichPane TarPane { get; set; }
         public DataHot Hot => (DataHot)base.Data;
 

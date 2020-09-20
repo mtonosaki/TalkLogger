@@ -99,10 +99,9 @@
   <mes key="LogGroupPanel.Welcome">Talk Logger Power with Azure Cognitive Service</mes>
   <mes key="LogGroupPanel.LangInfo">入力デバイスを選択してください。</mes>
 
-  <!-- Feature Descriptions -->
+  <!-- Features -->
   <mes key="FeatureDescription" ver="FeatureDummy">DUMMY DUMMY DUMMY</mes>
-
-  <!-- FEATURES -->
-  <mes key="FeatureApplicationQuit" ver="ConfirmQuit">保存しないで終了しようとしています。</mes>
-  <mes key="FeatureApplicationQuit" ver="ConfirmQuitCaption">確認</mes>
+  <mes key="FeatureApplicationQuit" ver="ConfirmQuit">Quitting TalkLogger but there is data that is not saved.</mes>
+  <mes key="FeatureApplicationQuit" ver="ConfirmQuitCaption">Confirming no saved data</mes>
+  <mes key="FeatureAudioLoopback" ver="NoDeviceID">@E Selected Device ID is not found on this machine {0}</mes>
 </xml>
