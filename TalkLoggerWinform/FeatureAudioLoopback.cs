@@ -23,24 +23,11 @@ namespace TalkLoggerWinform
         {
             base.Start(who);
 
-            Pane.Control.FindForm().FormClosing += FeatureAudioLoopback_FormClosing;
-            Handler = new SpeechHandler
-            {
-                Settings = Hot.Setting,
-            };
-            _ = Setup(Handler);
-        }
+            Hot.AddRowID(ID.Value, 201, 32);   // Device 1 : Loopback
 
-        private async void FeatureAudioLoopback_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
-        {
-            if(Handler != null)
-            {
-                Handler.FireStop();
-                if(Handler.Recognizer != null)
-                {
-                    await Handler.Recognizer.StopContinuousRecognitionAsync();
-                }
-            }
+            Pane.Control.FindForm().FormClosing += FeatureAudioLoopback_FormClosing;
+            Handler = new SpeechHandler();
+            _ = Setup(Handler);
         }
 
         private async Task Setup(SpeechHandler handler)
@@ -59,10 +46,21 @@ namespace TalkLoggerWinform
                 }
             }
         }
+        private async void FeatureAudioLoopback_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            if (Handler != null)
+            {
+                Handler.FireStop();
+                if (Handler.Recognizer != null)
+                {
+                    await Handler.Recognizer.StopContinuousRecognitionAsync();
+                }
+            }
+        }
+
 
         public class SpeechHandler
         {
-            public SettingModel Settings { get; set; }
             public MMDevice Device { get; set; }
             public SpeechRecognizer Recognizer { get; set; }
             public PushAudioInputStream AudioInputStream { get; set; }
@@ -78,23 +76,24 @@ namespace TalkLoggerWinform
             }
         }
 
-        private static async Task<bool> SelectAudioDeviceAsync(SpeechHandler handler)
+        private async Task<bool> SelectAudioDeviceAsync(SpeechHandler handler)
         {
             // SELECT A AUDIO DEVICE
             var devices = new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
             foreach( var device in devices )
             {
-                if (device.ID == handler.Settings.Device1ID)
+                if (device.ID == Hot.Setting.Device1ID)
                 {
                     handler.Device = device;
                     return true;
                 }
             }
-            LOG.WriteMesLine("FeatureAudioLoopback", "NoDeviceID", handler.Settings.Device1ID);
+            LOG.WriteMesLine("FeatureAudioLoopback", "NoDeviceID", Hot.Setting.Device1ID);
+            await Task.Delay(20);
             return false;
         }
 
-        private static async Task<bool> MakeAudioConfigAsync(SpeechHandler handler)
+        private async Task<bool> MakeAudioConfigAsync(SpeechHandler handler)
         {
             Debug.Assert(handler.Device != null);
 
@@ -151,9 +150,9 @@ namespace TalkLoggerWinform
 
             return true;
         }
-        private static async Task<bool> StartRecognizeSpeechAsync(SpeechHandler handler)
+        private async Task<bool> StartRecognizeSpeechAsync(SpeechHandler handler)
         {
-            handler.Recognizer = new SpeechRecognizer(SpeechConfig.FromSubscription(handler.Settings.SubscriptionKey, handler.Settings.ServiceRegion), "ja-JP", handler.AudioConfig);
+            handler.Recognizer = new SpeechRecognizer(SpeechConfig.FromSubscription(Hot.Setting.SubscriptionKey, Hot.Setting.ServiceRegion), "ja-JP", handler.AudioConfig);
             handler.Recognizer.Recognizing += OnRecognizing;
             handler.Recognizer.Recognized += OnRecognized;
             handler.Recognizer.Canceled += OnCancel;
@@ -166,37 +165,95 @@ namespace TalkLoggerWinform
 
             return true;
         }
-        private static void OnSpeechStartDetected(object sender, RecognitionEventArgs e)
+
+        private string TalkID = null;
+
+        private void OnSpeechStartDetected(object sender, RecognitionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"Loopback.OnSpeechStartDetected : {e}");
+            LOG.WriteLine(LLV.DEV, $"LB.Start : {e}");
         }
-        private static void OnSpeechEndDetected(object sender, RecognitionEventArgs e)
+        private void OnSpeechEndDetected(object sender, RecognitionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"Loopback.OnSpeechStartDetected : {e}");
+            LOG.WriteLine(LLV.DEV, $"LB.End : {e}");
+            Hot.SpeechEventQueue.Enqueue(new SpeechEvent
+            {
+                RowID = ID.Value,
+                Action = SpeechEvent.Actions.End,
+                TimeGenerated = DateTime.Now,
+                SessionID = e.SessionId,
+            });
+            Token.Add(TokenSpeechEventQueued, this);
+            GetRoot().FlushFeatureTriggers();
         }
 
-        private static void OnSessionStarted(object sender, SessionEventArgs e)
+        private void OnSessionStarted(object sender, SessionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"Loopback.OnSessionStarted : {e}");
+            LOG.WriteLine(LLV.DEV, $"LB.OnSessionStarted : {e}");
         }
 
-        private static void OnSessionStopped(object sender, SessionEventArgs e)
+        private void OnSessionStopped(object sender, SessionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"Loopback.OnSessionStopped : {e}");
+            LOG.WriteLine(LLV.DEV, $"LB.OnSessionStopped : {e}");
         }
 
-        private static void OnRecognizing(object sender, SpeechRecognitionEventArgs e)
+        private void OnRecognizing(object sender, SpeechRecognitionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"Loopback.OnRecognizing : {e.Result.Text}");
+            LOG.WriteLine(LLV.DEV, $"LB.R'ng : {e.Result.Text}");
+
+            if(TalkID == null)
+            {
+                TalkID = Guid.NewGuid().ToString();
+                Hot.SpeechEventQueue.Enqueue(new SpeechEvent
+                {
+                    RowID = ID.Value,
+                    Action = SpeechEvent.Actions.Start,
+                    TimeGenerated = DateTime.Now,
+                    SessionID = TalkID,
+                });
+                Token.Add(TokenSpeechEventQueued, this);
+            }
+
+            Hot.SpeechEventQueue.Enqueue(new SpeechEvent
+            {
+                RowID = ID.Value,
+                Action = SpeechEvent.Actions.Recognizing,
+                TimeGenerated = DateTime.Now,
+                SessionID = TalkID,
+                Text = e.Result.Text,
+            });
+            Token.Add(TokenSpeechEventQueued, this);
+            GetRoot().FlushFeatureTriggers();
         }
 
-        private static void OnRecognized(object sender, SpeechRecognitionEventArgs e)
+        private void OnRecognized(object sender, SpeechRecognitionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"Loopback.OnRecognized : {e.Result.Text}");
+            LOG.WriteLine(LLV.DEV, $"LB.R'ed : {e.Result.Text}");
+            Hot.SpeechEventQueue.Enqueue(new SpeechEvent
+            {
+                RowID = ID.Value,
+                Action = SpeechEvent.Actions.Recognized,
+                TimeGenerated = DateTime.Now,
+                SessionID = TalkID,
+                Text = e.Result.Text,
+            });
+            TalkID = null;
+            Token.Add(TokenSpeechEventQueued, this);
+            GetRoot().FlushFeatureTriggers();
         }
-        private static void OnCancel(object sender, SpeechRecognitionEventArgs e)
+        private void OnCancel(object sender, SpeechRecognitionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"Loopback.OnCancel : {e.Result.Text}");
+            LOG.WriteLine(LLV.DEV, $"LB.OnCancel : {e.Result.Text}");
+            Hot.SpeechEventQueue.Enqueue(new SpeechEvent
+            {
+                RowID = ID.Value,
+                Action = SpeechEvent.Actions.Canceled,
+                TimeGenerated = DateTime.Now,
+                SessionID = TalkID,
+                Text = e.Result.Text,
+            });
+            TalkID = null;
+            Token.Add(TokenSpeechEventQueued, this);
+            GetRoot().FlushFeatureTriggers();
         }
     }
 }

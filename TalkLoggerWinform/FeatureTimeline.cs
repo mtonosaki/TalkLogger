@@ -22,6 +22,7 @@ namespace TalkLoggerWinform
             TarPane = Pane.GetPane("Resource");
 
             Hot.AddRowID( ROWID_TIMELINE, orderNo:100, layoutHeight:24);  // Set Timeline Height
+            Hot.AddRowID(-999, 101, 4);            // Dummy Space
             Hot.TimelineParts = new PartsTimeline {
                 Hot = Hot,
                 Rect = CodeRect.FromLTRB(0, ROWID_TIMELINE, 0, ROWID_TIMELINE),

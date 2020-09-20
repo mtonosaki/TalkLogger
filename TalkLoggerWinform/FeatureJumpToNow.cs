@@ -25,7 +25,7 @@ namespace TalkLoggerWinform
         {
             var td = DateTime.Now - Hot.FirstSpeech;
             var x = Hot.TimelineParts.GetScRect(TarPane, CodeRect.FromLTRB(0, -1, (int)(td.TotalSeconds * 12), -1)).Width / 12;
-            Pane.Scroll = ScreenPos.FromInt(-x, Pane.Scroll.Y) + Pane.GetPaneRect().Width / 2;
+            Pane.Scroll = ScreenPos.FromInt(-x + Pane.GetPaneRect().Width / 2, Pane.Scroll.Y);
             Pane.Invalidate(null);
         }
     }

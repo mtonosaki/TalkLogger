@@ -47,7 +47,7 @@ namespace TalkLoggerWinform
             if (LogParts != null)
             {
                 var r = Pane.GetPaneRect();
-                LogParts.SetMargin(ScreenRect.FromLTRB(r.RB.X - 320, 0, 0, 0));
+                LogParts.SetMargin(ScreenRect.FromLTRB(r.RB.X - 480, 0, 0, 0));
             }
             else
             {

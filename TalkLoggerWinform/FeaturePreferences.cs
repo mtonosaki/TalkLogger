@@ -17,6 +17,7 @@ namespace TalkLoggerWinform
             base.OnInitInstance();
             Pane.Control.FindForm().FormClosing += Application_FormClosing;
             Hot.Setting = LoadSetting();
+
             Token.Add(TokenSettingsLoaded, this);
         }
 

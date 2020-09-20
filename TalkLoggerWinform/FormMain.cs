@@ -35,6 +35,9 @@ namespace TalkLoggerWinform
             DateTimeEx.SetDayStrings(Mes.Current);
             GuiViewMain.GetFeatureRoot().ParseCommandLineParameter(Environment.GetCommandLineArgs());
             GuiViewMain.GetFeatureRoot().FlushFeatureTriggers();
+
+            PaneChat.Zoom = new XyBase { X = 1600, Y = 1000, };
+            PaneChat.Scroll = ScreenPos.FromInt(PaneChat.Scroll.X, 12);
         }
 
         private void OnMesCodeChanged(object sender, Mes.CodeChangedEventArgs e)

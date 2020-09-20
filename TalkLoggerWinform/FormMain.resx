@@ -120,6 +120,23 @@
   <metadata name="menuStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>193, 17</value>
   </metadata>
+  <data name="PaneChat.Scroll" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFUb25vR3VpV2luRm9ybSwgVmVyc2lvbj0xLjEuMS4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTJjZTZlNmI0M2VjNDg4YTMFAQAAABlUb25vLkd1aVdp
+        bkZvcm0uU2NyZWVuUG9zBgAAAANfdjEDX3YyClh5QmFzZStfdjEKWHlCYXNlK192Mg9WYWx1ZUNvdXBs
+        ZStfdjEPVmFsdWVDb3VwbGUrX3YyAAAAAAAACAgICAgIAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAs=
+</value>
+  </data>
+  <data name="PaneChat.Zoom" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFFUb25vR3VpV2luRm9ybSwgVmVyc2lvbj0xLjEuMS4wLCBDdWx0
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTJjZTZlNmI0M2VjNDg4YTMFAQAAABZUb25vLkd1aVdp
+        bkZvcm0uWHlCYXNlBAAAAANfdjEDX3YyD1ZhbHVlQ291cGxlK192MQ9WYWx1ZUNvdXBsZStfdjIAAAAA
+        CAgICAIAAADoAwAA6AMAAOgDAADoAwAACw==
+</value>
+  </data>
   <data name="GuiViewMain.Scroll" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFUb25vR3VpV2luRm9ybSwgVmVyc2lvbj0xLjEuMS4wLCBDdWx0
@@ -147,23 +164,6 @@
 </value>
   </data>
   <data name="GuiViewMain.ZoomMute" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFUb25vR3VpV2luRm9ybSwgVmVyc2lvbj0xLjEuMS4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTJjZTZlNmI0M2VjNDg4YTMFAQAAABZUb25vLkd1aVdp
-        bkZvcm0uWHlCYXNlBAAAAANfdjEDX3YyD1ZhbHVlQ291cGxlK192MQ9WYWx1ZUNvdXBsZStfdjIAAAAA
-        CAgICAIAAADoAwAA6AMAAOgDAADoAwAACw==
-</value>
-  </data>
-  <data name="PaneChat.Scroll" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFFUb25vR3VpV2luRm9ybSwgVmVyc2lvbj0xLjEuMS4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTJjZTZlNmI0M2VjNDg4YTMFAQAAABlUb25vLkd1aVdp
-        bkZvcm0uU2NyZWVuUG9zBgAAAANfdjEDX3YyClh5QmFzZStfdjEKWHlCYXNlK192Mg9WYWx1ZUNvdXBs
-        ZStfdjEPVmFsdWVDb3VwbGUrX3YyAAAAAAAACAgICAgIAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        AAs=
-</value>
-  </data>
-  <data name="PaneChat.Zoom" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFUb25vR3VpV2luRm9ybSwgVmVyc2lvbj0xLjEuMS4wLCBDdWx0
         dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPTJjZTZlNmI0M2VjNDg4YTMFAQAAABZUb25vLkd1aVdp

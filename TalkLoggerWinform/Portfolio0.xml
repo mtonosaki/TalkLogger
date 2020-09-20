@@ -17,7 +17,7 @@
     <feature class="FeatureMoveSelectedPartsTop"/>
   </GROUP>
   <GROUP name="APP">
-    <feature class="FeatureChatBar" />
+    <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
     <feature class="FeatureAudioLoopback" />
   </GROUP>
