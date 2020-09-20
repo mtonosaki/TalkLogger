@@ -36,7 +36,7 @@
     <feature class="FeatureChangeLanguage" menu="View/Language/Japanese" menuorder="2" image="LanguageJapanese" shortcut="CtrlShiftJ">jp</feature>
   </GROUP>
   <GROUP name="ToolMenu">
-    <feature class="FeatureLogPanelCustom">Pane=Resource;MarginR=0;MarginB=0</feature>
+    <feature class="FeatureLogPanelCustom">Pane=GuiViewMain;MarginL=200</feature>
     <feature class="FeatureLogOpenAsText" menu="Tool/LogOpenAsText" menuorder="20" shortcut="CtrlShiftL" image="toNotepad"></feature>
     <feature class="FeatureLogClear" menu="Tool/LogClear" menuorder="21" shortcut="CtrlShiftDelete" image="Eraser"></feature>
     <menuitem menu="Tool/-" menuorder="30" />

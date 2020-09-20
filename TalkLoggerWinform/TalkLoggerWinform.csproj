@@ -49,6 +49,8 @@
     <Compile Include="DataHot.cs" />
     <Compile Include="DataLink.cs" />
     <Compile Include="DataParts.cs" />
+    <Compile Include="FeatureAbout.cs" />
+    <Compile Include="FeatureLogPanelCustom.cs" />
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,11 +95,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Tono.GuiWinForm">
-      <Version>1.1.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Portfolio0.xml" />
     <Content Include="THIRDPARTY.txt" />
     <None Include="Resources\Banner.png" />
@@ -106,6 +103,11 @@
     <Content Include="uMes.en.xml" />
     <Content Include="uMes.jp.xml" />
     <Content Include="uMesDefault.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Tono.GuiWinForm">
+      <Version>1.1.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

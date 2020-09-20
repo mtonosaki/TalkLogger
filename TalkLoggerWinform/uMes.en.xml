@@ -80,11 +80,11 @@
   <mes key="Label" ver="labelSelectorFilename">File Name</mes>
 
   <!-- Tooltips -->
-  <font key="tooltip.Title" face="Segoe UI" size="14" bold="1" italic="0" underline="0" stlikeout="0"/>
-  <font key="tooltip.Body"  face="Segoe UI" size="12" bold="0" italic="0" underline="0" stlikeout="0"/>
+  <font key="tooltip.Title" face="Segoe UI" size="10" bold="1" italic="0" underline="0" stlikeout="0"/>
+  <font key="tooltip.Body"  face="Segoe UI" size="9" bold="0" italic="0" underline="0" stlikeout="0"/>
 
   <!-- Log -->
-  <mes key="LogGroupPanel" ver="Title">Message</mes>
+  <mes key="LogGroupPanel" ver="Title">Log</mes>
   <mes key="LogGroupPanel.Welcome">Talk Logger Power with Azure Cognitive Service</mes>
   <mes key="LogGroupPanel.LangInfo">To start logging, select device(s)</mes>
 

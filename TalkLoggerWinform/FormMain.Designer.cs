@@ -37,10 +37,16 @@
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GuiViewMain = new Tono.GuiWinForm.TGuiView(this.components);
+            this.KeyEnablerMain = new Tono.GuiWinForm.TKeyEnabler();
+            this.PaneChat = new Tono.GuiWinForm.TPane();
+            this.PaneTimeline = new Tono.GuiWinForm.TPane();
             this.contextMenuStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
+            this.GuiViewMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripMain
@@ -75,6 +81,7 @@
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
+            this.toolToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
@@ -94,17 +101,94 @@
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // toolToolStripMenuItem
+            // 
+            this.toolToolStripMenuItem.Name = "toolToolStripMenuItem";
+            this.toolToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.toolToolStripMenuItem.Text = "Tool";
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // viewToolStripMenuItem
+            // GuiViewMain
             // 
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
+            this.GuiViewMain.AllowDrop = true;
+            this.GuiViewMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GuiViewMain.Controls.Add(this.KeyEnablerMain);
+            this.GuiViewMain.Controls.Add(this.PaneChat);
+            this.GuiViewMain.Controls.Add(this.PaneTimeline);
+            this.GuiViewMain.IdText = "GuiViewMain";
+            this.GuiViewMain.IsDrawEmptyBackground = true;
+            this.GuiViewMain.Location = new System.Drawing.Point(12, 32);
+            this.GuiViewMain.Name = "GuiViewMain";
+            this.GuiViewMain.Scroll = ((Tono.GuiWinForm.ScreenPos)(resources.GetObject("GuiViewMain.Scroll")));
+            this.GuiViewMain.ScrollMute = ((Tono.GuiWinForm.ScreenPos)(resources.GetObject("GuiViewMain.ScrollMute")));
+            this.GuiViewMain.Size = new System.Drawing.Size(600, 128);
+            this.GuiViewMain.TabIndex = 2;
+            this.GuiViewMain.TabStop = false;
+            this.GuiViewMain.Text = "The Gui Main Pane";
+            this.GuiViewMain.Zoom = ((Tono.GuiWinForm.XyBase)(resources.GetObject("GuiViewMain.Zoom")));
+            this.GuiViewMain.ZoomMute = ((Tono.GuiWinForm.XyBase)(resources.GetObject("GuiViewMain.ZoomMute")));
+            // 
+            // KeyEnablerMain
+            // 
+            this.KeyEnablerMain.BackColor = System.Drawing.Color.Maroon;
+            this.KeyEnablerMain.Location = new System.Drawing.Point(0, 0);
+            this.KeyEnablerMain.Name = "KeyEnablerMain";
+            this.KeyEnablerMain.Size = new System.Drawing.Size(1, 1);
+            this.KeyEnablerMain.TabIndex = 2;
+            // 
+            // PaneChat
+            // 
+            this.PaneChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PaneChat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.PaneChat.IdColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.PaneChat.IdText = "Resource";
+            this.PaneChat.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.PaneChat.IsScrollLockX = false;
+            this.PaneChat.IsScrollLockY = false;
+            this.PaneChat.IsZoomLockX = false;
+            this.PaneChat.IsZoomLockY = false;
+            this.PaneChat.Location = new System.Drawing.Point(0, 26);
+            this.PaneChat.Name = "PaneChat";
+            this.PaneChat.Scroll = ((Tono.GuiWinForm.ScreenPos)(resources.GetObject("PaneChat.Scroll")));
+            this.PaneChat.Size = new System.Drawing.Size(600, 102);
+            this.PaneChat.TabIndex = 1;
+            this.PaneChat.Visible = false;
+            this.PaneChat.Zoom = ((Tono.GuiWinForm.XyBase)(resources.GetObject("PaneChat.Zoom")));
+            // 
+            // PaneTimeline
+            // 
+            this.PaneTimeline.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PaneTimeline.BackColor = System.Drawing.Color.Blue;
+            this.PaneTimeline.IdColor = System.Drawing.Color.Blue;
+            this.PaneTimeline.IdText = "Timeline";
+            this.PaneTimeline.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.PaneTimeline.IsScrollLockX = false;
+            this.PaneTimeline.IsScrollLockY = true;
+            this.PaneTimeline.IsZoomLockX = false;
+            this.PaneTimeline.IsZoomLockY = true;
+            this.PaneTimeline.Location = new System.Drawing.Point(0, 0);
+            this.PaneTimeline.Name = "PaneTimeline";
+            this.PaneTimeline.Scroll = ((Tono.GuiWinForm.ScreenPos)(resources.GetObject("PaneTimeline.Scroll")));
+            this.PaneTimeline.Size = new System.Drawing.Size(600, 24);
+            this.PaneTimeline.TabIndex = 0;
+            this.PaneTimeline.Visible = false;
+            this.PaneTimeline.Zoom = ((Tono.GuiWinForm.XyBase)(resources.GetObject("PaneTimeline.Zoom")));
             // 
             // FormMain
             // 
@@ -113,17 +197,19 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = global::TalkLoggerWinform.Properties.Resources.bg1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(624, 81);
+            this.ClientSize = new System.Drawing.Size(624, 168);
             this.ContextMenuStrip = this.contextMenuStripMain;
+            this.Controls.Add(this.GuiViewMain);
             this.Controls.Add(this.menuStripMain);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "FormMain";
             this.Text = "Talk Logger";
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.contextMenuStripMain.ResumeLayout(false);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
+            this.GuiViewMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,6 +226,11 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private Tono.GuiWinForm.TGuiView GuiViewMain;
+        private Tono.GuiWinForm.TPane PaneChat;
+        private Tono.GuiWinForm.TPane PaneTimeline;
+        private Tono.GuiWinForm.TKeyEnabler KeyEnablerMain;
+        private System.Windows.Forms.ToolStripMenuItem toolToolStripMenuItem;
     }
 }
 

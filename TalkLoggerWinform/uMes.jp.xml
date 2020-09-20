@@ -84,7 +84,7 @@
   <font key="tooltip.Body"  face="Segoe UI" size="12" bold="0" italic="0" underline="0" stlikeout="0"/>
 
   <!-- Log -->
-  <mes key="LogGroupPanel" ver="Title">Message</mes>
+  <mes key="LogGroupPanel" ver="Title">Log</mes>
   <mes key="LogGroupPanel.Welcome">Talk Logger Power with Azure Cognitive Service</mes>
   <mes key="LogGroupPanel.LangInfo">To start logging, select device(s)</mes>
 
