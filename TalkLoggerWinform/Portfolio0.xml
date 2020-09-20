@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xml>
+  <IMPLEMENT Data="DataHot" Parts="DataParts" Link="DataLink" />
+
+  <GROUP name="GUI">
+    <feature class="FeatureKeyZoom"/>
+    <feature class="FeatureDragZoom">Trigger=CTRL+BUTTON;Cursor=CTRL+BUTTON=Cursors.SizeNWSE;SameXY=false;</feature>
+    <feature class="FeatureDragScroll">Trigger=MIDDLE</feature>
+    <feature class="FeatureDragScroll">Trigger=CTRL+SHIFT+BUTTON</feature>
+    <feature class="FeatureWheelScroll" />
+    <feature class="FeatureWheelScrollXYRev">Attr=SHIFT</feature>
+    <feature class="FeatureWheelZoom" />
+    <feature class="FeatureScrollBarHorz">Speed=0.8</feature>
+    <feature class="FeatureScrollBarVert">Speed=1.5</feature>
+    <feature class="FeatureAutoEdgeScroll"/>
+    <feature class="FeaturePartsSelect"/>
+    <feature class="FeatureMoveSelectedPartsTop"/>
+  </GROUP>
+  <GROUP name="APP">
+  </GROUP>
+  <GROUP name="FileMenu">
+    <feature class="FeatureApplicationQuit" menu="File/Exit" menuorder="99999" shortcut="AltF4"/>
+  </GROUP>
+  <GROUP name="EditMenu">
+  </GROUP>
+  <GROUP name="ViewMenu">
+    <menuitem menu="View/ScreenNumZoom" menuorder="200" image="zoom" />
+    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom25" menuorder="201" image="zoomOut">0.25</feature>
+    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom50" menuorder="202">0.5</feature>
+    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom75" menuorder="203">0.75</feature>
+    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom100" menuorder="204" image="zoom" shortcut="CtrlNumPad0">1.0</feature>
+    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom200" menuorder="205">2.0</feature>
+    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom400" menuorder="206" image="zoomIn">4.0</feature>
+    <menuitem menu="View/Language" menuorder="301" image="Language" />
+    <feature class="FeatureChangeLanguage" menu="View/Language/English" menuorder="1" image="LanguageEnglish" shortcut="CtrlShiftE">en</feature>
+    <feature class="FeatureChangeLanguage" menu="View/Language/Japanese" menuorder="2" image="LanguageJapanese" shortcut="CtrlShiftJ">jp</feature>
+  </GROUP>
+  <GROUP name="ToolMenu">
+    <feature class="FeatureLogPanelCustom">Pane=Resource;MarginR=0;MarginB=0</feature>
+    <feature class="FeatureLogOpenAsText" menu="Tool/LogOpenAsText" menuorder="20" shortcut="CtrlShiftL" image="toNotepad"></feature>
+    <feature class="FeatureLogClear" menu="Tool/LogClear" menuorder="21" shortcut="CtrlShiftDelete" image="Eraser"></feature>
+    <menuitem menu="Tool/-" menuorder="30" />
+    <feature class="FeatureSwitchList" menuorder="31" menu="Tool/FeatureSwitchList" shortcut="CtrlF12" />
+  </GROUP>
+  <GROUP name="HelpMenu">
+    <feature class="FeatureAbout" menu="Help/Version" menuorder="11" />
+  </GROUP>
+</xml>

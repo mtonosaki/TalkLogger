@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xml>
+  <!-- Resources -->
+  <mes key="DeltaMark">⊿</mes>
+  <mes key="FormatHM">HH:mm</mes>
+  <mes key="FormatHMS">HH:mm:ss</mes>
+  <mes key="FormatYMDHMS">yyyy/MM/dd HH:mm:ss</mes>
+
+  <!-- ==COMMON== -->
+  <mes key="Button" ver="buttonOK">OK</mes>
+  <mes key="Button" ver="buttonCancel">Cancel</mes>
+
+  <!-- MENU -->
+  <mes key="MenuItem" ver="File">&amp;File</mes>
+  <mes key="MenuItem" ver="Open">&amp;Open</mes>
+  <mes key="MenuItem" ver="Save">&amp;Save</mes>
+  <mes key="MenuItem" ver="Exit">E&amp;xit</mes>
+  <mes key="MenuItem" ver="Language">&amp;Language</mes>
+  <mes key="MenuItem" ver="English">&amp;English</mes>
+  <mes key="MenuItem" ver="Japanese">日本語(&amp;J)</mes>
+  <mes key="MenuItem" ver="Edit">&amp;Edit</mes>
+  <mes key="MenuItem" ver="Undo">&amp;Undo</mes>
+  <mes key="MenuItem" ver="Redo">&amp;Redo</mes>
+  <mes key="MenuItem" ver="FeatureSwitch">Feature S&amp;witch</mes>
+  <mes key="MenuItem" ver="LogOpenAsText">Open &amp;Log</mes>
+  <mes key="MenuItem" ver="LogClear">&amp;Clear Log</mes>
+
+  <mes key="MenuItem" ver="View">&amp;View</mes>
+  <mes key="MenuItem" ver="ScreenNumZoom">&amp;Zoom</mes>
+  <mes key="MenuItem" ver="MenuZoom25">25%</mes>
+  <mes key="MenuItem" ver="MenuZoom50">50%</mes>
+  <mes key="MenuItem" ver="MenuZoom75">75%</mes>
+  <mes key="MenuItem" ver="MenuZoom100">100%</mes>
+  <mes key="MenuItem" ver="MenuZoom200">200%</mes>
+  <mes key="MenuItem" ver="MenuZoom400">400%</mes>
+  <mes key="MenuItem" ver="Sort">&amp;Sort</mes>
+
+  <mes key="MenuItem" ver="Tool">&amp;Tools</mes>
+
+  <mes key="MenuItem" ver="Help">&amp;Help</mes>
+  <mes key="MenuItem" ver="Version">&amp;About...</mes>
+
+  <!-- Control -->
+  <mes key="Form" ver="FormMain">Talk Logger</mes>
+  <mes key="Button" ver="buttonDummy">(button text here)</mes>
+  <mes key="ListView" ver="listViewRoute">
+    <column key="DummyColumnn1">Column No1</column>
+  </mes>
+
+  <!-- foFeatureSwitchList -->
+  <mes key="Form" ver="foFeatureSwitchList">Feature switch</mes>
+  <mes key="TabControl" ver="foFeatureSWTab">
+    <page key="foFeatureSWEnableFeatures">Using</page>
+    <page key="foFeatureSWDisableFeatures">Not used</page>
+  </mes>
+  <mes key="ListView" ver="lvFeatureSwitchList">
+    <column key="lvhFeatureSwitchListF">Feature name</column>
+    <column key="lvhFeatureSwitchListID">ID</column>
+    <column key="lvhFeatureSwitchListParam">Parameter</column>
+    <column key="lvhFeatureSwitchListDesc">Description</column>
+  </mes>
+  <mes key="ListView" ver="lvDisableFeatures">
+    <column key="lvhDisableFeatureListF">Feature name</column>
+    <column key="lvhDisableFeatureListDesc">Description</column>
+  </mes>
+
+  <!-- fProgressBar -->
+  <mes key="Form" ver="fProgressBar">Wait a moment...</mes>
+  <mes key="WaitingLeftText">@past@ sec elapsed   Left @left@ sec</mes>
+
+  <!-- fFileSelector -->
+  <mes key="fFileSelector.ParentDirectory">(Parent)</mes>
+  <mes key="Form" ver="fFileSelector">Select a file</mes>
+  <mes key="ListView" ver="listViewFileSelect">
+    <column key="Name">File name</column>
+    <column key="Size">Size</column>
+    <column key="LastModify">Update Date</column>
+  </mes>
+  <mes key="Label" ver="labelSelectorPath">Path</mes>
+  <mes key="Label" ver="labelSelectorFilename">File Name</mes>
+
+  <!-- Tooltips -->
+  <font key="tooltip.Title" face="Seoge UI" size="14" bold="1" italic="0" underline="0" stlikeout="0"/>
+  <font key="tooltip.Body"  face="Seoge UI" size="12" bold="0" italic="0" underline="0" stlikeout="0"/>
+
+  <!-- Log -->
+  <mes key="LogGroupPanel" ver="Title">Message</mes>
+  <mes key="LogGroupPanel.Welcome">Talk Logger Power with Azure Cognitive Service</mes>
+  <mes key="LogGroupPanel.LangInfo">To start logging, select device(s)</mes>
+
+  <!-- Feature Descriptions -->
+  <mes key="FeatureDescription" ver="FeatureDummy">DUMMY DUMMY DUMMY</mes>
+
+  <!-- FEATURES -->
+  <mes key="FeatureApplicationQuit" ver="ConfirmQuit">Quitting simulator but there is data that is not saved.</mes>
+  <mes key="FeatureApplicationQuit" ver="ConfirmQuitCaption">Confirming no saved data</mes>
+</xml>
