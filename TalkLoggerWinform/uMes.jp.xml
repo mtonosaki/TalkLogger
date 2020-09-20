@@ -26,6 +26,7 @@
   <mes key="MenuItem" ver="LogClear">ログをクリア(&amp;C)</mes>
 
   <mes key="MenuItem" ver="View">表示(&amp;V)</mes>
+  <mes key="MenuItem" ver="JumpToNow">現在にスクロール</mes>
   <mes key="MenuItem" ver="AutoScroll">オートスクロール</mes>
   <mes key="MenuItem" ver="ScreenNumZoom">ズーム(&amp;Z)</mes>
   <mes key="MenuItem" ver="MenuZoom25">25%</mes>

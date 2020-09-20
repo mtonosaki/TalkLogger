@@ -53,6 +53,7 @@
     <Compile Include="FeatureAbout.cs" />
     <Compile Include="FeatureAutoScroll.cs" />
     <Compile Include="FeatureChatBar.cs" />
+    <Compile Include="FeatureJumpToNow.cs" />
     <Compile Include="FeatureLogPanelCustom.cs" />
     <Compile Include="FeatureTimeline.cs" />
     <Compile Include="FormAbout.cs">
@@ -144,6 +145,9 @@
     </PackageReference>
     <PackageReference Include="Tono.GuiWinForm">
       <Version>1.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Tono.Logic">
+      <Version>1.0.7</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

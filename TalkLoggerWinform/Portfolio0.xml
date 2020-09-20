@@ -26,14 +26,10 @@
   <GROUP name="EditMenu">
   </GROUP>
   <GROUP name="ViewMenu">
-    <feature class="FeatureSwitch" menu="View/AutoScroll" menuorder="1" shortcut="CtrlF" com="/f">FeatureAutoScroll</feature>
-    <menuitem menu="View/ScreenNumZoom" menuorder="200" image="zoom" />
-    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom25" menuorder="201" image="zoomOut">0.25</feature>
-    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom50" menuorder="202">0.5</feature>
-    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom75" menuorder="203">0.75</feature>
-    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom100" menuorder="204" image="zoom" shortcut="CtrlNumPad0">1.0</feature>
-    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom200" menuorder="205">2.0</feature>
-    <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom400" menuorder="206" image="zoomIn">4.0</feature>
+
+    <feature class="FeatureJumpToNow" menu="View/JumpToNow" menuorder="1" shortcut="CtrlShiftF" />
+    <feature class="FeatureAutoScroll" />
+    <feature class="FeatureSwitch" menu="View/AutoScroll" menuorder="2" shortcut="CtrlF" com="/f">FeatureAutoScroll</feature>
     <menuitem menu="View/Language" menuorder="301" image="Language" />
     <feature class="FeatureChangeLanguage" menu="View/Language/English" menuorder="1" image="LanguageEnglish" shortcut="CtrlShiftE">en</feature>
     <feature class="FeatureChangeLanguage" menu="View/Language/Japanese" menuorder="2" image="LanguageJapanese" shortcut="CtrlShiftJ">jp</feature>

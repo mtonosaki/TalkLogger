@@ -12,7 +12,6 @@ namespace TalkLoggerWinform
     {
         protected IRichPane TarPane { get; set; }
         public DataHot Hot => (DataHot)base.Data;
-        private const int LayoutPixelPerSecond = 40;
 
         /// <summary>
         /// Top position (Layout coodinate)
@@ -77,18 +76,18 @@ namespace TalkLoggerWinform
         public LayoutRect TalkPositioner(CodeRect cd, PartsBase target)
         {
             return LayoutRect.FromLTRB(
-                cd.LT.X * LayoutPixelPerSecond, 
+                cd.LT.X * DataHot.LayoutPixelPerSecond, 
                 MakeTopByRowID(cd.LT.Y), 
-                cd.RB.X * LayoutPixelPerSecond,
+                cd.RB.X * DataHot.LayoutPixelPerSecond,
                 MakeBottomByRowID(cd.RB.Y));
         }
 
         public CodeRect TalkPosCoder(LayoutRect rect, PartsBase target)
         {
             return CodeRect.FromLTRB(
-                rect.LT.X / LayoutPixelPerSecond, 
+                rect.LT.X / DataHot.LayoutPixelPerSecond, 
                 FindRowIDByLayoutY(rect.LT.Y), 
-                rect.RB.X / LayoutPixelPerSecond, 
+                rect.RB.X / DataHot.LayoutPixelPerSecond, 
                 FindRowIDByLayoutY(rect.RB.Y));
         }
     }

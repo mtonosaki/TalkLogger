@@ -26,6 +26,7 @@
   <mes key="MenuItem" ver="LogClear">&amp;Clear Log</mes>
 
   <mes key="MenuItem" ver="View">&amp;View</mes>
+  <mes key="MenuItem" ver="JumpToNow">Go to Now</mes>
   <mes key="MenuItem" ver="AutoScroll">Auto Scroll</mes>
   <mes key="MenuItem" ver="ScreenNumZoom">&amp;Zoom</mes>
   <mes key="MenuItem" ver="MenuZoom25">25%</mes>

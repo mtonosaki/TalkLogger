@@ -9,12 +9,14 @@ namespace TalkLoggerWinform
 {
     public class DataHot : DataHotBase
     {
-        public DateTime FirstSpeech { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+        public const int LayoutPixelPerSecond = 20;
+        public DateTime FirstSpeech { get; set; }
+
+        public PartsTimeline TimelineParts { get; set; }
 
         /// <summary>
         /// RowID (You always have to manually sort this list by OrderNo)
         /// </summary>
-
         public List<(int RowID, int OrderNo, int LayoutHeight, bool IsVisible)> RowIDs = new List<(int RowID, int OrderNo, int LayoutHeight, bool IsVisible)>();
 
         public void AddRowID(int rowID, int orderNo, int layoutHeight, bool isVisible = true)
