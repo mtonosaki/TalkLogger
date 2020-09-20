@@ -14,6 +14,11 @@ namespace TalkLoggerWinform
         {
             base.OnInitInstance();
             TarPane = Pane.GetPane("Resource");
+
+            Timer.AddTrigger(1100, () =>
+            {
+                Start(null);
+            });
         }
 
         public override void Start(NamedId who)

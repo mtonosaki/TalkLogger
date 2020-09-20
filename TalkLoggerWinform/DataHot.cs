@@ -11,8 +11,8 @@ namespace TalkLoggerWinform
     {
         public const int LayoutPixelPerSecond = 20;
         public DateTime FirstSpeech { get; set; }
-
         public PartsTimeline TimelineParts { get; set; }
+        public SettingModel Setting { get; set; } = new SettingModel();
 
         /// <summary>
         /// RowID (You always have to manually sort this list by OrderNo)

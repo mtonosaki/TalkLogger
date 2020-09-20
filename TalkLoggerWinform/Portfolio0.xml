@@ -24,6 +24,7 @@
     <feature class="FeatureApplicationQuit" menu="File/Exit" menuorder="99999" shortcut="AltF4"/>
   </GROUP>
   <GROUP name="EditMenu">
+    <feature class="FeaturePreferences" menu="Edit/Preferences" menuorder="9999" image="Engine" shortcut="CtrlK" />
   </GROUP>
   <GROUP name="ViewMenu">
 

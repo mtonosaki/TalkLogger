@@ -26,13 +26,20 @@ namespace TalkLoggerWinform
             GuiViewMain.IsDrawEmptyBackground = false;
             PaneChat.IdColor = Color.FromArgb(48, 48, 48);
             Mes.SetDefault();
+            Mes.SetCurrentLanguage((string)ConfigRegister.Current["LastLanguage", "en"]);
             FeatureLoader2.SetResources(Properties.Resources.ResourceManager);
             FeatureLoader2.SetUsingClass(GetType());
             GuiViewMain.Initialize(typeof(FeatureLoader2));
             Mes.Current.ResetText(this);
+            Mes.Current.CodeChanged += OnMesCodeChanged;
             DateTimeEx.SetDayStrings(Mes.Current);
             GuiViewMain.GetFeatureRoot().ParseCommandLineParameter(Environment.GetCommandLineArgs());
             GuiViewMain.GetFeatureRoot().FlushFeatureTriggers();
+        }
+
+        private void OnMesCodeChanged(object sender, Mes.CodeChangedEventArgs e)
+        {
+            ConfigRegister.Current["LastLanguage"] = Mes.Current.GetCode();
         }
     }
 }

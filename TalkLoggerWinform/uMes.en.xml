@@ -19,13 +19,12 @@
   <mes key="MenuItem" ver="English">&amp;English</mes>
   <mes key="MenuItem" ver="Japanese">日本語(&amp;J)</mes>
   <mes key="MenuItem" ver="Edit">&amp;Edit</mes>
+  <mes key="MenuItem" ver="Preferences">&amp;Preferences...</mes>
   <mes key="MenuItem" ver="Undo">&amp;Undo</mes>
   <mes key="MenuItem" ver="Redo">&amp;Redo</mes>
   <mes key="MenuItem" ver="FeatureSwitch">Feature S&amp;witch</mes>
   <mes key="MenuItem" ver="LogOpenAsText">Open &amp;Log</mes>
   <mes key="MenuItem" ver="LogClear">&amp;Clear Log</mes>
-
-  <mes key="MenuItem" ver="View">&amp;View</mes>
   <mes key="MenuItem" ver="JumpToNow">Go to Now</mes>
   <mes key="MenuItem" ver="AutoScroll">Auto Scroll</mes>
   <mes key="MenuItem" ver="ScreenNumZoom">&amp;Zoom</mes>
@@ -47,6 +46,15 @@
   <mes key="ListView" ver="listViewRoute">
     <column key="DummyColumnn1">Column No1</column>
   </mes>
+
+  <mes key="Form" ver="FormPreferences">Preperences</mes>
+  <mes key="GroupBox" ver="GroupBoxCognitive">Azure Cognitive(Speech to Text) Service</mes>
+  <mes key="Label" ver="LabelSubscriptionKey">Subscription Key</mes>
+  <mes key="Label" ver="LabelServiceRegion">Service Region</mes>
+  <mes key="GroupBox" ver="GroupBoxAudioChannel1">Loop-back Input</mes>
+  <mes key="Label" ver="LabelListeningDevice1">Audio Device</mes>
+  <mes key="GroupBox" ver="GroupBoxAudioChannel2">Mic Input</mes>
+  <mes key="Label" ver="LabelListeningDevice2">Audio Device</mes>
 
   <!-- foFeatureSwitchList -->
   <mes key="Form" ver="foFeatureSwitchList">Feature switch</mes>
