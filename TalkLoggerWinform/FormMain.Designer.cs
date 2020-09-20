@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemFitToBottom = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,36 +39,9 @@
             this.GuiViewMain = new Tono.GuiWinForm.TGuiView(this.components);
             this.KeyEnablerMain = new Tono.GuiWinForm.TKeyEnabler();
             this.PaneChat = new Tono.GuiWinForm.TPane();
-            this.contextMenuStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.GuiViewMain.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contextMenuStripMain
-            // 
-            this.contextMenuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemFitToBottom,
-            this.toolStripSeparator1,
-            this.toolStripMenuItemExit});
-            this.contextMenuStripMain.Name = "contextMenuStripMain";
-            this.contextMenuStripMain.Size = new System.Drawing.Size(140, 54);
-            // 
-            // toolStripMenuItemFitToBottom
-            // 
-            this.toolStripMenuItemFitToBottom.Name = "toolStripMenuItemFitToBottom";
-            this.toolStripMenuItemFitToBottom.Size = new System.Drawing.Size(139, 22);
-            this.toolStripMenuItemFitToBottom.Text = "FitToBottom";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(136, 6);
-            // 
-            // toolStripMenuItemExit
-            // 
-            this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
-            this.toolStripMenuItemExit.Size = new System.Drawing.Size(139, 22);
-            this.toolStripMenuItemExit.Text = "Exit";
             // 
             // menuStripMain
             // 
@@ -177,7 +146,6 @@
             this.BackgroundImage = global::TalkLoggerWinform.Properties.Resources.bg1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(624, 168);
-            this.ContextMenuStrip = this.contextMenuStripMain;
             this.Controls.Add(this.GuiViewMain);
             this.Controls.Add(this.menuStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -185,7 +153,6 @@
             this.Name = "FormMain";
             this.Text = "Talk Logger";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.contextMenuStripMain.ResumeLayout(false);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.GuiViewMain.ResumeLayout(false);
@@ -195,11 +162,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFitToBottom;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.MenuStrip menuStripMain;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;

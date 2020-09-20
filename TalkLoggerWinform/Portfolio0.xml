@@ -26,6 +26,7 @@
   <GROUP name="EditMenu">
   </GROUP>
   <GROUP name="ViewMenu">
+    <feature class="FeatureSwitch" menu="View/AutoScroll" menuorder="1" shortcut="CtrlF" com="/f">FeatureAutoScroll</feature>
     <menuitem menu="View/ScreenNumZoom" menuorder="200" image="zoom" />
     <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom25" menuorder="201" image="zoomOut">0.25</feature>
     <feature class="FeatureMenuZoom" menu="View/ScreenNumZoom/MenuZoom50" menuorder="202">0.5</feature>

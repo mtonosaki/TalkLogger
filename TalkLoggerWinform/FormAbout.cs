@@ -16,5 +16,10 @@ namespace TalkLoggerWinform
         {
             InitializeComponent();
         }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            textBox1.Select(0, 0);
+        }
     }
 }

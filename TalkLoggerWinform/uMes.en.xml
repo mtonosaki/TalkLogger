@@ -26,6 +26,7 @@
   <mes key="MenuItem" ver="LogClear">&amp;Clear Log</mes>
 
   <mes key="MenuItem" ver="View">&amp;View</mes>
+  <mes key="MenuItem" ver="AutoScroll">Auto Scroll</mes>
   <mes key="MenuItem" ver="ScreenNumZoom">&amp;Zoom</mes>
   <mes key="MenuItem" ver="MenuZoom25">25%</mes>
   <mes key="MenuItem" ver="MenuZoom50">50%</mes>
@@ -33,7 +34,6 @@
   <mes key="MenuItem" ver="MenuZoom100">100%</mes>
   <mes key="MenuItem" ver="MenuZoom200">200%</mes>
   <mes key="MenuItem" ver="MenuZoom400">400%</mes>
-  <mes key="MenuItem" ver="Sort">&amp;Sort</mes>
 
   <mes key="MenuItem" ver="Tool">&amp;Tools</mes>
 
@@ -92,6 +92,6 @@
   <mes key="FeatureDescription" ver="FeatureDummy">DUMMY DUMMY DUMMY</mes>
 
   <!-- FEATURES -->
-  <mes key="FeatureApplicationQuit" ver="ConfirmQuit">Quitting simulator but there is data that is not saved.</mes>
+  <mes key="FeatureApplicationQuit" ver="ConfirmQuit">Quitting TalkLogger but there is data that is not saved.</mes>
   <mes key="FeatureApplicationQuit" ver="ConfirmQuitCaption">Confirming no saved data</mes>
 </xml>

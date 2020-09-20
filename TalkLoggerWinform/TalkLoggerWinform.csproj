@@ -51,6 +51,7 @@
     <Compile Include="DataLink.cs" />
     <Compile Include="DataParts.cs" />
     <Compile Include="FeatureAbout.cs" />
+    <Compile Include="FeatureAutoScroll.cs" />
     <Compile Include="FeatureChatBar.cs" />
     <Compile Include="FeatureLogPanelCustom.cs" />
     <Compile Include="FeatureTimeline.cs" />
@@ -100,6 +101,35 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Portfolio0.xml" />
+    <None Include="Resources\all.png" />
+    <None Include="Resources\Apply.png" />
+    <None Include="Resources\buttonClose.Image.png" />
+    <None Include="Resources\Calc.png" />
+    <None Include="Resources\Cancel.png" />
+    <None Include="Resources\Check2.png" />
+    <None Include="Resources\Copy.png" />
+    <None Include="Resources\Cut.png" />
+    <None Include="Resources\Edit.png" />
+    <None Include="Resources\Engine.png" />
+    <None Include="Resources\Eraser.png" />
+    <None Include="Resources\filter.png" />
+    <None Include="Resources\Help.png" />
+    <None Include="Resources\Language.png" />
+    <None Include="Resources\LanguageEnglish.png" />
+    <None Include="Resources\LanguageJapanese.png" />
+    <None Include="Resources\li_hint.png" />
+    <None Include="Resources\Lock.png" />
+    <None Include="Resources\mesInfo16.png" />
+    <None Include="Resources\mesWarning16.png" />
+    <None Include="Resources\OK.png" />
+    <None Include="Resources\Paste.png" />
+    <None Include="Resources\Preview.png" />
+    <None Include="Resources\Redo.png" />
+    <None Include="Resources\toNotepad.png" />
+    <None Include="Resources\Undo.png" />
+    <None Include="Resources\zoom.png" />
+    <None Include="Resources\zoomIN.png" />
+    <None Include="Resources\zoomOut.png" />
     <Content Include="THIRDPARTY.txt" />
     <None Include="Resources\Banner.png" />
     <Content Include="Resources\bg1.png" />

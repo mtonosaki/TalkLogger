@@ -11,34 +11,34 @@
   <mes key="Button" ver="buttonCancel">Cancel</mes>
 
   <!-- MENU -->
-  <mes key="MenuItem" ver="File">&amp;File</mes>
-  <mes key="MenuItem" ver="Open">&amp;Open</mes>
-  <mes key="MenuItem" ver="Save">&amp;Save</mes>
-  <mes key="MenuItem" ver="Exit">E&amp;xit</mes>
-  <mes key="MenuItem" ver="Language">&amp;Language</mes>
+  <mes key="MenuItem" ver="File">ファイル(&amp;F)</mes>
+  <mes key="MenuItem" ver="Open">オープン(&amp;O)</mes>
+  <mes key="MenuItem" ver="Save">保存(&amp;S)</mes>
+  <mes key="MenuItem" ver="Exit">アプリ終了(&amp;X)</mes>
+  <mes key="MenuItem" ver="Language">言語切替(&amp;L)</mes>
   <mes key="MenuItem" ver="English">&amp;English</mes>
   <mes key="MenuItem" ver="Japanese">日本語(&amp;J)</mes>
-  <mes key="MenuItem" ver="Edit">&amp;Edit</mes>
-  <mes key="MenuItem" ver="Undo">&amp;Undo</mes>
-  <mes key="MenuItem" ver="Redo">&amp;Redo</mes>
-  <mes key="MenuItem" ver="FeatureSwitch">Feature S&amp;witch</mes>
-  <mes key="MenuItem" ver="LogOpenAsText">Open &amp;Log</mes>
-  <mes key="MenuItem" ver="LogClear">&amp;Clear Log</mes>
+  <mes key="MenuItem" ver="Edit">編集(&amp;E)</mes>
+  <mes key="MenuItem" ver="Undo">アンドゥ(&amp;U)</mes>
+  <mes key="MenuItem" ver="Redo">リドゥ(&amp;R)</mes>
+  <mes key="MenuItem" ver="FeatureSwitch">フィーチャー一覧(&amp;W)</mes>
+  <mes key="MenuItem" ver="LogOpenAsText">ログを表示(&amp;L)</mes>
+  <mes key="MenuItem" ver="LogClear">ログをクリア(&amp;C)</mes>
 
-  <mes key="MenuItem" ver="View">&amp;View</mes>
-  <mes key="MenuItem" ver="ScreenNumZoom">&amp;Zoom</mes>
+  <mes key="MenuItem" ver="View">表示(&amp;V)</mes>
+  <mes key="MenuItem" ver="AutoScroll">オートスクロール</mes>
+  <mes key="MenuItem" ver="ScreenNumZoom">ズーム(&amp;Z)</mes>
   <mes key="MenuItem" ver="MenuZoom25">25%</mes>
   <mes key="MenuItem" ver="MenuZoom50">50%</mes>
   <mes key="MenuItem" ver="MenuZoom75">75%</mes>
   <mes key="MenuItem" ver="MenuZoom100">100%</mes>
   <mes key="MenuItem" ver="MenuZoom200">200%</mes>
   <mes key="MenuItem" ver="MenuZoom400">400%</mes>
-  <mes key="MenuItem" ver="Sort">&amp;Sort</mes>
 
-  <mes key="MenuItem" ver="Tool">&amp;Tools</mes>
+  <mes key="MenuItem" ver="Tool">ツール(&amp;T)</mes>
 
-  <mes key="MenuItem" ver="Help">&amp;Help</mes>
-  <mes key="MenuItem" ver="Version">&amp;About...</mes>
+  <mes key="MenuItem" ver="Help">ヘルプ(&amp;H)</mes>
+  <mes key="MenuItem" ver="Version">バージョン情報(&amp;A)...</mes>
 
   <!-- Control -->
   <mes key="Form" ver="FormMain">Talk Logger</mes>
@@ -84,14 +84,14 @@
   <font key="tooltip.Body"  face="Segoe UI" size="12" bold="0" italic="0" underline="0" stlikeout="0"/>
 
   <!-- Log -->
-  <mes key="LogGroupPanel" ver="Title">Log</mes>
+  <mes key="LogGroupPanel" ver="Title">ログ</mes>
   <mes key="LogGroupPanel.Welcome">Talk Logger Power with Azure Cognitive Service</mes>
-  <mes key="LogGroupPanel.LangInfo">To start logging, select device(s)</mes>
+  <mes key="LogGroupPanel.LangInfo">入力デバイスを選択してください。</mes>
 
   <!-- Feature Descriptions -->
   <mes key="FeatureDescription" ver="FeatureDummy">DUMMY DUMMY DUMMY</mes>
 
   <!-- FEATURES -->
-  <mes key="FeatureApplicationQuit" ver="ConfirmQuit">Quitting simulator but there is data that is not saved.</mes>
-  <mes key="FeatureApplicationQuit" ver="ConfirmQuitCaption">Confirming no saved data</mes>
+  <mes key="FeatureApplicationQuit" ver="ConfirmQuit">保存しないで終了しようとしています。</mes>
+  <mes key="FeatureApplicationQuit" ver="ConfirmQuitCaption">確認</mes>
 </xml>
