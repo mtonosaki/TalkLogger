@@ -80,8 +80,8 @@
   <mes key="Label" ver="labelSelectorFilename">File Name</mes>
 
   <!-- Tooltips -->
-  <font key="tooltip.Title" face="Seoge UI" size="14" bold="1" italic="0" underline="0" stlikeout="0"/>
-  <font key="tooltip.Body"  face="Seoge UI" size="12" bold="0" italic="0" underline="0" stlikeout="0"/>
+  <font key="tooltip.Title" face="Segoe UI" size="14" bold="1" italic="0" underline="0" stlikeout="0"/>
+  <font key="tooltip.Body"  face="Segoe UI" size="12" bold="0" italic="0" underline="0" stlikeout="0"/>
 
   <!-- Log -->
   <mes key="LogGroupPanel" ver="Title">Message</mes>
