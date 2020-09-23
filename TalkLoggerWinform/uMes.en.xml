@@ -20,6 +20,7 @@
   <mes key="MenuItem" ver="Japanese">日本語(&amp;J)</mes>
   <mes key="MenuItem" ver="Edit">&amp;Edit</mes>
   <mes key="MenuItem" ver="Preferences">&amp;Preferences...</mes>
+  <mes key="MenuItem" ver="Copy">&amp;Copy</mes>
   <mes key="MenuItem" ver="Undo">&amp;Undo</mes>
   <mes key="MenuItem" ver="Redo">&amp;Redo</mes>
   <mes key="MenuItem" ver="FeatureSwitch">Feature S&amp;witch</mes>
