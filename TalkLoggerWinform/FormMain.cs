@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tono.GuiWinForm;
 
@@ -41,13 +37,11 @@ namespace TalkLoggerWinform
 
 
             // Restore Form dimension
-            Location = new Point
-            {
+            Location = new Point {
                 X = (int)ConfigRegister.Current["X", 12],
                 Y = (int)ConfigRegister.Current["Y", 24],
             };
-            Size = new Size
-            {
+            Size = new Size {
                 Width = (int)ConfigRegister.Current["Width", 885],
                 Height = (int)ConfigRegister.Current["Height", 236],
             };
@@ -60,28 +54,44 @@ namespace TalkLoggerWinform
 
         private void OnMesCodeChanged(object sender, Mes.CodeChangedEventArgs e)
         {
-            if (IsInInit) return;
+            if (IsInInit)
+            {
+                return;
+            }
+
             ConfigRegister.Current["LastLanguage"] = Mes.Current.GetCode();
         }
 
         private void splitContainerMain_SplitterMoved(object sender, SplitterEventArgs e)
         {
-            if (IsInInit) return;
+            if (IsInInit)
+            {
+                return;
+            }
+
             ConfigRegister.Current["PaneSplitterY"] = splitContainerMain.SplitterDistance;
         }
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
         {
-            if (IsInInit) return;
-            ConfigRegister.Current["Width"] = this.Width;
-            ConfigRegister.Current["Height"] = this.Height;
+            if (IsInInit)
+            {
+                return;
+            }
+
+            ConfigRegister.Current["Width"] = Width;
+            ConfigRegister.Current["Height"] = Height;
         }
 
         private void FormMain_LocationChanged(object sender, EventArgs e)
         {
-            if (IsInInit) return;
-            ConfigRegister.Current["X"] = this.Location.X;
-            ConfigRegister.Current["Y"] = this.Location.Y;
+            if (IsInInit)
+            {
+                return;
+            }
+
+            ConfigRegister.Current["X"] = Location.X;
+            ConfigRegister.Current["Y"] = Location.Y;
         }
     }
 }

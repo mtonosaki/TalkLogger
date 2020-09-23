@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.CognitiveServices.Speech;
 using Tono;
 using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
 {
+    /// <summary>
+    /// Audio Input of Azure Speech to text default device (Not working collectly)
+    /// </summary>
     public class FeatureAudioMic : CoreFeatureBase, ITokenListener
     {
-        public NamedId TokenTriggerID => TokenDevice1Initialized;
+        public NamedId TokenTriggerID => TokenSettingsLoaded;
         private SpeechRecognizer recognizer = null;
         private string TalkID = null;
 
@@ -24,11 +26,16 @@ namespace TalkLoggerWinform
             Hot.AddRowID(0x8000 | ID.Value, 212, 4);    // Blank Space
             Pane.Control.FindForm().FormClosing += FeatureAudioMic_FormClosing;
         }
-        bool isOnStarting = false;
+
+        private bool isOnStarting = false;
         public override void Start(NamedId who)
         {
             base.Start(who);
-            if (isOnStarting) return;
+
+            if (isOnStarting)
+            {
+                return;
+            }
 
             isOnStarting = true;
 

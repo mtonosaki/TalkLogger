@@ -1,4 +1,7 @@
-﻿using System;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using Tono;
@@ -9,10 +12,11 @@ namespace TalkLoggerWinform
     public class PartsTimeline : PartsBase
     {
         public DataHot Hot { get; set; }
-        static readonly Font FontTime = new Font("Tahoma", 8.0f);
-        static readonly Font FontTimeNow = new Font("Tahoma", 9.0f, FontStyle.Bold);
-        static readonly Font FontSec = new Font("Tahoma", 7.0f);
-        static readonly Font FontSecNow = new Font("Tahoma", 8.0f, FontStyle.Bold);
+
+        private static readonly Font FontTime = new Font("Tahoma", 8.0f);
+        private static readonly Font FontTimeNow = new Font("Tahoma", 9.0f, FontStyle.Bold);
+        private static readonly Font FontSec = new Font("Tahoma", 7.0f);
+        private static readonly Font FontSecNow = new Font("Tahoma", 8.0f, FontStyle.Bold);
         public override bool Draw(IRichPane rp)
         {
             var paneRect = rp.GetPaneRect();
@@ -22,7 +26,7 @@ namespace TalkLoggerWinform
             rp.Graphics.SmoothingMode = SmoothingMode.HighQuality;
             rp.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(64, 0, 32, 64)), sr);   // Background
             var nowr = GetScRect(rp, CodeRect.FromLTRB((int)(DateTime.Now - Hot.FirstSpeech).TotalSeconds, 0, 0, 0));
-            
+
             var span = GetSpan(rp);
             var sec1 = GetCdPos(rp, sr.LT).X;   // Code.X --> Seconds from Hot.FirstSpeech
             var sec0 = sec1 / span * span;
@@ -30,9 +34,16 @@ namespace TalkLoggerWinform
             for (sec = sec0; ; sec += span)
             {
                 var time = Hot.FirstSpeech + TimeSpan.FromSeconds(sec);
-                if (time + TimeSpan.FromSeconds(1) > DateTime.Now) break;
+                if (time + TimeSpan.FromSeconds(1) > DateTime.Now)
+                {
+                    break;
+                }
+
                 var r = GetScRect(rp, CodeRect.FromLTRB(sec, 0, 0, 0));
-                if (r.LT.X > sr.RB.X) break;
+                if (r.LT.X > sr.RB.X)
+                {
+                    break;
+                }
 
                 // LINE
                 if (Math.Abs(r.LT.X - nowr.LT.X) > 8)
@@ -55,7 +66,11 @@ namespace TalkLoggerWinform
             for (; ; sec -= span)
             {
                 var time = Hot.FirstSpeech + TimeSpan.FromSeconds(sec);
-                if (time >= DateTime.Now) continue;
+                if (time >= DateTime.Now)
+                {
+                    continue;
+                }
+
                 var r = GetScRect(rp, CodeRect.FromLTRB(sec, 0, 0, 0));
 
                 // TIME LABEL
@@ -100,13 +115,41 @@ namespace TalkLoggerWinform
         private int GetSpan(IRichPane rp)
         {
             var z = rp.Zoom.X * DataHot.LayoutPixelPerSecond / 40;
-            if (z < 9) return 300;
-            if (z < 22) return 120;
-            if (z < 50) return 30;
-            if (z < 70) return 20;
-            if (z < 90) return 10;
-            if (z < 300) return 5;
-            if (z < 400) return 2;
+            if (z < 9)
+            {
+                return 300;
+            }
+
+            if (z < 22)
+            {
+                return 120;
+            }
+
+            if (z < 50)
+            {
+                return 30;
+            }
+
+            if (z < 70)
+            {
+                return 20;
+            }
+
+            if (z < 90)
+            {
+                return 10;
+            }
+
+            if (z < 300)
+            {
+                return 5;
+            }
+
+            if (z < 400)
+            {
+                return 2;
+            }
+
             return 1;
         }
     }

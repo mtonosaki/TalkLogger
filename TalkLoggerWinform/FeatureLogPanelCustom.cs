@@ -1,9 +1,9 @@
-﻿using System;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tono.GuiWinForm;
 
@@ -20,8 +20,7 @@ namespace TalkLoggerWinform
                 ConfigRegister.Current["LogPanelGroupHeight"] = 96;
             }
             GetParentForm().SizeChanged += Pane_SizeChanged;
-            Timer.AddTrigger(200, () =>
-            {
+            Timer.AddTrigger(200, () => {
                 Pane_SizeChanged(this, EventArgs.Empty);
             });
         }
@@ -51,8 +50,7 @@ namespace TalkLoggerWinform
             }
             else
             {
-                Timer.AddTrigger(200, () =>
-                {
+                Timer.AddTrigger(200, () => {
                     Pane_SizeChanged(this, EventArgs.Empty);
                 });
             }

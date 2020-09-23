@@ -1,15 +1,15 @@
-﻿using Microsoft.CognitiveServices.Speech;
-using Microsoft.CognitiveServices.Speech.Audio;
-using NAudio.CoreAudioApi;
-using NAudio.Wave;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
+using NAudio.CoreAudioApi;
+using NAudio.Wave;
 using Tono;
 using Tono.GuiWinForm;
 
@@ -32,6 +32,7 @@ namespace TalkLoggerWinform
         public override void Start(NamedId who)
         {
             base.Start(who);
+
             Handler = new SpeechHandler();
             _ = Setup(Handler);
         }
@@ -39,11 +40,12 @@ namespace TalkLoggerWinform
         private async Task Setup(SpeechHandler handler)
         {
             var taskList = new Func<SpeechHandler, Task<bool>>[] {
+                            Reset,
                             SelectAudioDeviceAsync,
                             MakeAudioConfigAsync,
                             StartRecognizeSpeechAsync,
             };
-            foreach (var func in taskList )
+            foreach (var func in taskList)
             {
                 var ret = await func.Invoke(handler);
                 if (!ret)
@@ -51,20 +53,11 @@ namespace TalkLoggerWinform
                     break;
                 }
             }
-            Token.Add(TokenDevice1Initialized, this);
         }
-        private async void FeatureAudioLoopback_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        private void FeatureAudioLoopback_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
-            if (Handler != null)
-            {
-                Handler.FireStop();
-                if (Handler.Recognizer != null)
-                {
-                    await Handler.Recognizer.StopContinuousRecognitionAsync();
-                }
-            }
+            _ = Reset(null);
         }
-
 
         private class SpeechHandler
         {
@@ -83,15 +76,26 @@ namespace TalkLoggerWinform
             }
         }
 
+        private async Task<bool> Reset(SpeechHandler _)
+        {
+            Handler?.FireStop();
+            if (Handler?.Recognizer != null)
+            {
+                await Handler.Recognizer.StopContinuousRecognitionAsync();
+            }
+            Handler = null;
+            return true;
+        }
         private async Task<bool> SelectAudioDeviceAsync(SpeechHandler handler)
         {
             // SELECT A AUDIO DEVICE
             var devices = new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
-            foreach( var device in devices )
+            foreach (var device in devices)
             {
                 if (device.ID == Hot.Setting.Device2ID)
                 {
                     handler.Device = device;
+                    LOG.WriteMesLine("FeatureAudioMic2", "DeviceInitialized", device.FriendlyName);
                     return true;
                 }
             }
@@ -104,15 +108,15 @@ namespace TalkLoggerWinform
         {
             Debug.Assert(handler.Device != null);
 
-            var wavein = new WasapiCapture(handler.Device);
-            wavein.ShareMode = AudioClientShareMode.Shared;
+            var wavein = new WasapiCapture(handler.Device) {
+                ShareMode = AudioClientShareMode.Shared
+            };
             var waveoutFormat = new WaveFormat(16000, 16, 1);
             var lastSpeakDT = DateTime.Now;
             var willStop = DateTime.MaxValue;
             wavein.StartRecording();
 
-            wavein.DataAvailable += (s, e) =>
-            {
+            wavein.DataAvailable += (s, e) => {
                 if (e.BytesRecorded > 0)
                 {
                     using (var ms = new MemoryStream(e.Buffer, 0, e.BytesRecorded))
@@ -151,8 +155,7 @@ namespace TalkLoggerWinform
             handler.AudioConfig = AudioConfig.FromStreamInput(handler.AudioInputStream);
 
             await Task.Delay(100);
-            handler.StopRequested += (s, e) =>
-            {
+            handler.StopRequested += (s, e) => {
                 wavein.StopRecording();
             };
 
@@ -199,11 +202,10 @@ namespace TalkLoggerWinform
         {
             LOG.WriteLine(LLV.DEV, $"LB.R'ng : {e.Result.Text}");
 
-            if(TalkID == null)
+            if (TalkID == null)
             {
                 TalkID = Guid.NewGuid().ToString();
-                Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-                {
+                Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                     RowID = ID.Value,
                     Action = SpeechEvent.Actions.Start,
                     TimeGenerated = DateTime.Now,
@@ -218,8 +220,7 @@ namespace TalkLoggerWinform
                 });
             }
 
-            Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-            {
+            Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                 RowID = ID.Value,
                 Action = SpeechEvent.Actions.Recognizing,
                 TimeGenerated = DateTime.Now,
@@ -233,8 +234,7 @@ namespace TalkLoggerWinform
         private void OnRecognized(object sender, SpeechRecognitionEventArgs e)
         {
             LOG.WriteLine(LLV.DEV, $"LB.R'ed : {e.Result.Text}");
-            Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-            {
+            Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                 RowID = ID.Value,
                 Action = SpeechEvent.Actions.Recognized,
                 TimeGenerated = DateTime.Now,
@@ -248,8 +248,7 @@ namespace TalkLoggerWinform
         private void OnCancel(object sender, SpeechRecognitionEventArgs e)
         {
             LOG.WriteLine(LLV.DEV, $"LB.OnCancel : {e.Result.Text}");
-            Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-            {
+            Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                 RowID = ID.Value,
                 Action = SpeechEvent.Actions.Canceled,
                 TimeGenerated = DateTime.Now,

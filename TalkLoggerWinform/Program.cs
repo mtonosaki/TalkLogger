@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Windows.Forms;
 
 namespace TalkLoggerWinform
 {
-    static class Program
+    static internal class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

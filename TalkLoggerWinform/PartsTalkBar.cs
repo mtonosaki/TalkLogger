@@ -1,11 +1,14 @@
-﻿using System.Drawing;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System.Drawing;
 using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
 {
     public class PartsTalkBar : PartsBase, IPartsSelectable
     {
-        private static Font FontTalk = new Font("Yu Gothic UI", 8.0f, FontStyle.Regular);
+        private static readonly Font FontTalk = new Font("Yu Gothic UI", 8.0f, FontStyle.Regular);
         public string SessionID { get; set; }
         public bool IsSelected { get; set; }
         public bool IsCancelled { get; set; }
@@ -25,7 +28,7 @@ namespace TalkLoggerWinform
 
             if (IsCancelled)
             {
-                if( sr.Width > 2)
+                if (sr.Width > 2)
                 {
                     rp.Graphics.FillRectangle(brush, sr);
                     rp.Graphics.DrawString(Text, FontTalk, brush, srf, tf);

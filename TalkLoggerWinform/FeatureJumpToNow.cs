@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using Tono;
 using Tono.GuiWinForm;
 
@@ -15,8 +14,7 @@ namespace TalkLoggerWinform
             base.OnInitInstance();
             TarPane = Pane.GetPane("GuiViewMain");
 
-            Timer.AddTrigger(1100, () =>
-            {
+            Timer.AddTrigger(1100, () => {
                 Start(null);
             });
         }

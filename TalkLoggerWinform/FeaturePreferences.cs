@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
@@ -16,8 +14,8 @@ namespace TalkLoggerWinform
         {
             base.OnInitInstance();
             Pane.Control.FindForm().FormClosing += Application_FormClosing;
-            Hot.Setting = LoadSetting();
 
+            Hot.Setting = LoadSetting();
             Token.Add(TokenSettingsLoaded, this);
         }
 
@@ -54,14 +52,14 @@ namespace TalkLoggerWinform
         {
             base.Start(who);
 
-            var fo = new FormPreferences
-            {
+            var fo = new FormPreferences {
                 Setting = Hot.Setting,
             };
             if (fo.ShowDialog(Pane.Control) == DialogResult.OK)
             {
                 Hot.Setting = fo.Setting;
                 SaveSetting(Hot.Setting);
+                Token.Add(TokenSettingsLoaded, this);
             }
         }
     }

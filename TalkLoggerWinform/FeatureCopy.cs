@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
 using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
@@ -18,7 +16,8 @@ namespace TalkLoggerWinform
             {
                 Clipboard.SetText(Hot.SelectedText);
                 LOG.WriteLine(LLV.DEV, $"Copy {Hot.SelectedText}");
-            } else
+            }
+            else
             {
                 LOG.WriteLine(LLV.DEV, $"Cannot Copy because of NULL");
             }

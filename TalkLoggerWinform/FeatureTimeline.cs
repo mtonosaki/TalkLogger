@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
@@ -18,7 +17,7 @@ namespace TalkLoggerWinform
 
             TarPane = Pane.GetPane("GuiViewMain");
 
-            Hot.AddRowID( ROWID_TIMELINE, orderNo:100, layoutHeight:24);  // Set Timeline Height
+            Hot.AddRowID(ROWID_TIMELINE, orderNo: 100, layoutHeight: 24);  // Set Timeline Height
             Hot.AddRowID(-999, 101, 4);            // Dummy Space
             Hot.TimelineParts = new PartsTimeline {
                 Hot = Hot,

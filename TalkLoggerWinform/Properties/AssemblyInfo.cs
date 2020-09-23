@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TalkLoggerWinform")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("TalkLogger")]
+[assembly: AssemblyDescription("Talk log utility powerd by Azure Speech to Text (Cognitive Service)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Manabu Tonosaki")]
 [assembly: AssemblyProduct("TalkLoggerWinform")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("(c) 2020 Manabu Tonosaki")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tono;
 using Tono.GuiWinForm;
 
@@ -50,7 +50,11 @@ namespace TalkLoggerWinform
 
         private void ProcUpdate(SpeechEvent se, int totime, PartsTalkBar tar)
         {
-            if (tar == null) return;
+            if (tar == null)
+            {
+                return;
+            }
+
             tar.Text = se.Text;
             tar.Rect = CodeRect.FromLTRB(Math.Min(totime - 1, tar.Rect.LT.X), tar.Rect.LT.Y, totime, tar.Rect.RB.Y);
             if (se.Action == SpeechEvent.Actions.Canceled)
@@ -67,7 +71,11 @@ namespace TalkLoggerWinform
         private void ProcStart(SpeechEvent se, int totime)
         {
             var p1 = (int)(se.TimeGenerated - Hot.FirstSpeech).TotalSeconds;
-            if (p1 > totime - 1) p1 = totime - 1;
+            if (p1 > totime - 1)
+            {
+                p1 = totime - 1;
+            }
+
             var pt = new PartsTalkBar {
                 SessionID = se.SessionID,
                 PartsPositioner = base.TalkPositioner,

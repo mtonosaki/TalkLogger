@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
 using Tono;
 using Tono.GuiWinForm;
 
@@ -12,7 +9,6 @@ namespace TalkLoggerWinform
     public class CoreFeatureBase : FeatureBase
     {
         public static readonly NamedId TokenSettingsLoaded = NamedId.FromName("SettingsLoaded");
-        public static readonly NamedId TokenDevice1Initialized = NamedId.FromName("Device1Initialized");
         public static readonly NamedId TokenSpeechEventQueued = NamedId.FromName("TokenSpeechEventQueued");
         public const int LayerTalkBar = 100;
         protected IRichPane TarPane { get; set; }
@@ -81,8 +77,8 @@ namespace TalkLoggerWinform
         public LayoutRect TalkPositioner(CodeRect cd, PartsBase target)
         {
             return LayoutRect.FromLTRB(
-                cd.LT.X * DataHot.LayoutPixelPerSecond, 
-                MakeTopByRowID(cd.LT.Y), 
+                cd.LT.X * DataHot.LayoutPixelPerSecond,
+                MakeTopByRowID(cd.LT.Y),
                 cd.RB.X * DataHot.LayoutPixelPerSecond,
                 MakeBottomByRowID(cd.RB.Y));
         }
@@ -90,9 +86,9 @@ namespace TalkLoggerWinform
         public CodeRect TalkPosCoder(LayoutRect rect, PartsBase target)
         {
             return CodeRect.FromLTRB(
-                rect.LT.X / DataHot.LayoutPixelPerSecond, 
-                FindRowIDByLayoutY(rect.LT.Y), 
-                rect.RB.X / DataHot.LayoutPixelPerSecond, 
+                rect.LT.X / DataHot.LayoutPixelPerSecond,
+                FindRowIDByLayoutY(rect.LT.Y),
+                rect.RB.X / DataHot.LayoutPixelPerSecond,
                 FindRowIDByLayoutY(rect.RB.Y));
         }
     }

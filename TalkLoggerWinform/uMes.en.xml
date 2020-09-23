@@ -102,5 +102,8 @@
   <mes key="FeatureApplicationQuit" ver="ConfirmQuit">Quitting TalkLogger but there is data that is not saved.</mes>
   <mes key="FeatureApplicationQuit" ver="ConfirmQuitCaption">Confirming no saved data</mes>
   <mes key="FeatureAudioLoopback" ver="NoDeviceID">@E Selected Render Device ID is not found on this machine {0}</mes>
+  <mes key="FeatureAudioLoopback" ver="DeviceInitialized">@I Initialized loopback Device '{0}'</mes>
   <mes key="FeatureAudioMic2" ver="NoDeviceID">@E Selected Capture Device ID is not found on this machine {0}</mes>
+  <mes key="FeatureAudioMic2" ver="DeviceInitialized">@I Initialized capture Device '{0}'</mes>
+  
 </xml>

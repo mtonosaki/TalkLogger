@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
 {
@@ -16,10 +15,8 @@ namespace TalkLoggerWinform
 
             var fid = GetRoot().FindChildFeatures(typeof(FeatureAudioLoopback)).FirstOrDefault().ID;
 
-            Timer.AddTrigger(1200, () =>
-            {
-                Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-                {
+            Timer.AddTrigger(1200, () => {
+                Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                     RowID = fid.Value,
                     Action = SpeechEvent.Actions.Start,
                     TimeGenerated = DateTime.Now - TimeSpan.FromSeconds(3.5),
@@ -32,8 +29,7 @@ namespace TalkLoggerWinform
                     SessionID = "DUMMY-001",
                     Text = Color.FromArgb(64, Color.DarkRed).ToArgb().ToString(),
                 });
-                Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-                {
+                Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                     RowID = fid.Value,
                     Action = SpeechEvent.Actions.Recognizing,
                     TimeGenerated = DateTime.Now - TimeSpan.FromSeconds(3.5),
@@ -43,10 +39,8 @@ namespace TalkLoggerWinform
                 Token.Add(TokenSpeechEventQueued, this);
                 GetRoot().FlushFeatureTriggers();
             });
-            Timer.AddTrigger(2500, () =>
-            {
-                Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-                {
+            Timer.AddTrigger(2500, () => {
+                Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                     RowID = fid.Value,
                     Action = SpeechEvent.Actions.Recognizing,
                     TimeGenerated = DateTime.Now - TimeSpan.FromSeconds(1.0),
@@ -56,10 +50,8 @@ namespace TalkLoggerWinform
                 Token.Add(TokenSpeechEventQueued, this);
                 GetRoot().FlushFeatureTriggers();
             });
-            Timer.AddTrigger(5000, () =>
-            {
-                Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-                {
+            Timer.AddTrigger(5000, () => {
+                Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                     RowID = fid.Value,
                     Action = SpeechEvent.Actions.Recognizing,
                     TimeGenerated = DateTime.Now - TimeSpan.FromSeconds(0.3),
@@ -69,10 +61,8 @@ namespace TalkLoggerWinform
                 Token.Add(TokenSpeechEventQueued, this);
                 GetRoot().FlushFeatureTriggers();
             });
-            Timer.AddTrigger(5300, () =>
-            {
-                Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-                {
+            Timer.AddTrigger(5300, () => {
+                Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                     RowID = fid.Value,
                     Action = SpeechEvent.Actions.Recognized,
                     TimeGenerated = DateTime.Now,

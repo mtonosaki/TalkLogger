@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
@@ -69,7 +67,7 @@ namespace TalkLoggerWinform
         public int CalsLineCount(RichTextBox text)
         {
             int cnt;
-            for( cnt = 0; text.GetFirstCharIndexFromLine(cnt) >= 0; cnt++)
+            for (cnt = 0; text.GetFirstCharIndexFromLine(cnt) >= 0; cnt++)
             {
             }
             return cnt;

@@ -1,26 +1,20 @@
-﻿using NAudio.CoreAudioApi;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Tono;
+using NAudio.CoreAudioApi;
 using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
 {
     public partial class FormPreferences : Form
     {
-        public SettingModel Setting
-        {
-            get
-            {
+        public SettingModel Setting {
+            get {
                 var loopbackDeviceID = "";
-                if(comboBoxLoopbackDevice.Items.Count > 0)
+                if (comboBoxLoopbackDevice.Items.Count > 0)
                 {
                     loopbackDeviceID = ((MMDevice)comboBoxLoopbackDevice.Items[comboBoxLoopbackDevice.SelectedIndex]).ID;
                 }
@@ -29,16 +23,14 @@ namespace TalkLoggerWinform
                 {
                     micDeviceID = ((MMDevice)comboBoxMicDevice.Items[comboBoxMicDevice.SelectedIndex]).ID;
                 }
-                return new SettingModel
-                {
+                return new SettingModel {
                     SubscriptionKey = textBoxSubscriptionKey.Text,
                     ServiceRegion = textBoxServiceRegion.Text,
                     Device1ID = loopbackDeviceID,
                     Device2ID = micDeviceID,
                 };
             }
-            set
-            {
+            set {
                 textBoxSubscriptionKey.Text = value.SubscriptionKey;
                 textBoxServiceRegion.Text = value.ServiceRegion;
 
