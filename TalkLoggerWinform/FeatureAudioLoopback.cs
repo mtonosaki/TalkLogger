@@ -5,6 +5,7 @@ using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,13 +20,16 @@ namespace TalkLoggerWinform
         public NamedId TokenTriggerID => TokenSettingsLoaded;
         private SpeechHandler Handler;
 
+        public override void OnInitInstance()
+        {
+            base.OnInitInstance();
+
+            Hot.AddRowID(ID.Value, 201, 32);   // Device 1 : Loopback
+            Pane.Control.FindForm().FormClosing += FeatureAudioLoopback_FormClosing;
+        }
         public override void Start(NamedId who)
         {
             base.Start(who);
-
-            Hot.AddRowID(ID.Value, 201, 32);   // Device 1 : Loopback
-
-            Pane.Control.FindForm().FormClosing += FeatureAudioLoopback_FormClosing;
             Handler = new SpeechHandler();
             _ = Setup(Handler);
         }
@@ -59,7 +63,7 @@ namespace TalkLoggerWinform
         }
 
 
-        public class SpeechHandler
+        private class SpeechHandler
         {
             public MMDevice Device { get; set; }
             public SpeechRecognizer Recognizer { get; set; }
@@ -201,7 +205,13 @@ namespace TalkLoggerWinform
                     TimeGenerated = DateTime.Now,
                     SessionID = TalkID,
                 });
-                Token.Add(TokenSpeechEventQueued, this);
+                Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
+                    RowID = ID.Value,
+                    Action = SpeechEvent.Actions.SetColor,
+                    TimeGenerated = DateTime.Now,
+                    SessionID = TalkID,
+                    Text = Color.FromArgb(64, Color.DarkGreen).ToArgb().ToString(),
+                });
             }
 
             Hot.SpeechEventQueue.Enqueue(new SpeechEvent

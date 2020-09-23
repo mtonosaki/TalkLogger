@@ -17,6 +17,7 @@
     <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
     <feature class="FeatureAudioLoopback" />
+    <feature class="FeatureAudioMic" />
     <feature class="FeaturePartsSelect" />
     <feature class="FeatureTalkTextBox" />
 

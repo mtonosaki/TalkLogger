@@ -11,6 +11,7 @@ namespace TalkLoggerWinform
             Recognized,
             End,
             Canceled,
+            SetColor,
         };
         public Actions Action { get; set; }
         public DateTime TimeGenerated { get; set; } // DateTime at Token Fire

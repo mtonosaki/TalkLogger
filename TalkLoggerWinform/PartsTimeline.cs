@@ -92,7 +92,7 @@ namespace TalkLoggerWinform
                 });
             }
 
-            rp.Graphics.DrawLine(Pens.White, paneRect.RT, paneRect.LB); // for TEST
+            // rp.Graphics.DrawLine(Pens.White, paneRect.RT, paneRect.LB); // for TEST
 
             return true;
         }

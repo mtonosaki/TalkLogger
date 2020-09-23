@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,32 +30,54 @@ namespace TalkLoggerWinform
 
         public void ProcSpeechEvent(SpeechEvent se)
         {
-            if (se.Action == SpeechEvent.Actions.Start)
-            {
-                var p1 = (int)(se.TimeGenerated - Hot.FirstSpeech).TotalSeconds;
-                var p2 = (int)(DateTime.Now - Hot.FirstSpeech).TotalSeconds;
-                if (p2 < p1 + 3) p2 = p1 + 3;
-                var pt = new PartsTalkBar
-                {
-                    SessionID = se.SessionID,
-                    PartsPositioner = base.TalkPositioner,
-                    PartsPositionCorder = base.TalkPosCoder,
-                    Rect = CodeRect.FromLTRB(
-                                            l: p1,
-                                            r: p2,
-                                            t: se.RowID,
-                                            b: se.RowID),
-                };
-                Parts.Add(TarPane, pt, LayerTalkBar);
-                return;
-            }
+            var p2 = (int)(DateTime.Now - Hot.FirstSpeech).TotalSeconds + 1;
             var tar = Parts.GetPartsByLocationID(new Id { Value = se.RowID }).Select(a => (PartsTalkBar)a).Where(a => a.SessionID == se.SessionID).FirstOrDefault();
-            if (tar != null)
+
+            switch (se.Action)
             {
-                tar.Text = se.Text;
-                tar.Rect = CodeRect.FromLTRB(tar.Rect.LT.X, tar.Rect.LT.Y, (int)(DateTime.Now - Hot.FirstSpeech).TotalSeconds, tar.Rect.RB.Y);
-                Pane.Invalidate(null);
+                case SpeechEvent.Actions.Start:
+                    ProcStart(se, p2);
+                    break;
+                case SpeechEvent.Actions.SetColor:
+                    ProcSetColor(se, p2, tar);
+                    break;
+                default:
+                    ProcUpdate(se, p2, tar);
+                    break;
             }
+            Pane.Invalidate(null);
+        }
+
+        private void ProcUpdate(SpeechEvent se, int totime, PartsTalkBar tar)
+        {
+            tar.Text = se.Text;
+            tar.Rect = CodeRect.FromLTRB(Math.Min(totime - 1, tar.Rect.LT.X), tar.Rect.LT.Y, totime, tar.Rect.RB.Y);
+            if (se.Action == SpeechEvent.Actions.Canceled)
+            {
+                tar.IsCancelled = true;
+            }
+        }
+
+        private void ProcSetColor(SpeechEvent se, int totime, PartsTalkBar tar)
+        {
+            tar.BarColor = Color.FromArgb(int.Parse(se.Text));
+        }
+
+        private void ProcStart(SpeechEvent se, int totime)
+        {
+            var p1 = (int)(se.TimeGenerated - Hot.FirstSpeech).TotalSeconds;
+            if (p1 > totime - 1) p1 = totime - 1;
+            var pt = new PartsTalkBar {
+                SessionID = se.SessionID,
+                PartsPositioner = base.TalkPositioner,
+                PartsPositionCorder = base.TalkPosCoder,
+                Rect = CodeRect.FromLTRB(
+                                        l: p1,
+                                        r: totime,
+                                        t: se.RowID,
+                                        b: se.RowID),
+            };
+            Parts.Add(TarPane, pt, LayerTalkBar);
         }
     }
 }

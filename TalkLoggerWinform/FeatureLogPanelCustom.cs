@@ -79,7 +79,7 @@ namespace TalkLoggerWinform
 
             public override bool Draw(IRichPane rp)
             {
-#if DEBUG
+#if false
                 base.Draw(rp);
 #endif
                 return true;
