@@ -12,6 +12,7 @@ namespace TalkLoggerWinform
     public class CoreFeatureBase : FeatureBase
     {
         public static readonly NamedId TokenSettingsLoaded = NamedId.FromName("SettingsLoaded");
+        public static readonly NamedId TokenDevice1Initialized = NamedId.FromName("Device1Initialized");
         public static readonly NamedId TokenSpeechEventQueued = NamedId.FromName("TokenSpeechEventQueued");
         public const int LayerTalkBar = 100;
         protected IRichPane TarPane { get; set; }

@@ -35,11 +35,11 @@
             this.textBoxSubscriptionKey = new System.Windows.Forms.TextBox();
             this.LabelSubscriptionKey = new System.Windows.Forms.Label();
             this.GroupBoxAudioChannel1 = new System.Windows.Forms.GroupBox();
-            this.LabelListeningDevice1 = new System.Windows.Forms.Label();
-            this.comboBoxDevice1 = new System.Windows.Forms.ComboBox();
+            this.LabelListeningLoopbackDevice = new System.Windows.Forms.Label();
+            this.comboBoxLoopbackDevice = new System.Windows.Forms.ComboBox();
             this.GroupBoxAudioChannel2 = new System.Windows.Forms.GroupBox();
-            this.LabelListeningDevice2 = new System.Windows.Forms.Label();
-            this.comboBoxDevice2 = new System.Windows.Forms.ComboBox();
+            this.LabelListeningMicDevice = new System.Windows.Forms.Label();
+            this.comboBoxMicDevice = new System.Windows.Forms.ComboBox();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.GroupBoxCognitive.SuspendLayout();
@@ -96,8 +96,8 @@
             // 
             // GroupBoxAudioChannel1
             // 
-            this.GroupBoxAudioChannel1.Controls.Add(this.LabelListeningDevice1);
-            this.GroupBoxAudioChannel1.Controls.Add(this.comboBoxDevice1);
+            this.GroupBoxAudioChannel1.Controls.Add(this.LabelListeningLoopbackDevice);
+            this.GroupBoxAudioChannel1.Controls.Add(this.comboBoxLoopbackDevice);
             this.GroupBoxAudioChannel1.Location = new System.Drawing.Point(14, 153);
             this.GroupBoxAudioChannel1.Name = "GroupBoxAudioChannel1";
             this.GroupBoxAudioChannel1.Size = new System.Drawing.Size(421, 115);
@@ -107,26 +107,26 @@
             // 
             // LabelListeningDevice1
             // 
-            this.LabelListeningDevice1.AutoSize = true;
-            this.LabelListeningDevice1.Location = new System.Drawing.Point(7, 27);
-            this.LabelListeningDevice1.Name = "LabelListeningDevice1";
-            this.LabelListeningDevice1.Size = new System.Drawing.Size(90, 15);
-            this.LabelListeningDevice1.TabIndex = 4;
-            this.LabelListeningDevice1.Text = "ListeningDevice";
+            this.LabelListeningLoopbackDevice.AutoSize = true;
+            this.LabelListeningLoopbackDevice.Location = new System.Drawing.Point(7, 27);
+            this.LabelListeningLoopbackDevice.Name = "LabelListeningDevice1";
+            this.LabelListeningLoopbackDevice.Size = new System.Drawing.Size(90, 15);
+            this.LabelListeningLoopbackDevice.TabIndex = 4;
+            this.LabelListeningLoopbackDevice.Text = "ListeningDevice";
             // 
             // comboBoxDevice1
             // 
-            this.comboBoxDevice1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxDevice1.FormattingEnabled = true;
-            this.comboBoxDevice1.Location = new System.Drawing.Point(146, 23);
-            this.comboBoxDevice1.Name = "comboBoxDevice1";
-            this.comboBoxDevice1.Size = new System.Drawing.Size(268, 23);
-            this.comboBoxDevice1.TabIndex = 0;
+            this.comboBoxLoopbackDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLoopbackDevice.FormattingEnabled = true;
+            this.comboBoxLoopbackDevice.Location = new System.Drawing.Point(146, 23);
+            this.comboBoxLoopbackDevice.Name = "comboBoxDevice1";
+            this.comboBoxLoopbackDevice.Size = new System.Drawing.Size(268, 23);
+            this.comboBoxLoopbackDevice.TabIndex = 0;
             // 
             // GroupBoxAudioChannel2
             // 
-            this.GroupBoxAudioChannel2.Controls.Add(this.LabelListeningDevice2);
-            this.GroupBoxAudioChannel2.Controls.Add(this.comboBoxDevice2);
+            this.GroupBoxAudioChannel2.Controls.Add(this.LabelListeningMicDevice);
+            this.GroupBoxAudioChannel2.Controls.Add(this.comboBoxMicDevice);
             this.GroupBoxAudioChannel2.Location = new System.Drawing.Point(14, 276);
             this.GroupBoxAudioChannel2.Name = "GroupBoxAudioChannel2";
             this.GroupBoxAudioChannel2.Size = new System.Drawing.Size(421, 115);
@@ -136,21 +136,21 @@
             // 
             // LabelListeningDevice2
             // 
-            this.LabelListeningDevice2.AutoSize = true;
-            this.LabelListeningDevice2.Location = new System.Drawing.Point(7, 27);
-            this.LabelListeningDevice2.Name = "LabelListeningDevice2";
-            this.LabelListeningDevice2.Size = new System.Drawing.Size(90, 15);
-            this.LabelListeningDevice2.TabIndex = 4;
-            this.LabelListeningDevice2.Text = "ListeningDevice";
+            this.LabelListeningMicDevice.AutoSize = true;
+            this.LabelListeningMicDevice.Location = new System.Drawing.Point(7, 27);
+            this.LabelListeningMicDevice.Name = "LabelListeningDevice2";
+            this.LabelListeningMicDevice.Size = new System.Drawing.Size(90, 15);
+            this.LabelListeningMicDevice.TabIndex = 4;
+            this.LabelListeningMicDevice.Text = "ListeningDevice";
             // 
             // comboBoxDevice2
             // 
-            this.comboBoxDevice2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxDevice2.FormattingEnabled = true;
-            this.comboBoxDevice2.Location = new System.Drawing.Point(146, 23);
-            this.comboBoxDevice2.Name = "comboBoxDevice2";
-            this.comboBoxDevice2.Size = new System.Drawing.Size(268, 23);
-            this.comboBoxDevice2.TabIndex = 0;
+            this.comboBoxMicDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxMicDevice.FormattingEnabled = true;
+            this.comboBoxMicDevice.Location = new System.Drawing.Point(146, 23);
+            this.comboBoxMicDevice.Name = "comboBoxDevice2";
+            this.comboBoxMicDevice.Size = new System.Drawing.Size(268, 23);
+            this.comboBoxMicDevice.TabIndex = 0;
             // 
             // buttonOK
             // 
@@ -207,11 +207,11 @@
         private System.Windows.Forms.TextBox textBoxSubscriptionKey;
         private System.Windows.Forms.Label LabelSubscriptionKey;
         private System.Windows.Forms.GroupBox GroupBoxAudioChannel1;
-        private System.Windows.Forms.Label LabelListeningDevice1;
-        private System.Windows.Forms.ComboBox comboBoxDevice1;
+        private System.Windows.Forms.Label LabelListeningLoopbackDevice;
+        private System.Windows.Forms.ComboBox comboBoxLoopbackDevice;
         private System.Windows.Forms.GroupBox GroupBoxAudioChannel2;
-        private System.Windows.Forms.Label LabelListeningDevice2;
-        private System.Windows.Forms.ComboBox comboBoxDevice2;
+        private System.Windows.Forms.Label LabelListeningMicDevice;
+        private System.Windows.Forms.ComboBox comboBoxMicDevice;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
     }

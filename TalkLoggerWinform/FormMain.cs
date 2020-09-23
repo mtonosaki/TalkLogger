@@ -36,7 +36,7 @@ namespace TalkLoggerWinform
             GuiViewMain.GetFeatureRoot().ParseCommandLineParameter(Environment.GetCommandLineArgs());
             GuiViewMain.GetFeatureRoot().FlushFeatureTriggers();
 
-            GuiViewMain.Zoom = new XyBase { X = 1600, Y = 1000, };
+            GuiViewMain.Zoom = new XyBase { X = 1090, Y = 1000, };
             GuiViewMain.Scroll = ScreenPos.FromInt(GuiViewMain.Scroll.X, 12);
 
 

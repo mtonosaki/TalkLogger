@@ -12,16 +12,16 @@ namespace TalkLoggerWinform
 {
     public class FeatureAudioMic : CoreFeatureBase, ITokenListener
     {
-        public NamedId TokenTriggerID => TokenSettingsLoaded;
+        public NamedId TokenTriggerID => TokenDevice1Initialized;
         private SpeechRecognizer recognizer = null;
         private string TalkID = null;
-        private static readonly Color BarColor = Color.FromArgb(64, 160, 160, 255);
 
         public override void OnInitInstance()
         {
             base.OnInitInstance();
 
-            Hot.AddRowID(ID.Value, 201, 32);   // Device 2 : Mic
+            Hot.AddRowID(ID.Value, 211, 42);   // Device 2 : Mic
+            Hot.AddRowID(0x8000 | ID.Value, 212, 4);    // Blank Space
             Pane.Control.FindForm().FormClosing += FeatureAudioMic_FormClosing;
         }
         bool isOnStarting = false;

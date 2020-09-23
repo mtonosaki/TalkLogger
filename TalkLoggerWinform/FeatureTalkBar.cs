@@ -50,6 +50,7 @@ namespace TalkLoggerWinform
 
         private void ProcUpdate(SpeechEvent se, int totime, PartsTalkBar tar)
         {
+            if (tar == null) return;
             tar.Text = se.Text;
             tar.Rect = CodeRect.FromLTRB(Math.Min(totime - 1, tar.Rect.LT.X), tar.Rect.LT.Y, totime, tar.Rect.RB.Y);
             if (se.Action == SpeechEvent.Actions.Canceled)

@@ -15,7 +15,7 @@ using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
 {
-    public class FeatureAudioLoopback : CoreFeatureBase, ITokenListener
+    public class FeatureAudioMic2 : CoreFeatureBase, ITokenListener
     {
         public NamedId TokenTriggerID => TokenSettingsLoaded;
         private SpeechHandler Handler;
@@ -24,9 +24,10 @@ namespace TalkLoggerWinform
         {
             base.OnInitInstance();
 
-            Hot.AddRowID(ID.Value, 201, 42);   // Device 1 : Loopback
-            Hot.AddRowID(0x8000 | ID.Value, 202, 4);    // Blank Space
+            Hot.AddRowID(ID.Value, 211, 42);   // Device 2 : Mic
+            Hot.AddRowID(0x8000 | ID.Value, 212, 4);    // Blank Space
             Pane.Control.FindForm().FormClosing += FeatureAudioLoopback_FormClosing;
+
         }
         public override void Start(NamedId who)
         {
@@ -85,16 +86,16 @@ namespace TalkLoggerWinform
         private async Task<bool> SelectAudioDeviceAsync(SpeechHandler handler)
         {
             // SELECT A AUDIO DEVICE
-            var devices = new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
+            var devices = new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
             foreach( var device in devices )
             {
-                if (device.ID == Hot.Setting.Device1ID)
+                if (device.ID == Hot.Setting.Device2ID)
                 {
                     handler.Device = device;
                     return true;
                 }
             }
-            LOG.WriteMesLine("FeatureAudioLoopback", "NoDeviceID", Hot.Setting.Device1ID);
+            LOG.WriteMesLine("FeatureAudioMic2", "NoDeviceID", Hot.Setting.Device2ID);
             await Task.Delay(20);
             return false;
         }
@@ -103,11 +104,12 @@ namespace TalkLoggerWinform
         {
             Debug.Assert(handler.Device != null);
 
-            var wavein = new WasapiLoopbackCapture(handler.Device);
-            wavein.ShareMode = AudioClientShareMode.Shared; // TODO: CHECK
+            var wavein = new WasapiCapture(handler.Device);
+            wavein.ShareMode = AudioClientShareMode.Shared;
             var waveoutFormat = new WaveFormat(16000, 16, 1);
             var lastSpeakDT = DateTime.Now;
             var willStop = DateTime.MaxValue;
+            wavein.StartRecording();
 
             wavein.DataAvailable += (s, e) =>
             {
@@ -153,7 +155,6 @@ namespace TalkLoggerWinform
             {
                 wavein.StopRecording();
             };
-            wavein.StartRecording();
 
             return true;
         }
@@ -213,7 +214,7 @@ namespace TalkLoggerWinform
                     Action = SpeechEvent.Actions.SetColor,
                     TimeGenerated = DateTime.Now,
                     SessionID = TalkID,
-                    Text = Color.FromArgb(64, Color.DarkGreen).ToArgb().ToString(),
+                    Text = Color.FromArgb(64, Color.DarkCyan).ToArgb().ToString(),
                 });
             }
 

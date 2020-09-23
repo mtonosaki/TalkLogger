@@ -73,6 +73,7 @@
     <Compile Include="DataLink.cs" />
     <Compile Include="DataParts.cs" />
     <Compile Include="FeatureAbout.cs" />
+    <Compile Include="FeatureAudioMic2.cs" />
     <Compile Include="FeatureAudioLoopback.cs" />
     <Compile Include="FeatureAudioMic.cs" />
     <Compile Include="FeatureAutoScroll.cs" />

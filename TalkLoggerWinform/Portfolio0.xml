@@ -17,11 +17,11 @@
     <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
     <feature class="FeatureAudioLoopback" />
-    <feature class="FeatureAudioMic" />
+    <feature class="FeatureAudioMic2" />
     <feature class="FeaturePartsSelect" />
     <feature class="FeatureTalkTextBox" />
 
-    <feature class="FeatureDummyAudio" />
+    <!--<feature class="FeatureDummyAudio" />-->
   </GROUP>
   <GROUP name="FileMenu">
     <feature class="FeatureApplicationQuit" menu="File/Exit" menuorder="99999" shortcut="AltF4"/>

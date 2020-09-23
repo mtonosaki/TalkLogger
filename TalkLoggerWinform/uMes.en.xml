@@ -101,5 +101,6 @@
   <mes key="FeatureDescription" ver="FeatureDummy">DUMMY DUMMY DUMMY</mes>
   <mes key="FeatureApplicationQuit" ver="ConfirmQuit">Quitting TalkLogger but there is data that is not saved.</mes>
   <mes key="FeatureApplicationQuit" ver="ConfirmQuitCaption">Confirming no saved data</mes>
-  <mes key="FeatureAudioLoopback" ver="NoDeviceID">@E Selected Device ID is not found on this machine {0}</mes>
+  <mes key="FeatureAudioLoopback" ver="NoDeviceID">@E Selected Render Device ID is not found on this machine {0}</mes>
+  <mes key="FeatureAudioMic2" ver="NoDeviceID">@E Selected Capture Device ID is not found on this machine {0}</mes>
 </xml>
