@@ -3,25 +3,21 @@
   <IMPLEMENT Data="DataHot" Parts="DataParts" Link="DataLink" />
 
   <GROUP name="GUI">
-    <feature class="FeatureKeyZoom"/>
-    <feature class="FeatureDragZoom">Trigger=CTRL+BUTTON;Cursor=CTRL+BUTTON=Cursors.SizeNWSE;SameXY=false;</feature>
+    <feature class="FeatureDragZoom">Trigger=CTRL+BUTTON;Cursor=CTRL;BUTTON=Cursors.SizeNWSE;SameXY=false;</feature>
     <feature class="FeatureDragScroll">Trigger=MIDDLE</feature>
     <feature class="FeatureDragScroll">Trigger=CTRL+SHIFT+BUTTON</feature>
-    <feature class="FeatureWheelScroll" />
-    <feature class="FeatureWheelScrollXYRev">Attr=SHIFT</feature>
-    <feature class="FeatureAutoEdgeScroll"/>
     <feature class="FeaturePartsSelect"/>
     <feature class="FeatureMoveSelectedPartsTop"/>
+    <feature class="FeatureScrollZoomLock" />
   </GROUP>
   <GROUP name="APP">
     <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
     <feature class="FeatureAudioLoopback" />
     <feature class="FeatureAudioMic2" />
+    <!--<feature class="FeatureDummyAudio" />-->
     <feature class="FeaturePartsSelect" />
     <feature class="FeatureTalkTextBox" />
-
-    <!--<feature class="FeatureDummyAudio" />-->
   </GROUP>
   <GROUP name="FileMenu">
     <feature class="FeatureApplicationQuit" menu="File/Exit" menuorder="99999" shortcut="AltF4"/>
