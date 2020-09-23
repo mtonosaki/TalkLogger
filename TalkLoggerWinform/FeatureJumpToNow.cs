@@ -13,7 +13,7 @@ namespace TalkLoggerWinform
         public override void OnInitInstance()
         {
             base.OnInitInstance();
-            TarPane = Pane.GetPane("Resource");
+            TarPane = Pane.GetPane("GuiViewMain");
 
             Timer.AddTrigger(1100, () =>
             {

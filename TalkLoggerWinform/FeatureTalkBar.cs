@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +15,7 @@ namespace TalkLoggerWinform
         public override void OnInitInstance()
         {
             base.OnInitInstance();
-            TarPane = Pane.GetPane("Resource");
+            TarPane = Pane.GetPane("GuiViewMain");
         }
         public override void Start(NamedId who)
         {
@@ -56,24 +55,6 @@ namespace TalkLoggerWinform
                 tar.Rect = CodeRect.FromLTRB(tar.Rect.LT.X, tar.Rect.LT.Y, (int)(DateTime.Now - Hot.FirstSpeech).TotalSeconds, tar.Rect.RB.Y);
                 Pane.Invalidate(null);
             }
-        }
-    }
-
-    public class PartsTalkBar : PartsBase
-    {
-        private static Font FontTalk = new Font("Yu Gothic UI", 8.0f, FontStyle.Regular);
-        public string SessionID { get; set; }
-        public override bool Draw(IRichPane rp)
-        {
-            var sr = GetScRect(rp);
-            rp.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(160, Color.DarkGreen)), sr);
-            rp.Graphics.DrawString(Text, FontTalk, Brushes.White, new RectangleF(sr.LT.X, sr.LT.Y, sr.Width, sr.Height), new StringFormat
-            {
-                Alignment = StringAlignment.Far,
-                LineAlignment = StringAlignment.Center,
-                Trimming = StringTrimming.EllipsisCharacter,
-            });
-            return true;
         }
     }
 }

@@ -20,6 +20,8 @@
     <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
     <feature class="FeatureAudioLoopback" />
+    <feature class="FeaturePartsSelect" />
+    <feature class="FeatureTalkTextBox" />
   </GROUP>
   <GROUP name="FileMenu">
     <feature class="FeatureApplicationQuit" menu="File/Exit" menuorder="99999" shortcut="AltF4"/>
@@ -37,7 +39,7 @@
     <feature class="FeatureChangeLanguage" menu="View/Language/Japanese" menuorder="2" image="LanguageJapanese" shortcut="CtrlShiftJ">jp</feature>
   </GROUP>
   <GROUP name="ToolMenu">
-    <feature class="FeatureLogPanelCustom">Pane=Resource;MarginL=2000</feature>
+    <feature class="FeatureLogPanelCustom">Pane=GuiViewMain;MarginL=2000</feature>
     <feature class="FeatureLogOpenAsText" menu="Tool/LogOpenAsText" menuorder="20" shortcut="CtrlShiftL" image="toNotepad"></feature>
     <feature class="FeatureLogClear" menu="Tool/LogClear" menuorder="21" shortcut="CtrlShiftDelete" image="Eraser"></feature>
     <menuitem menu="Tool/-" menuorder="30" />

@@ -14,7 +14,7 @@ namespace TalkLoggerWinform
         public override void OnInitInstance()
         {
             base.OnInitInstance();
-            TarPane = Pane.GetPane("Resource");
+            TarPane = Pane.GetPane("GuiViewMain");
             _isAutoScroll = (DataSharingManager.Boolean)Share.Get("_isAutoScroll", typeof(DataSharingManager.Boolean));
             Timer.AddTrigger(1000, OnPorling);
         }

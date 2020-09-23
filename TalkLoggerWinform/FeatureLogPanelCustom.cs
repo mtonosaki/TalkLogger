@@ -77,6 +77,14 @@ namespace TalkLoggerWinform
             {
             }
 
+            public override bool Draw(IRichPane rp)
+            {
+#if DEBUG
+                base.Draw(rp);
+#endif
+                return true;
+            }
+
             protected override Brush createLogPanelBG(ScreenRect sr)
             {
                 return new System.Drawing.Drawing2D.LinearGradientBrush(

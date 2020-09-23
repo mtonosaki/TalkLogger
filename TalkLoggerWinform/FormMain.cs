@@ -24,7 +24,6 @@ namespace TalkLoggerWinform
         {
             // INIT Tono.Gui.WinForm
             GuiViewMain.IsDrawEmptyBackground = false;
-            PaneChat.IdColor = Color.FromArgb(48, 48, 48);
             Mes.SetDefault();
             Mes.SetCurrentLanguage((string)ConfigRegister.Current["LastLanguage", "en"]);
             FeatureLoader2.SetResources(Properties.Resources.ResourceManager);
@@ -36,8 +35,8 @@ namespace TalkLoggerWinform
             GuiViewMain.GetFeatureRoot().ParseCommandLineParameter(Environment.GetCommandLineArgs());
             GuiViewMain.GetFeatureRoot().FlushFeatureTriggers();
 
-            PaneChat.Zoom = new XyBase { X = 1600, Y = 1000, };
-            PaneChat.Scroll = ScreenPos.FromInt(PaneChat.Scroll.X, 12);
+            GuiViewMain.Zoom = new XyBase { X = 1600, Y = 1000, };
+            GuiViewMain.Scroll = ScreenPos.FromInt(GuiViewMain.Scroll.X, 12);
         }
 
         private void OnMesCodeChanged(object sender, Mes.CodeChangedEventArgs e)

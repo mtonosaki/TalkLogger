@@ -75,6 +75,7 @@
     <Compile Include="FeatureAbout.cs" />
     <Compile Include="FeatureAudioLoopback.cs" />
     <Compile Include="FeatureAutoScroll.cs" />
+    <Compile Include="FeatureTalkTextBox.cs" />
     <Compile Include="FeatureJumpToNow.cs" />
     <Compile Include="FeatureLogPanelCustom.cs" />
     <Compile Include="FeaturePreferences.cs" />
@@ -98,6 +99,8 @@
     <Compile Include="FormPreferences.Designer.cs">
       <DependentUpon>FormPreferences.cs</DependentUpon>
     </Compile>
+    <Compile Include="PartsTalkBar.cs" />
+    <Compile Include="PartsTimeline.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingModel.cs" />
