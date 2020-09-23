@@ -38,9 +38,9 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GuiViewMain = new Tono.GuiWinForm.TGuiView(this.components);
             this.KeyEnablerMain = new Tono.GuiWinForm.TKeyEnabler();
-            this.textBoxTalk = new System.Windows.Forms.TextBox();
             this.labelTalkBarTime = new System.Windows.Forms.Label();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.textBoxTalk = new System.Windows.Forms.RichTextBox();
             this.menuStripMain.SuspendLayout();
             this.GuiViewMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
@@ -59,7 +59,7 @@
             this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(624, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(869, 24);
             this.menuStripMain.TabIndex = 1;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -96,19 +96,17 @@
             // GuiViewMain
             // 
             this.GuiViewMain.AllowDrop = true;
-            this.GuiViewMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.GuiViewMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.GuiViewMain.Controls.Add(this.KeyEnablerMain);
+            this.GuiViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GuiViewMain.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.GuiViewMain.IdText = "GuiViewMain";
             this.GuiViewMain.IsDrawEmptyBackground = false;
-            this.GuiViewMain.Location = new System.Drawing.Point(0, -1);
+            this.GuiViewMain.Location = new System.Drawing.Point(0, 0);
             this.GuiViewMain.Name = "GuiViewMain";
             this.GuiViewMain.Scroll = ((Tono.GuiWinForm.ScreenPos)(resources.GetObject("GuiViewMain.Scroll")));
             this.GuiViewMain.ScrollMute = ((Tono.GuiWinForm.ScreenPos)(resources.GetObject("GuiViewMain.ScrollMute")));
-            this.GuiViewMain.Size = new System.Drawing.Size(600, 118);
+            this.GuiViewMain.Size = new System.Drawing.Size(845, 129);
             this.GuiViewMain.TabIndex = 2;
             this.GuiViewMain.TabStop = false;
             this.GuiViewMain.Text = "The Gui Main Pane";
@@ -122,22 +120,6 @@
             this.KeyEnablerMain.Name = "KeyEnablerMain";
             this.KeyEnablerMain.Size = new System.Drawing.Size(1, 1);
             this.KeyEnablerMain.TabIndex = 2;
-            // 
-            // textBoxTalk
-            // 
-            this.textBoxTalk.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxTalk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.textBoxTalk.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxTalk.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTalk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.textBoxTalk.Location = new System.Drawing.Point(41, 3);
-            this.textBoxTalk.Multiline = true;
-            this.textBoxTalk.Name = "textBoxTalk";
-            this.textBoxTalk.Size = new System.Drawing.Size(556, 19);
-            this.textBoxTalk.TabIndex = 3;
-            this.textBoxTalk.Text = "This is a Talk text. 日本語でもテストします";
             // 
             // labelTalkBarTime
             // 
@@ -169,9 +151,25 @@
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.GuiViewMain);
-            this.splitContainerMain.Size = new System.Drawing.Size(600, 146);
+            this.splitContainerMain.Size = new System.Drawing.Size(845, 158);
             this.splitContainerMain.SplitterDistance = 25;
             this.splitContainerMain.TabIndex = 7;
+            this.splitContainerMain.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainerMain_SplitterMoved);
+            // 
+            // textBoxTalk
+            // 
+            this.textBoxTalk.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxTalk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(64)))), ((int)(((byte)(32)))));
+            this.textBoxTalk.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxTalk.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTalk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBoxTalk.Location = new System.Drawing.Point(44, 0);
+            this.textBoxTalk.Name = "textBoxTalk";
+            this.textBoxTalk.Size = new System.Drawing.Size(801, 23);
+            this.textBoxTalk.TabIndex = 6;
+            this.textBoxTalk.Text = "Hello, What a cool software this is!";
             // 
             // FormMain
             // 
@@ -180,15 +178,17 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.BackgroundImage = global::TalkLoggerWinform.Properties.Resources.bg1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(624, 185);
+            this.ClientSize = new System.Drawing.Size(869, 197);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.menuStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
-            this.MinimumSize = new System.Drawing.Size(640, 224);
+            this.MinimumSize = new System.Drawing.Size(640, 160);
             this.Name = "FormMain";
             this.Text = "Talk Logger";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.LocationChanged += new System.EventHandler(this.FormMain_LocationChanged);
+            this.SizeChanged += new System.EventHandler(this.FormMain_SizeChanged);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.GuiViewMain.ResumeLayout(false);
@@ -211,9 +211,9 @@
         private Tono.GuiWinForm.TGuiView GuiViewMain;
         private Tono.GuiWinForm.TKeyEnabler KeyEnablerMain;
         private System.Windows.Forms.ToolStripMenuItem toolToolStripMenuItem;
-        private System.Windows.Forms.TextBox textBoxTalk;
         private System.Windows.Forms.Label labelTalkBarTime;
         private System.Windows.Forms.SplitContainer splitContainerMain;
+        private System.Windows.Forms.RichTextBox textBoxTalk;
     }
 }
 

@@ -175,15 +175,6 @@ namespace TalkLoggerWinform
         private void OnSpeechEndDetected(object sender, RecognitionEventArgs e)
         {
             LOG.WriteLine(LLV.DEV, $"LB.End : {e}");
-            Hot.SpeechEventQueue.Enqueue(new SpeechEvent
-            {
-                RowID = ID.Value,
-                Action = SpeechEvent.Actions.End,
-                TimeGenerated = DateTime.Now,
-                SessionID = e.SessionId,
-            });
-            Token.Add(TokenSpeechEventQueued, this);
-            GetRoot().FlushFeatureTriggers();
         }
 
         private void OnSessionStarted(object sender, SessionEventArgs e)

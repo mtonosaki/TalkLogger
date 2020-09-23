@@ -14,6 +14,7 @@ namespace TalkLoggerWinform
         public PartsTimeline TimelineParts { get; set; }
         public SettingModel Setting { get; set; } = new SettingModel();
         public Queue<SpeechEvent> SpeechEventQueue { get; } = new Queue<SpeechEvent>();
+        public string SelectedText { get; set; }
 
         /// <summary>
         /// RowID (You always have to manually sort this list by OrderNo)

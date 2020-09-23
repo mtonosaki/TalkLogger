@@ -75,6 +75,8 @@
     <Compile Include="FeatureAbout.cs" />
     <Compile Include="FeatureAudioLoopback.cs" />
     <Compile Include="FeatureAutoScroll.cs" />
+    <Compile Include="FeatureCopy.cs" />
+    <Compile Include="FeatureDummyAudio.cs" />
     <Compile Include="FeatureTalkTextBox.cs" />
     <Compile Include="FeatureJumpToNow.cs" />
     <Compile Include="FeatureLogPanelCustom.cs" />
