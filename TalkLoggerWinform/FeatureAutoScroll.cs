@@ -2,12 +2,16 @@
 // Licensed under the MIT license.
 
 using System;
+using Tono;
 using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
 {
-    public class FeatureAutoScroll : CoreFeatureBase
+    public class FeatureAutoScroll : CoreFeatureBase, ITokenListener
     {
+        public static readonly NamedId TokenAutoScrollOFF = NamedId.FromName("TokenAutoScrollOFF");
+        public NamedId TokenTriggerID => TokenAutoScrollOFF;
+
         private DataSharingManager.Boolean _isAutoScroll;
         private DateTime AnchorDate;
         private int AnchorZoomX = -1;
@@ -20,6 +24,15 @@ namespace TalkLoggerWinform
             _isAutoScroll = (DataSharingManager.Boolean)Share.Get("_isAutoScroll", typeof(DataSharingManager.Boolean));
             Timer.AddTrigger(1000, OnPorling);
         }
+
+        public override void Start(NamedId who)
+        {
+            if (TokenAutoScrollOFF.Equals(who))
+            {
+                Enabled = false;
+            }
+        }
+
         public override bool Enabled {
             get => _isAutoScroll.value;
             set {

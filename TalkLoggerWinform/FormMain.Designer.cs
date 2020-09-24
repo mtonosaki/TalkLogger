@@ -42,6 +42,7 @@
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.textBoxTalk = new System.Windows.Forms.RichTextBox();
             this.labelClosing = new System.Windows.Forms.Label();
+            this.textBoxTime = new System.Windows.Forms.TextBox();
             this.menuStripMain.SuspendLayout();
             this.GuiViewMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
@@ -127,7 +128,7 @@
             this.labelTalkBarTime.AutoSize = true;
             this.labelTalkBarTime.BackColor = System.Drawing.Color.Transparent;
             this.labelTalkBarTime.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTalkBarTime.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.labelTalkBarTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.labelTalkBarTime.Location = new System.Drawing.Point(3, 8);
             this.labelTalkBarTime.Name = "labelTalkBarTime";
             this.labelTalkBarTime.Size = new System.Drawing.Size(35, 13);
@@ -180,14 +181,28 @@
             this.labelClosing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelClosing.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelClosing.ForeColor = System.Drawing.Color.Yellow;
-            this.labelClosing.Location = new System.Drawing.Point(220, 100);
+            this.labelClosing.Location = new System.Drawing.Point(130, 100);
             this.labelClosing.Name = "labelClosing";
-            this.labelClosing.Size = new System.Drawing.Size(454, 25);
+            this.labelClosing.Size = new System.Drawing.Size(589, 25);
             this.labelClosing.TabIndex = 8;
-            this.labelClosing.Text = "Post-processing. Please wait a moment....";
+            this.labelClosing.Text = "Post-processing. Please wait a moment to exit safely...";
             this.labelClosing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelClosing.UseWaitCursor = true;
             this.labelClosing.Visible = false;
+            // 
+            // textBoxTime
+            // 
+            this.textBoxTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxTime.BackColor = System.Drawing.Color.Black;
+            this.textBoxTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxTime.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxTime.ForeColor = System.Drawing.Color.SkyBlue;
+            this.textBoxTime.Location = new System.Drawing.Point(12, 169);
+            this.textBoxTime.Name = "textBoxTime";
+            this.textBoxTime.Size = new System.Drawing.Size(81, 21);
+            this.textBoxTime.TabIndex = 9;
+            this.textBoxTime.Text = "00:00:00";
+            this.textBoxTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FormMain
             // 
@@ -197,6 +212,7 @@
             this.BackgroundImage = global::TalkLoggerWinform.Properties.Resources.bg1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(869, 197);
+            this.Controls.Add(this.textBoxTime);
             this.Controls.Add(this.labelClosing);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.menuStripMain);
@@ -235,6 +251,7 @@
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.RichTextBox textBoxTalk;
         private System.Windows.Forms.Label labelClosing;
+        private System.Windows.Forms.TextBox textBoxTime;
     }
 }
 

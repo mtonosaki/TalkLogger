@@ -82,6 +82,7 @@
     <Compile Include="FeatureAutoScroll.cs" />
     <Compile Include="FeatureCopy.cs" />
     <Compile Include="FeatureDummyAudio.cs" />
+    <Compile Include="FeatureJumpToInputValue.cs" />
     <Compile Include="FeatureScrollZoomLock.cs" />
     <Compile Include="FeatureTalkTextBox.cs" />
     <Compile Include="FeatureJumpToNow.cs" />
