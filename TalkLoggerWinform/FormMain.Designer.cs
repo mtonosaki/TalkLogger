@@ -41,6 +41,7 @@
             this.labelTalkBarTime = new System.Windows.Forms.Label();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.textBoxTalk = new System.Windows.Forms.RichTextBox();
+            this.labelClosing = new System.Windows.Forms.Label();
             this.menuStripMain.SuspendLayout();
             this.GuiViewMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
@@ -172,6 +173,22 @@
             this.textBoxTalk.TabIndex = 6;
             this.textBoxTalk.Text = "Hello, What a cool software this is!";
             // 
+            // labelClosing
+            // 
+            this.labelClosing.AutoSize = true;
+            this.labelClosing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelClosing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.labelClosing.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelClosing.ForeColor = System.Drawing.Color.Yellow;
+            this.labelClosing.Location = new System.Drawing.Point(220, 100);
+            this.labelClosing.Name = "labelClosing";
+            this.labelClosing.Size = new System.Drawing.Size(454, 25);
+            this.labelClosing.TabIndex = 8;
+            this.labelClosing.Text = "Post-processing. Please wait a moment....";
+            this.labelClosing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelClosing.UseWaitCursor = true;
+            this.labelClosing.Visible = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -180,6 +197,7 @@
             this.BackgroundImage = global::TalkLoggerWinform.Properties.Resources.bg1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(869, 197);
+            this.Controls.Add(this.labelClosing);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.menuStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -187,6 +205,7 @@
             this.MinimumSize = new System.Drawing.Size(640, 160);
             this.Name = "FormMain";
             this.Text = "Talk Logger";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.LocationChanged += new System.EventHandler(this.FormMain_LocationChanged);
             this.SizeChanged += new System.EventHandler(this.FormMain_SizeChanged);
@@ -215,6 +234,7 @@
         private System.Windows.Forms.Label labelTalkBarTime;
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.RichTextBox textBoxTalk;
+        private System.Windows.Forms.Label labelClosing;
     }
 }
 
