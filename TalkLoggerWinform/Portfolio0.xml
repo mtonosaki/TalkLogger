@@ -13,7 +13,7 @@
   <GROUP name="APP">
     <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
-    <feature class="FeatureAudioLoopback" />
+    <feature class="FeatureAudioLoopback2" />
     <feature class="FeatureAudioMic2" />
     <!--<feature class="FeatureDummyAudio" />-->
     <feature class="FeaturePartsSelect" />

@@ -13,7 +13,7 @@ namespace TalkLoggerWinform
         {
             base.OnInitInstance();
 
-            var fid = GetRoot().FindChildFeatures(typeof(FeatureAudioLoopback)).FirstOrDefault().ID;
+            var fid = GetRoot().FindChildFeatures(typeof(FeatureAudioLoopback2)).FirstOrDefault().ID;
 
             Timer.AddTrigger(1200, () => {
                 Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
