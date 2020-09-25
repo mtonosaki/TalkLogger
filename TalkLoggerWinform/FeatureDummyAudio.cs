@@ -4,6 +4,7 @@
 using System;
 using System.Drawing;
 using System.Linq;
+using Tono;
 
 namespace TalkLoggerWinform
 {
@@ -13,7 +14,17 @@ namespace TalkLoggerWinform
         {
             base.OnInitInstance();
 
-            var fid = GetRoot().FindChildFeatures(typeof(FeatureAudioLoopback2)).FirstOrDefault().ID;
+            Id fid;
+            if (GetRoot().FindChildFeatures(typeof(FeatureAudioLoopback2)).FirstOrDefault() is FeatureAudioLoopback2 f)
+            {
+                fid = f.ID;
+            }
+            else
+            {
+                fid = ID;
+                Hot.AddRowID(ID.Value, 911, 42);            // Device 2 : Mic
+                Hot.AddRowID(0x8000 | ID.Value, 912, 4);    // Blank Space
+            }
 
             Timer.AddTrigger(1200, () => {
                 Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
