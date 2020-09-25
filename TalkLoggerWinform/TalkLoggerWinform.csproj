@@ -54,6 +54,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>TalkLogger.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -73,12 +76,13 @@
     <Compile Include="DataLink.cs" />
     <Compile Include="DataParts.cs" />
     <Compile Include="FeatureAbout.cs" />
+    <Compile Include="FeatureAudioCaptureBase.cs" />
+    <Compile Include="FeatureAudioLoopback2.cs" />
     <Compile Include="FeatureAudioMic2.cs" />
-    <Compile Include="FeatureAudioLoopback.cs" />
-    <Compile Include="FeatureAudioMic.cs" />
     <Compile Include="FeatureAutoScroll.cs" />
     <Compile Include="FeatureCopy.cs" />
     <Compile Include="FeatureDummyAudio.cs" />
+    <Compile Include="FeatureJumpToInputValue.cs" />
     <Compile Include="FeatureScrollZoomLock.cs" />
     <Compile Include="FeatureTalkTextBox.cs" />
     <Compile Include="FeatureJumpToNow.cs" />

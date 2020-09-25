@@ -20,6 +20,7 @@
   <mes key="MenuItem" ver="Japanese">日本語(&amp;J)</mes>
   <mes key="MenuItem" ver="Edit">編集(&amp;E)</mes>
   <mes key="MenuItem" ver="Preferences">設定...(&amp;P)</mes>
+  <mes key="MenuItem" ver="Copy">コピー(&amp;C)</mes>
   <mes key="MenuItem" ver="Undo">アンドゥ(&amp;U)</mes>
   <mes key="MenuItem" ver="Redo">リドゥ(&amp;R)</mes>
   <mes key="MenuItem" ver="FeatureSwitch">フィーチャー一覧(&amp;W)</mes>

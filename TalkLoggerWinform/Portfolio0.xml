@@ -13,11 +13,12 @@
   <GROUP name="APP">
     <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
-    <feature class="FeatureAudioLoopback" />
+    <feature class="FeatureAudioLoopback2" />
     <feature class="FeatureAudioMic2" />
     <!--<feature class="FeatureDummyAudio" />-->
     <feature class="FeaturePartsSelect" />
     <feature class="FeatureTalkTextBox" />
+    <feature class="FeatureJumpToInputValue" />
   </GROUP>
   <GROUP name="FileMenu">
     <feature class="FeatureApplicationQuit" menu="File/Exit" menuorder="99999" shortcut="AltF4"/>
@@ -27,7 +28,6 @@
     <feature class="FeaturePreferences" menu="Edit/Preferences" menuorder="9999" image="Engine" shortcut="CtrlK" />
   </GROUP>
   <GROUP name="ViewMenu">
-
     <feature class="FeatureJumpToNow" menu="View/JumpToNow" menuorder="1" shortcut="CtrlShiftF" />
     <feature class="FeatureAutoScroll" />
     <feature class="FeatureSwitch" menu="View/AutoScroll" menuorder="2" shortcut="CtrlF" com="/f">FeatureAutoScroll</feature>
