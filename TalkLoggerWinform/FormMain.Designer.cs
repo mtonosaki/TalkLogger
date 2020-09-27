@@ -221,7 +221,7 @@
             this.checkBoxStart.Image = global::TalkLoggerWinform.Properties.Resources.Play;
             this.checkBoxStart.Location = new System.Drawing.Point(12, 140);
             this.checkBoxStart.Name = "checkBoxStart";
-            this.checkBoxStart.Size = new System.Drawing.Size(28, 24);
+            this.checkBoxStart.Size = new System.Drawing.Size(38, 24);
             this.checkBoxStart.TabIndex = 10;
             this.checkBoxStart.UseVisualStyleBackColor = false;
             // 
