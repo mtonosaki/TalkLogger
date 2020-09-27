@@ -57,7 +57,7 @@ namespace TalkLoggerWinform
         }
         private void FeatureAudioLoopback_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
-            _ = Reset(null).ConfigureAwait(false).GetAwaiter().GetResult();
+            _ = Reset(null).GetAwaiter().GetResult(); // Tono: 0.終了処理 コール元
             Handler = null;
         }
 
@@ -82,9 +82,12 @@ namespace TalkLoggerWinform
         {
             Handler?.FireStop();
 
-            //await Handler?.Recognizer?.StopContinuousRecognitionAsync();  // TODO: Need check if this method block thread forever...
+            // Tono: 2.終了処理(Speech to Text)
+
+            //await Handler?.Recognizer?.StopContinuousRecognitionAsync();  
             Handler?.Recognizer?.Dispose();
-            await Task.Delay(0);
+
+            await Task.Delay(0);    // hide warning
             return true;
         }
 
@@ -162,7 +165,7 @@ namespace TalkLoggerWinform
 
             await Task.Delay(100);
             handler.StopRequested += (s, e) => {
-                wavein.StopRecording();
+                wavein.StopRecording();     // Tono: 1.終了処理（NAudio）
             };
 
             return true;

@@ -13,12 +13,13 @@
   <GROUP name="APP">
     <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
-    <!--<feature class="FeatureAudioLoopback2" />
-    <feature class="FeatureAudioMic2" />-->
-    <feature class="FeatureDummyAudio" />
+    <feature class="FeatureAudioLoopback2" />
+    <feature class="FeatureAudioMic2" />
+    <!--<feature class="FeatureDummyAudio" />-->
     <feature class="FeaturePartsSelect" />
     <feature class="FeatureTalkTextBox" />
     <feature class="FeatureJumpToInputValue" />
+    <feature class="FeaturePlayButton" />
   </GROUP>
   <GROUP name="FileMenu">
     <feature class="FeatureApplicationQuit" menu="File/Exit" menuorder="99999" shortcut="AltF4"/>

@@ -83,6 +83,7 @@
     <Compile Include="FeatureCopy.cs" />
     <Compile Include="FeatureDummyAudio.cs" />
     <Compile Include="FeatureJumpToInputValue.cs" />
+    <Compile Include="FeaturePlayButton.cs" />
     <Compile Include="FeatureScrollZoomLock.cs" />
     <Compile Include="FeatureTalkTextBox.cs" />
     <Compile Include="FeatureJumpToNow.cs" />
@@ -179,6 +180,7 @@
     <None Include="Resources\zoom.png" />
     <None Include="Resources\zoomIN.png" />
     <None Include="Resources\zoomOut.png" />
+    <None Include="Resources\Play.png" />
     <Content Include="THIRDPARTY.txt" />
     <None Include="Resources\Banner.png" />
     <Content Include="Resources\bg1.png" />

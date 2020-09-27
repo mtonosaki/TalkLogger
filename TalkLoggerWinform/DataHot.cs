@@ -9,6 +9,7 @@ namespace TalkLoggerWinform
 {
     public class DataHot : DataHotBase
     {
+        public bool IsPlaying = false;
         public const int LayoutPixelPerSecond = 20;
         public DateTime FirstSpeech { get; set; }
         public PartsTimeline TimelineParts { get; set; }

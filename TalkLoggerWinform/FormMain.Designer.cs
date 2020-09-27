@@ -43,6 +43,7 @@
             this.textBoxTalk = new System.Windows.Forms.RichTextBox();
             this.labelClosing = new System.Windows.Forms.Label();
             this.textBoxTime = new System.Windows.Forms.TextBox();
+            this.checkBoxStart = new System.Windows.Forms.CheckBox();
             this.menuStripMain.SuspendLayout();
             this.GuiViewMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
@@ -204,6 +205,26 @@
             this.textBoxTime.Text = "00:00:00";
             this.textBoxTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // checkBoxStart
+            // 
+            this.checkBoxStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBoxStart.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBoxStart.AutoCheck = false;
+            this.checkBoxStart.BackColor = System.Drawing.Color.Black;
+            this.checkBoxStart.FlatAppearance.BorderColor = System.Drawing.Color.SkyBlue;
+            this.checkBoxStart.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
+            this.checkBoxStart.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.checkBoxStart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.checkBoxStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBoxStart.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxStart.ForeColor = System.Drawing.Color.White;
+            this.checkBoxStart.Image = global::TalkLoggerWinform.Properties.Resources.Play;
+            this.checkBoxStart.Location = new System.Drawing.Point(12, 140);
+            this.checkBoxStart.Name = "checkBoxStart";
+            this.checkBoxStart.Size = new System.Drawing.Size(28, 24);
+            this.checkBoxStart.TabIndex = 10;
+            this.checkBoxStart.UseVisualStyleBackColor = false;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -212,6 +233,7 @@
             this.BackgroundImage = global::TalkLoggerWinform.Properties.Resources.bg1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(869, 197);
+            this.Controls.Add(this.checkBoxStart);
             this.Controls.Add(this.textBoxTime);
             this.Controls.Add(this.labelClosing);
             this.Controls.Add(this.splitContainerMain);
@@ -252,6 +274,7 @@
         private System.Windows.Forms.RichTextBox textBoxTalk;
         private System.Windows.Forms.Label labelClosing;
         private System.Windows.Forms.TextBox textBoxTime;
+        private System.Windows.Forms.CheckBox checkBoxStart;
     }
 }
 
