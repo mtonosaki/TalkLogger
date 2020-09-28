@@ -17,6 +17,7 @@ namespace TalkLoggerWinform
         private DataHot Hot => (DataHot)Data;
         private bool IsInput = false;
         private Color BgColor;
+        private bool IsFormClosing = false;
 
         public override void OnInitInstance()
         {
@@ -28,17 +29,30 @@ namespace TalkLoggerWinform
             Box.GotFocus += Box_GotFocus;
             Box.Validated += Box_Validated;
 
+            Box.FindForm().FormClosing += (s, e) => {
+                IsFormClosing = true;
+            };
+
             Timer.AddTrigger(500, UpdateBoxValue);
         }
         private void UpdateBoxValue()
         {
-            if( !IsInput)
+            if( !IsInput && !IsFormClosing)
             {
-                var cpos = Hot.TimelineParts.GetCdPos(TarPane, TarPane.GetPaneRect().LT);
-                var tartime = Hot.FirstSpeech + TimeSpan.FromSeconds(cpos.X);
-                ThreadSafe.SetTextControl(Box, $"{tartime.ToString(TimeUtil.FormatHMS)}");
+                try
+                {
+                    var cpos = Hot.TimelineParts.GetCdPos(TarPane, TarPane.GetPaneRect().LT);
+                    var tartime = Hot.FirstSpeech + TimeSpan.FromSeconds(cpos.X);
+                    ThreadSafe.SetTextControl(Box, $"{tartime.ToString(TimeUtil.FormatHMS)}");
+                }
+                catch
+                {
+                }
             }
-            Timer.AddTrigger(500, UpdateBoxValue);
+            if( !IsFormClosing)
+            {
+                Timer.AddTrigger(500, UpdateBoxValue);
+            }
         }
 
         private void Box_GotFocus(object sender, EventArgs e)

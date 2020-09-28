@@ -11,6 +11,9 @@ namespace TalkLoggerWinform
 {
     public class FeaturePlayButton : FeatureControlBridgeBase
     {
+        public static readonly NamedId TokenStart = NamedId.FromName("TokenStart");
+        public static readonly NamedId TokenStop = NamedId.FromName("TokenStop");
+
         private CheckBox Btn;
         private DataHot Hot => (DataHot)base.Data;
 
@@ -29,10 +32,14 @@ namespace TalkLoggerWinform
             if (Hot.IsPlaying)
             {
                 LOG.WriteLine(LLV.INF, $"STARTED at {DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)}");
+                Token.Add(TokenStart, this);
+                GetRoot().FlushFeatureTriggers();
             }
             else
             {
                 LOG.WriteLine(LLV.INF, $"STOPPED at {DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)}");
+                Token.Add(TokenStop, this);
+                GetRoot().FlushFeatureTriggers();
             }
         }
     }
