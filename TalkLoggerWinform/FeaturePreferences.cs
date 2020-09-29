@@ -54,6 +54,7 @@ namespace TalkLoggerWinform
 
             var fo = new FormPreferences {
                 Setting = Hot.Setting,
+                IsPlaying = Hot.IsPlaying,
             };
             if (fo.ShowDialog(Pane.Control) == DialogResult.OK)
             {

@@ -59,6 +59,7 @@
   <mes key="Label" ver="LabelListeningDevice1">オーディオデバイス</mes>
   <mes key="GroupBox" ver="GroupBoxAudioChannel2">マイク入力</mes>
   <mes key="Label" ver="LabelListeningDevice2">オーディオデバイス</mes>
+  <mes key="Label" ver="LabelWarning">録音中は設定変更ができません</mes>
 
   <!-- foFeatureSwitchList -->
   <mes key="Form" ver="foFeatureSwitchList">Feature switch</mes>

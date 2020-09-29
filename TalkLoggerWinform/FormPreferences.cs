@@ -11,8 +11,39 @@ namespace TalkLoggerWinform
 {
     public partial class FormPreferences : Form
     {
-        public SettingModel Setting {
-            get {
+        public FormPreferences()
+        {
+            InitializeComponent();
+
+            Mes.Current.ResetText(this);
+
+            // Loopback Device
+            var lds = new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
+            comboBoxLoopbackDevice.Items.AddRange(lds.ToArray());
+
+            // Mic Device
+            var cds = new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
+            comboBoxMicDevice.Items.AddRange(cds.ToArray());
+        }
+
+        public bool IsPlaying
+        {
+            set
+            {
+                var sw = !value;
+                comboBoxLoopbackDevice.Enabled = sw;
+                comboBoxMicDevice.Enabled = sw;
+                textBoxServiceRegion.Enabled = sw;
+                textBoxSubscriptionKey.Enabled = sw;
+                buttonOK.Enabled = sw;
+                LabelWarning.Visible = !sw;
+            }
+        }
+
+        public SettingModel Setting
+        {
+            get
+            {
                 var loopbackDeviceID = "";
                 if (comboBoxLoopbackDevice.Items.Count > 0)
                 {
@@ -23,14 +54,16 @@ namespace TalkLoggerWinform
                 {
                     micDeviceID = ((MMDevice)comboBoxMicDevice.Items[comboBoxMicDevice.SelectedIndex]).ID;
                 }
-                return new SettingModel {
+                return new SettingModel
+                {
                     SubscriptionKey = textBoxSubscriptionKey.Text,
                     ServiceRegion = textBoxServiceRegion.Text,
                     Device1ID = loopbackDeviceID,
                     Device2ID = micDeviceID,
                 };
             }
-            set {
+            set
+            {
                 textBoxSubscriptionKey.Text = value.SubscriptionKey;
                 textBoxServiceRegion.Text = value.ServiceRegion;
 
@@ -57,7 +90,7 @@ namespace TalkLoggerWinform
                 for (i = comboBoxMicDevice.Items.Count - 1; i >= 0; i--)
                 {
                     var d = (MMDevice)comboBoxMicDevice.Items[i];
-                    if (d.ID == value.Device1ID)
+                    if (d.ID == value.Device2ID)
                     {
                         comboBoxMicDevice.SelectedIndex = i;
                         break;
@@ -71,20 +104,6 @@ namespace TalkLoggerWinform
                     }
                 }
             }
-        }
-        public FormPreferences()
-        {
-            InitializeComponent();
-
-            Mes.Current.ResetText(this);
-
-            // Loopback Device
-            var lds = new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
-            comboBoxLoopbackDevice.Items.AddRange(lds.ToArray());
-
-            // Mic Device
-            var cds = new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active);
-            comboBoxMicDevice.Items.AddRange(cds.ToArray());
         }
 
         private void buttonOK_Click(object sender, EventArgs e)

@@ -42,6 +42,7 @@
             this.comboBoxMicDevice = new System.Windows.Forms.ComboBox();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.LabelWarning = new System.Windows.Forms.Label();
             this.GroupBoxCognitive.SuspendLayout();
             this.GroupBoxAudioChannel1.SuspendLayout();
             this.GroupBoxAudioChannel2.SuspendLayout();
@@ -53,7 +54,7 @@
             this.GroupBoxCognitive.Controls.Add(this.LabelServiceRegion);
             this.GroupBoxCognitive.Controls.Add(this.textBoxSubscriptionKey);
             this.GroupBoxCognitive.Controls.Add(this.LabelSubscriptionKey);
-            this.GroupBoxCognitive.Location = new System.Drawing.Point(14, 14);
+            this.GroupBoxCognitive.Location = new System.Drawing.Point(12, 41);
             this.GroupBoxCognitive.Name = "GroupBoxCognitive";
             this.GroupBoxCognitive.Size = new System.Drawing.Size(421, 97);
             this.GroupBoxCognitive.TabIndex = 0;
@@ -98,28 +99,28 @@
             // 
             this.GroupBoxAudioChannel1.Controls.Add(this.LabelListeningLoopbackDevice);
             this.GroupBoxAudioChannel1.Controls.Add(this.comboBoxLoopbackDevice);
-            this.GroupBoxAudioChannel1.Location = new System.Drawing.Point(14, 153);
+            this.GroupBoxAudioChannel1.Location = new System.Drawing.Point(12, 166);
             this.GroupBoxAudioChannel1.Name = "GroupBoxAudioChannel1";
             this.GroupBoxAudioChannel1.Size = new System.Drawing.Size(421, 115);
             this.GroupBoxAudioChannel1.TabIndex = 1;
             this.GroupBoxAudioChannel1.TabStop = false;
             this.GroupBoxAudioChannel1.Text = "AudioChannel1";
             // 
-            // LabelListeningDevice1
+            // LabelListeningLoopbackDevice
             // 
             this.LabelListeningLoopbackDevice.AutoSize = true;
             this.LabelListeningLoopbackDevice.Location = new System.Drawing.Point(7, 27);
-            this.LabelListeningLoopbackDevice.Name = "LabelListeningDevice1";
+            this.LabelListeningLoopbackDevice.Name = "LabelListeningLoopbackDevice";
             this.LabelListeningLoopbackDevice.Size = new System.Drawing.Size(90, 15);
             this.LabelListeningLoopbackDevice.TabIndex = 4;
             this.LabelListeningLoopbackDevice.Text = "ListeningDevice";
             // 
-            // comboBoxDevice1
+            // comboBoxLoopbackDevice
             // 
             this.comboBoxLoopbackDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLoopbackDevice.FormattingEnabled = true;
             this.comboBoxLoopbackDevice.Location = new System.Drawing.Point(146, 23);
-            this.comboBoxLoopbackDevice.Name = "comboBoxDevice1";
+            this.comboBoxLoopbackDevice.Name = "comboBoxLoopbackDevice";
             this.comboBoxLoopbackDevice.Size = new System.Drawing.Size(268, 23);
             this.comboBoxLoopbackDevice.TabIndex = 0;
             // 
@@ -127,34 +128,34 @@
             // 
             this.GroupBoxAudioChannel2.Controls.Add(this.LabelListeningMicDevice);
             this.GroupBoxAudioChannel2.Controls.Add(this.comboBoxMicDevice);
-            this.GroupBoxAudioChannel2.Location = new System.Drawing.Point(14, 276);
+            this.GroupBoxAudioChannel2.Location = new System.Drawing.Point(12, 289);
             this.GroupBoxAudioChannel2.Name = "GroupBoxAudioChannel2";
             this.GroupBoxAudioChannel2.Size = new System.Drawing.Size(421, 115);
             this.GroupBoxAudioChannel2.TabIndex = 5;
             this.GroupBoxAudioChannel2.TabStop = false;
             this.GroupBoxAudioChannel2.Text = "AudioChannel2";
             // 
-            // LabelListeningDevice2
+            // LabelListeningMicDevice
             // 
             this.LabelListeningMicDevice.AutoSize = true;
             this.LabelListeningMicDevice.Location = new System.Drawing.Point(7, 27);
-            this.LabelListeningMicDevice.Name = "LabelListeningDevice2";
+            this.LabelListeningMicDevice.Name = "LabelListeningMicDevice";
             this.LabelListeningMicDevice.Size = new System.Drawing.Size(90, 15);
             this.LabelListeningMicDevice.TabIndex = 4;
             this.LabelListeningMicDevice.Text = "ListeningDevice";
             // 
-            // comboBoxDevice2
+            // comboBoxMicDevice
             // 
             this.comboBoxMicDevice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMicDevice.FormattingEnabled = true;
             this.comboBoxMicDevice.Location = new System.Drawing.Point(146, 23);
-            this.comboBoxMicDevice.Name = "comboBoxDevice2";
+            this.comboBoxMicDevice.Name = "comboBoxMicDevice";
             this.comboBoxMicDevice.Size = new System.Drawing.Size(268, 23);
             this.comboBoxMicDevice.TabIndex = 0;
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(272, 416);
+            this.buttonOK.Location = new System.Drawing.Point(270, 441);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 6;
@@ -165,7 +166,7 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(353, 416);
+            this.buttonCancel.Location = new System.Drawing.Point(351, 441);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 7;
@@ -173,13 +174,25 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // LabelWarning
+            // 
+            this.LabelWarning.BackColor = System.Drawing.Color.Maroon;
+            this.LabelWarning.ForeColor = System.Drawing.Color.Yellow;
+            this.LabelWarning.Location = new System.Drawing.Point(12, 9);
+            this.LabelWarning.Name = "LabelWarning";
+            this.LabelWarning.Size = new System.Drawing.Size(421, 19);
+            this.LabelWarning.TabIndex = 8;
+            this.LabelWarning.Text = "You can edit when Pause";
+            this.LabelWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormPreferences
             // 
             this.AcceptButton = this.buttonOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(453, 451);
+            this.ClientSize = new System.Drawing.Size(453, 476);
+            this.Controls.Add(this.LabelWarning);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.GroupBoxAudioChannel2);
@@ -214,5 +227,6 @@
         private System.Windows.Forms.ComboBox comboBoxMicDevice;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Label LabelWarning;
     }
 }
