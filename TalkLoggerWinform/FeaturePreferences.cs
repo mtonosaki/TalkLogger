@@ -40,12 +40,25 @@ namespace TalkLoggerWinform
                 var enc = new Encrypt();
                 var json = enc.Decode(sec);
                 var ret = JsonSerializer.Deserialize<SettingModel>(json);
+                ret = Migration(ret);
                 return ret;
             }
             else
             {
                 return new SettingModel();
             }
+        }
+        public static SettingModel Migration(SettingModel value)
+        {
+            if (value.Device1LanguageCode == null)
+            {
+                value.Device1LanguageCode = "ja-JP";
+            }
+            if (value.Device2LanguageCode == null)
+            {
+                value.Device2LanguageCode = "ja-JP";
+            }
+            return value;
         }
 
         public override void Start(NamedId who)

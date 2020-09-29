@@ -27,7 +27,17 @@ namespace TalkLoggerWinform
             }, 65535);
             Timer.AddTrigger(500, PlayingMonitor);
         }
-
+        private void PlayingMonitor()
+        {
+            try
+            {
+                _parts.IsMasking = !Hot.IsPlaying;
+            }
+            finally
+            {
+                Timer.AddTrigger(500, PlayingMonitor);
+            }
+        }
         private class PartsMask : PartsBase
         {
             public bool IsMasking { get; set; }
@@ -45,26 +55,13 @@ namespace TalkLoggerWinform
                 }
                 else
                 {
-                    if( ++_cnt % 2 == 0)
+                    if (++_cnt % 2 == 0)
                     {
                         var sr = rp.GetPaneRect();
                         rp.Graphics.DrawString("REC", _font, Brushes.Yellow, sr.LT.X + 48, sr.RB.Y - 42);
                     }
                 }
                 return true;
-            }
-        }
-
-
-        private void PlayingMonitor()
-        {
-            try
-            {
-                _parts.IsMasking = !Hot.IsPlaying;
-            }
-            finally
-            {
-                Timer.AddTrigger(500, PlayingMonitor);
             }
         }
     }

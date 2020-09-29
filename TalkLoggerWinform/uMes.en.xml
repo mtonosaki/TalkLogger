@@ -56,6 +56,10 @@
   <mes key="GroupBox" ver="GroupBoxAudioChannel1">Loop-back Input</mes>
   <mes key="Label" ver="LabelListeningDevice1">Audio Device</mes>
   <mes key="GroupBox" ver="GroupBoxAudioChannel2">Mic Input</mes>
+  <mes key="Label" ver="LabelListeningLoopbackDevice">Device for loopback</mes>
+  <mes key="Label" ver="LabelLoopbackLanguage">Language</mes>
+  <mes key="Label" ver="LabelMicLanguage">Language</mes>
+  <mes key="Label" ver="LabelListeningMicDevice">Device for Mic</mes>
   <mes key="Label" ver="LabelListeningDevice2">Audio Device</mes>
   <mes key="Label" ver="LabelWarning">You cannot change the settings during recording.</mes>
   <mes key="Label" ver="LabelClosing">Waiting to close Azure Cognitive Service...</mes>

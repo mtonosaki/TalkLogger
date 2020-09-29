@@ -112,6 +112,8 @@ namespace TalkLoggerWinform
 
         protected virtual string GetTargetDeviceID() => throw new NotSupportedException();
 
+        protected virtual string GetTargetRecognizeLanguage() => throw new NotSupportedException();
+
         private async Task<bool> SelectAudioDeviceAsync(SpeechHandler handler)
         {
             // SELECT A AUDIO DEVICE
@@ -188,7 +190,7 @@ namespace TalkLoggerWinform
         }
         private async Task<bool> StartRecognizeSpeechAsync(SpeechHandler handler)
         {
-            handler.Recognizer = new SpeechRecognizer(SpeechConfig.FromSubscription(Hot.Setting.SubscriptionKey, Hot.Setting.ServiceRegion), "ja-JP", handler.AudioConfig);
+            handler.Recognizer = new SpeechRecognizer(SpeechConfig.FromSubscription(Hot.Setting.SubscriptionKey, Hot.Setting.ServiceRegion), GetTargetRecognizeLanguage(), handler.AudioConfig);
             handler.Recognizer.Recognizing += OnRecognizing;
             handler.Recognizer.Recognized += OnRecognized;
             handler.Recognizer.Canceled += OnCancel;
@@ -204,26 +206,26 @@ namespace TalkLoggerWinform
 
         private void OnSpeechStartDetected(object sender, RecognitionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}.OnSpeechStartDetected : {e}");
+            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnSpeechStartDetected : {e}");
         }
         private void OnSpeechEndDetected(object sender, RecognitionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}.OnSpeechEndDetected : {e}");
+            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnSpeechEndDetected : {e}");
         }
 
         private void OnSessionStarted(object sender, SessionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}.OnSessionStarted : {e}");
+            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnSessionStarted : {e}");
         }
 
         private void OnSessionStopped(object sender, SessionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}.OnSessionStopped : {e}");
+            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnSessionStopped : {e}");
         }
 
         private void OnRecognizing(object sender, SpeechRecognitionEventArgs e)
         {
-            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}.OnRecognizing : {e.Result.Text}");
+            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnRecognizing : {e.Result.Text}");
 
             if (_talkID == null)
             {
@@ -260,7 +262,7 @@ namespace TalkLoggerWinform
         {
             if (_talkID == null) return;
 
-            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}.OnRecognized : {e.Result.Text}");
+            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnRecognized : {e.Result.Text}");
             Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                 RowID = ID.Value,
                 Action = SpeechEvent.Actions.Recognized,
@@ -276,7 +278,7 @@ namespace TalkLoggerWinform
         {
             if (_talkID == null) return;
 
-            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}.OnCancel : {e.Result.Text}");
+            LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnCancel : {e.Result.Text}");
             Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                 RowID = ID.Value,
                 Action = SpeechEvent.Actions.Canceled,

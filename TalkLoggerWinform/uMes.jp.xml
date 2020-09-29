@@ -58,9 +58,14 @@
   <mes key="GroupBox" ver="GroupBoxAudioChannel1">ループバックオーディオ</mes>
   <mes key="Label" ver="LabelListeningDevice1">オーディオデバイス</mes>
   <mes key="GroupBox" ver="GroupBoxAudioChannel2">マイク入力</mes>
+  <mes key="Label" ver="LabelLoopbackLanguage">認識言語</mes>
+  <mes key="Label" ver="LabelMicLanguage">認識言語</mes>
   <mes key="Label" ver="LabelListeningDevice2">オーディオデバイス</mes>
+  <mes key="Label" ver="LabelListeningLoopbackDevice">デバイス（ループバック用）</mes>
+  <mes key="Label" ver="LabelListeningMicDevice">デバイス（マイク用）</mes>
   <mes key="Label" ver="LabelWarning">録音中は設定変更ができません</mes>
   <mes key="Label" ver="LabelClosing">Azure Cognitive Serviceが正常終了するまで待機しています</mes>
+  
 
   <!-- foFeatureSwitchList -->
   <mes key="Form" ver="foFeatureSwitchList">Feature switch</mes>

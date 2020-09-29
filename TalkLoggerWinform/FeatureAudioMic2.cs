@@ -29,6 +29,11 @@ namespace TalkLoggerWinform
             return Hot.Setting.Device2ID;
         }
 
+        protected override string GetTargetRecognizeLanguage()
+        {
+            return Hot.Setting.Device2LanguageCode;
+        }
+
         protected override IWaveIn CreateCaptureInstance(MMDevice device)
         {
             return new WasapiCapture(device)

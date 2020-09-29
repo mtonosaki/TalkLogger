@@ -18,7 +18,6 @@ namespace TalkLoggerWinform
         }
 
         protected override Color GetBarColor() => Color.FromArgb(64, Color.DarkGreen);
-
         protected override MMDeviceCollection GetDeviceEndpoints()
         {
             return new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
@@ -27,6 +26,10 @@ namespace TalkLoggerWinform
         protected override string GetTargetDeviceID()
         {
             return Hot.Setting.Device1ID;
+        }
+        protected override string GetTargetRecognizeLanguage()
+        {
+            return Hot.Setting.Device1LanguageCode;
         }
 
         protected override IWaveIn CreateCaptureInstance(MMDevice device)

@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureSpeechToText.cs" />
     <Compile Include="CoreFeatureBase.cs" />
     <Compile Include="DataHot.cs" />
     <Compile Include="DataLink.cs" />

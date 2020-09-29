@@ -35,14 +35,18 @@
             this.textBoxSubscriptionKey = new System.Windows.Forms.TextBox();
             this.LabelSubscriptionKey = new System.Windows.Forms.Label();
             this.GroupBoxAudioChannel1 = new System.Windows.Forms.GroupBox();
-            this.LabelListeningLoopbackDevice = new System.Windows.Forms.Label();
             this.comboBoxLoopbackDevice = new System.Windows.Forms.ComboBox();
+            this.LabelListeningLoopbackDevice = new System.Windows.Forms.Label();
             this.GroupBoxAudioChannel2 = new System.Windows.Forms.GroupBox();
             this.LabelListeningMicDevice = new System.Windows.Forms.Label();
             this.comboBoxMicDevice = new System.Windows.Forms.ComboBox();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.LabelWarning = new System.Windows.Forms.Label();
+            this.comboBoxLoopbackLanguage = new System.Windows.Forms.ComboBox();
+            this.LabelLoopbackLanguage = new System.Windows.Forms.Label();
+            this.LabelMicLanguage = new System.Windows.Forms.Label();
+            this.comboBoxMicLanguage = new System.Windows.Forms.ComboBox();
             this.GroupBoxCognitive.SuspendLayout();
             this.GroupBoxAudioChannel1.SuspendLayout();
             this.GroupBoxAudioChannel2.SuspendLayout();
@@ -97,23 +101,16 @@
             // 
             // GroupBoxAudioChannel1
             // 
-            this.GroupBoxAudioChannel1.Controls.Add(this.LabelListeningLoopbackDevice);
+            this.GroupBoxAudioChannel1.Controls.Add(this.comboBoxLoopbackLanguage);
+            this.GroupBoxAudioChannel1.Controls.Add(this.LabelLoopbackLanguage);
             this.GroupBoxAudioChannel1.Controls.Add(this.comboBoxLoopbackDevice);
+            this.GroupBoxAudioChannel1.Controls.Add(this.LabelListeningLoopbackDevice);
             this.GroupBoxAudioChannel1.Location = new System.Drawing.Point(12, 166);
             this.GroupBoxAudioChannel1.Name = "GroupBoxAudioChannel1";
             this.GroupBoxAudioChannel1.Size = new System.Drawing.Size(421, 115);
             this.GroupBoxAudioChannel1.TabIndex = 1;
             this.GroupBoxAudioChannel1.TabStop = false;
             this.GroupBoxAudioChannel1.Text = "AudioChannel1";
-            // 
-            // LabelListeningLoopbackDevice
-            // 
-            this.LabelListeningLoopbackDevice.AutoSize = true;
-            this.LabelListeningLoopbackDevice.Location = new System.Drawing.Point(7, 27);
-            this.LabelListeningLoopbackDevice.Name = "LabelListeningLoopbackDevice";
-            this.LabelListeningLoopbackDevice.Size = new System.Drawing.Size(90, 15);
-            this.LabelListeningLoopbackDevice.TabIndex = 4;
-            this.LabelListeningLoopbackDevice.Text = "ListeningDevice";
             // 
             // comboBoxLoopbackDevice
             // 
@@ -124,8 +121,19 @@
             this.comboBoxLoopbackDevice.Size = new System.Drawing.Size(268, 23);
             this.comboBoxLoopbackDevice.TabIndex = 0;
             // 
+            // LabelListeningLoopbackDevice
+            // 
+            this.LabelListeningLoopbackDevice.AutoSize = true;
+            this.LabelListeningLoopbackDevice.Location = new System.Drawing.Point(7, 27);
+            this.LabelListeningLoopbackDevice.Name = "LabelListeningLoopbackDevice";
+            this.LabelListeningLoopbackDevice.Size = new System.Drawing.Size(90, 15);
+            this.LabelListeningLoopbackDevice.TabIndex = 4;
+            this.LabelListeningLoopbackDevice.Text = "ListeningDevice";
+            // 
             // GroupBoxAudioChannel2
             // 
+            this.GroupBoxAudioChannel2.Controls.Add(this.LabelMicLanguage);
+            this.GroupBoxAudioChannel2.Controls.Add(this.comboBoxMicLanguage);
             this.GroupBoxAudioChannel2.Controls.Add(this.LabelListeningMicDevice);
             this.GroupBoxAudioChannel2.Controls.Add(this.comboBoxMicDevice);
             this.GroupBoxAudioChannel2.Location = new System.Drawing.Point(12, 289);
@@ -185,6 +193,42 @@
             this.LabelWarning.Text = "You can edit when Pause";
             this.LabelWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // comboBoxLoopbackLanguage
+            // 
+            this.comboBoxLoopbackLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxLoopbackLanguage.FormattingEnabled = true;
+            this.comboBoxLoopbackLanguage.Location = new System.Drawing.Point(146, 52);
+            this.comboBoxLoopbackLanguage.Name = "comboBoxLoopbackLanguage";
+            this.comboBoxLoopbackLanguage.Size = new System.Drawing.Size(268, 23);
+            this.comboBoxLoopbackLanguage.TabIndex = 5;
+            // 
+            // LabelLoopbackLanguage
+            // 
+            this.LabelLoopbackLanguage.AutoSize = true;
+            this.LabelLoopbackLanguage.Location = new System.Drawing.Point(7, 56);
+            this.LabelLoopbackLanguage.Name = "LabelLoopbackLanguage";
+            this.LabelLoopbackLanguage.Size = new System.Drawing.Size(59, 15);
+            this.LabelLoopbackLanguage.TabIndex = 6;
+            this.LabelLoopbackLanguage.Text = "Language";
+            // 
+            // LabelMicLanguage
+            // 
+            this.LabelMicLanguage.AutoSize = true;
+            this.LabelMicLanguage.Location = new System.Drawing.Point(7, 56);
+            this.LabelMicLanguage.Name = "LabelMicLanguage";
+            this.LabelMicLanguage.Size = new System.Drawing.Size(59, 15);
+            this.LabelMicLanguage.TabIndex = 6;
+            this.LabelMicLanguage.Text = "Language";
+            // 
+            // comboBoxMicLanguage
+            // 
+            this.comboBoxMicLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxMicLanguage.FormattingEnabled = true;
+            this.comboBoxMicLanguage.Location = new System.Drawing.Point(146, 52);
+            this.comboBoxMicLanguage.Name = "comboBoxMicLanguage";
+            this.comboBoxMicLanguage.Size = new System.Drawing.Size(268, 23);
+            this.comboBoxMicLanguage.TabIndex = 5;
+            // 
             // FormPreferences
             // 
             this.AcceptButton = this.buttonOK;
@@ -228,5 +272,9 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label LabelWarning;
+        private System.Windows.Forms.ComboBox comboBoxLoopbackLanguage;
+        private System.Windows.Forms.Label LabelLoopbackLanguage;
+        private System.Windows.Forms.Label LabelMicLanguage;
+        private System.Windows.Forms.ComboBox comboBoxMicLanguage;
     }
 }
