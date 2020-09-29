@@ -23,8 +23,9 @@
   <mes key="MenuItem" ver="Copy">&amp;Copy</mes>
   <mes key="MenuItem" ver="Undo">&amp;Undo</mes>
   <mes key="MenuItem" ver="Redo">&amp;Redo</mes>
-  <mes key="MenuItem" ver="FeatureSwitch">Feature S&amp;witch</mes>
+  <mes key="MenuItem" ver="FeatureSwitchList">Feature S&amp;witch</mes>
   <mes key="MenuItem" ver="LogOpenAsText">Open &amp;Log</mes>
+  <mes key="MenuItem" ver="PlayStop">&amp;Play/Stop</mes>
   <mes key="MenuItem" ver="LogClear">&amp;Clear Log</mes>
   <mes key="MenuItem" ver="JumpToNow">Go to Now</mes>
   <mes key="MenuItem" ver="AutoScroll">Auto Scroll</mes>

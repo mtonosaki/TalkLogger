@@ -19,7 +19,7 @@
     <feature class="FeaturePartsSelect" />
     <feature class="FeatureTalkTextBox" />
     <feature class="FeatureJumpToInputValue" />
-    <feature class="FeaturePlayButton" />
+    <feature class="FeaturePlayVisializer" />
   </GROUP>
   <GROUP name="FileMenu">
     <feature class="FeatureApplicationQuit" menu="File/Exit" menuorder="99999" shortcut="AltF4"/>
@@ -29,14 +29,16 @@
     <feature class="FeaturePreferences" menu="Edit/Preferences" menuorder="9999" image="Engine" shortcut="CtrlK" />
   </GROUP>
   <GROUP name="ViewMenu">
-    <feature class="FeatureJumpToNow" menu="View/JumpToNow" menuorder="1" shortcut="CtrlShiftF" />
+    <feature class="FeatureJumpToNow" menu="View/JumpToNow" menuorder="1" shortcut="F5" />
     <feature class="FeatureAutoScroll" />
-    <feature class="FeatureSwitch" menu="View/AutoScroll" menuorder="2" shortcut="CtrlF" com="/f">FeatureAutoScroll</feature>
+    <feature class="FeatureSwitch" menu="View/AutoScroll" menuorder="2" shortcut="F6" com="/f">FeatureAutoScroll</feature>
     <menuitem menu="View/Language" menuorder="301" image="Language" />
     <feature class="FeatureChangeLanguage" menu="View/Language/English" menuorder="1" image="LanguageEnglish" shortcut="CtrlShiftE">en</feature>
     <feature class="FeatureChangeLanguage" menu="View/Language/Japanese" menuorder="2" image="LanguageJapanese" shortcut="CtrlShiftJ">jp</feature>
   </GROUP>
   <GROUP name="ToolMenu">
+    <feature class="FeaturePlayButton" menu="Tool/PlayStop" menuorder="10" shortcut="F4" image="PlayG"/>
+    <menuitem menu="Tool/-" menuorder="19" />
     <feature class="FeatureLogPanelCustom">Pane=GuiViewMain;MarginL=2000</feature>
     <feature class="FeatureLogOpenAsText" menu="Tool/LogOpenAsText" menuorder="20" shortcut="CtrlShiftL" image="toNotepad"></feature>
     <feature class="FeatureLogClear" menu="Tool/LogClear" menuorder="21" shortcut="CtrlShiftDelete" image="Eraser"></feature>

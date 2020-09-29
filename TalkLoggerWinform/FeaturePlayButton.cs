@@ -25,20 +25,36 @@ namespace TalkLoggerWinform
             Btn.Click += Btn_Click;
         }
 
+        private bool isStarting = false;
+        public override void Start(NamedId who)
+        {
+            base.Start(who);
+
+            if (isStarting == false)
+            {
+                isStarting = true;
+                Btn_Click(this, EventArgs.Empty);
+                isStarting = false;
+            }
+        }
+
         private void Btn_Click(object sender, EventArgs e)
         {
             Hot.IsPlaying = !Hot.IsPlaying;
             Btn.Checked = Hot.IsPlaying;
+
             if (Hot.IsPlaying)
             {
                 LOG.WriteLine(LLV.INF, $"STARTED at {DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)}");
                 Token.Add(TokenStart, this);
-                GetRoot().FlushFeatureTriggers();
             }
             else
             {
                 LOG.WriteLine(LLV.INF, $"STOPPED at {DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)}");
                 Token.Add(TokenStop, this);
+            }
+            if (isStarting == false)
+            {
                 GetRoot().FlushFeatureTriggers();
             }
         }
