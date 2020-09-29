@@ -32,7 +32,7 @@ namespace TalkLoggerWinform
         {
             public bool IsMasking { get; set; }
 
-            private Brush _bg = new SolidBrush(Color.FromArgb(132, 0, 0, 32));
+            private Brush _bg = new SolidBrush(Color.FromArgb(192, 64, 64, 64));
             private Font _font = new Font("Tahoma", 8.0f, FontStyle.Bold);
             private int _cnt = 0;
             public override bool Draw(IRichPane rp)
@@ -41,7 +41,7 @@ namespace TalkLoggerWinform
                 {
                     var sr = rp.GetPaneRect();
                     rp.Graphics.FillRectangle(_bg, sr);
-                    rp.Graphics.DrawString("PAUSE", _font, Brushes.DarkSlateGray, sr.LT.X + 48, sr.RB.Y - 42);
+                    rp.Graphics.DrawString("PAUSE", _font, Brushes.DarkGray, sr.LT.X + 48, sr.RB.Y - 42);
                 }
                 else
                 {

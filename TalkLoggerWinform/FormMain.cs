@@ -74,9 +74,9 @@ namespace TalkLoggerWinform
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
         {
-            labelClosing.Location = new Point {
-                X = Width / 2 - labelClosing.Width / 2,
-                Y = Height / 2 - labelClosing.Height / 2,
+            LabelClosing.Location = new Point {
+                X = Width / 2 - LabelClosing.Width / 2,
+                Y = Height / 2 - LabelClosing.Height / 2,
             };
 
             if (IsInInit)
@@ -101,7 +101,7 @@ namespace TalkLoggerWinform
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            labelClosing.Visible = true;
+            LabelClosing.Visible = true;
             Application.DoEvents();
         }
     }

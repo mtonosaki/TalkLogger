@@ -30,30 +30,33 @@ namespace TalkLoggerWinform
 
         public void ProcSpeechEvent(SpeechEvent se)
         {
-            var p2 = (int)(DateTime.Now - Hot.FirstSpeech).TotalSeconds + 1;
-            var tar = Parts.GetPartsByLocationID(new Id { Value = se.RowID }).Select(a => (PartsTalkBar)a).Where(a => a.SessionID == se.SessionID).FirstOrDefault();
-
-            switch (se.Action)
+            try
             {
-                case SpeechEvent.Actions.Start:
-                    ProcStart(se, p2);
-                    break;
-                case SpeechEvent.Actions.SetColor:
-                    ProcSetColor(se, p2, tar);
-                    break;
-                default:
-                    ProcUpdate(se, p2, tar);
-                    break;
+                var p2 = (int)(DateTime.Now - Hot.FirstSpeech).TotalSeconds + 1;
+                var tar = Parts.GetPartsByLocationID(new Id { Value = se.RowID }).Select(a => (PartsTalkBar)a).Where(a => a.SessionID == se.SessionID).FirstOrDefault();
+                switch (se.Action)
+                {
+                    case SpeechEvent.Actions.Start:
+                        ProcStart(se, p2);
+                        break;
+                    case SpeechEvent.Actions.SetColor:
+                        ProcSetColor(se, p2, tar);
+                        break;
+                    default:
+                        ProcUpdate(se, p2, tar);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                LOG.WriteLineException(ex);
             }
             Pane.Invalidate(null);
         }
 
         private void ProcUpdate(SpeechEvent se, int totime, PartsTalkBar tar)
         {
-            if (tar == null)
-            {
-                return;
-            }
+            if (tar == null) return;
 
             tar.Text = se.Text;
             tar.Rect = CodeRect.FromLTRB(Math.Min(totime - 1, tar.Rect.LT.X), tar.Rect.LT.Y, totime, tar.Rect.RB.Y);
@@ -65,6 +68,8 @@ namespace TalkLoggerWinform
 
         private void ProcSetColor(SpeechEvent se, int totime, PartsTalkBar tar)
         {
+            if (tar == null) return;
+
             tar.BarColor = Color.FromArgb(int.Parse(se.Text));
         }
 

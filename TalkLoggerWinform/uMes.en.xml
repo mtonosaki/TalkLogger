@@ -58,7 +58,8 @@
   <mes key="GroupBox" ver="GroupBoxAudioChannel2">Mic Input</mes>
   <mes key="Label" ver="LabelListeningDevice2">Audio Device</mes>
   <mes key="Label" ver="LabelWarning">You cannot change the settings during recording.</mes>
-  
+  <mes key="Label" ver="LabelClosing">Waiting to close Azure Cognitive Service...</mes>
+
   <!-- foFeatureSwitchList -->
   <mes key="Form" ver="foFeatureSwitchList">Feature switch</mes>
   <mes key="TabControl" ver="foFeatureSWTab">

@@ -41,7 +41,7 @@
             this.labelTalkBarTime = new System.Windows.Forms.Label();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.textBoxTalk = new System.Windows.Forms.RichTextBox();
-            this.labelClosing = new System.Windows.Forms.Label();
+            this.LabelClosing = new System.Windows.Forms.Label();
             this.textBoxTime = new System.Windows.Forms.TextBox();
             this.checkBoxStart = new System.Windows.Forms.CheckBox();
             this.menuStripMain.SuspendLayout();
@@ -175,21 +175,21 @@
             this.textBoxTalk.TabIndex = 6;
             this.textBoxTalk.Text = "Hello, What a cool software this is!";
             // 
-            // labelClosing
+            // LabelClosing
             // 
-            this.labelClosing.AutoSize = true;
-            this.labelClosing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelClosing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.labelClosing.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelClosing.ForeColor = System.Drawing.Color.Yellow;
-            this.labelClosing.Location = new System.Drawing.Point(130, 100);
-            this.labelClosing.Name = "labelClosing";
-            this.labelClosing.Size = new System.Drawing.Size(589, 25);
-            this.labelClosing.TabIndex = 8;
-            this.labelClosing.Text = "Post-processing. Please wait a moment to exit safely...";
-            this.labelClosing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelClosing.UseWaitCursor = true;
-            this.labelClosing.Visible = false;
+            this.LabelClosing.AutoSize = true;
+            this.LabelClosing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.LabelClosing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.LabelClosing.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelClosing.ForeColor = System.Drawing.Color.Yellow;
+            this.LabelClosing.Location = new System.Drawing.Point(130, 100);
+            this.LabelClosing.Name = "LabelClosing";
+            this.LabelClosing.Size = new System.Drawing.Size(589, 25);
+            this.LabelClosing.TabIndex = 8;
+            this.LabelClosing.Text = "Post-processing. Please wait a moment to exit safely...";
+            this.LabelClosing.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelClosing.UseWaitCursor = true;
+            this.LabelClosing.Visible = false;
             // 
             // textBoxTime
             // 
@@ -235,7 +235,7 @@
             this.ClientSize = new System.Drawing.Size(869, 197);
             this.Controls.Add(this.checkBoxStart);
             this.Controls.Add(this.textBoxTime);
-            this.Controls.Add(this.labelClosing);
+            this.Controls.Add(this.LabelClosing);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.menuStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -272,7 +272,7 @@
         private System.Windows.Forms.Label labelTalkBarTime;
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.RichTextBox textBoxTalk;
-        private System.Windows.Forms.Label labelClosing;
+        private System.Windows.Forms.Label LabelClosing;
         private System.Windows.Forms.TextBox textBoxTime;
         private System.Windows.Forms.CheckBox checkBoxStart;
     }

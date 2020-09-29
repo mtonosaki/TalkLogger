@@ -23,7 +23,8 @@ namespace TalkLoggerWinform
         {
             var td = DateTime.Now - Hot.FirstSpeech;
             var x = Hot.TimelineParts.GetScRect(TarPane, CodeRect.FromLTRB(0, -1, (int)(td.TotalSeconds * 12), -1)).Width / 12;
-            Pane.Scroll = ScreenPos.FromInt(-x + Pane.GetPaneRect().Width * 90 / 100, Pane.Scroll.Y);
+            var p = FeatureLogPanelCustom.IsLogDrawing ? 70 : 90;
+            Pane.Scroll = ScreenPos.FromInt(-x + Pane.GetPaneRect().Width * p / 100, Pane.Scroll.Y);
             Pane.Invalidate(null);
         }
     }

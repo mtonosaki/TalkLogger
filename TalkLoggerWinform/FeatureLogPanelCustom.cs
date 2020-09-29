@@ -11,6 +11,7 @@ namespace TalkLoggerWinform
 {
     public class FeatureLogPanelCustom : FeatureLogGroupPanel
     {
+        public static bool IsLogDrawing { get; set; } = false;
         /// <summary>
         /// CUSTOM DESIGN
         /// </summary>
@@ -20,6 +21,7 @@ namespace TalkLoggerWinform
             {
 #if true
                 base.Draw(rp);
+                IsLogDrawing = true;
 #endif
                 return true;
             }
