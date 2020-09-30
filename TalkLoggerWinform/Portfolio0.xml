@@ -26,6 +26,7 @@
   </GROUP>
   <GROUP name="EditMenu">
     <feature class="FeatureCopy" menu="Edit/Copy" menuorder="1" image="Copy" shortcut="CtrlC" />
+    <menuitem menu="Edit/-" menuorder="9998" />
     <feature class="FeaturePreferences" menu="Edit/Preferences" menuorder="9999" image="Engine" shortcut="CtrlK" />
   </GROUP>
   <GROUP name="ViewMenu">

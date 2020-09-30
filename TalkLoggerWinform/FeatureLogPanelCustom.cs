@@ -64,6 +64,7 @@ namespace TalkLoggerWinform
             Timer.AddTrigger(200, () => {
                 Pane_SizeChanged(this, EventArgs.Empty);
             });
+
         }
         private Form GetParentForm()
         {
@@ -79,7 +80,8 @@ namespace TalkLoggerWinform
         private PartsLogPanelCustom LogParts = null;
         protected override dpLogPanel createLogPartInstance(Dictionary<LLV, ScreenPos> clickArea)
         {
-            return LogParts = new PartsLogPanelCustom(clickArea);
+            LogParts = new PartsLogPanelCustom(clickArea);
+            return LogParts;
         }
 
         private void Pane_SizeChanged(object sender, EventArgs e)
