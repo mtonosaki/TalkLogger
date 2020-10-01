@@ -92,6 +92,7 @@ namespace TalkLoggerWinform
             var pt = new PartsTalkBar
             {
                 SessionID = se.SessionID,
+                TimeTalkStarted = se.TimeGenerated,
                 PartsPositioner = base.TalkPositioner,
                 PartsPositionCorder = base.TalkPosCoder,
                 Rect = CodeRect.FromLTRB(

@@ -51,6 +51,11 @@ namespace TalkLoggerWinform
                 }
                 _form.Show();
             }
+            else
+            {
+                _form.Visible = true;
+                _form.WindowState = FormWindowState.Normal;
+            }
             List<FormTextLogList.Talk> talks = null;
             for (var i = 5; i > 0; i--)
             {
@@ -61,17 +66,17 @@ namespace TalkLoggerWinform
                 }
                 catch
                 {
-                    Application.DoEvents(); // When pars collection thread confrict
+                    Application.DoEvents(); // Wait a moment when pars collection thread confrict
                 }
             }
             if (talks != null)
             {
-                _form.SetTextData(talks);
+                _form.SetTextData(talks.OrderBy(a => a.TimeGenerated));
             }
             else
             {
                 LOG.WriteMesLine("FeatureTextLogList", "ConfrictError");
-            } 
+            }
         }
 
         public IEnumerable<FormTextLogList.Talk> GetUnits()
@@ -83,7 +88,7 @@ namespace TalkLoggerWinform
                     yield return new FormTextLogList.Talk
                     {
                         ID = Id.From(talk.Rect.LT.Y),
-                        TimeGenerated = Hot.FirstSpeech + TimeSpan.FromSeconds(talk.Rect.LT.X),
+                        TimeGenerated = talk.TimeTalkStarted,
                         Color = talk.BarColor,
                         Text = talk.Text,
                     };

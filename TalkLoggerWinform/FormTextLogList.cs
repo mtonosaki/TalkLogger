@@ -4,6 +4,7 @@ using System.Data.Odbc;
 using System.Drawing;
 using System.Windows.Forms;
 using Tono;
+using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
 {
@@ -12,6 +13,7 @@ namespace TalkLoggerWinform
         public FormTextLogList()
         {
             InitializeComponent();
+            new FormShapePersister(this);
         }
 
         public class Talk
@@ -31,12 +33,23 @@ namespace TalkLoggerWinform
         public void SetTextData(IEnumerable<Talk> talks)
         {
             var rt = richTextBoxMain;
+            rt.Visible = false;
+            rt.SuspendLayout();
+            rt.Clear();
+            rt.Font = new Font("Yu Gothic UI", 11.0f, FontStyle.Regular);
+            var isFirst = true;
+
             foreach (var talk in talks)
             {
+                if(isFirst)
+                {
+                    isFirst = false;
+                    rt.AppendText(talk.TimeGenerated.ToString("yyyy/MM/dd"));
+                    rt.AppendText(Environment.NewLine);
+                }
                 var ep = richTextBoxMain.Text.Length;
-                rt.Font = new Font("Yu Gothic UI", 11.0f, FontStyle.Regular);
                 rt.AppendText(talk.TimeGenerated.ToString(TimeUtil.FormatHMS));
-                rt.AppendText("\t");
+                rt.AppendText(" ");
                 rt.AppendText(GetDisplayName(talk.ID));
                 rt.AppendText("\t");
                 rt.AppendText(talk.Text);
@@ -45,7 +58,13 @@ namespace TalkLoggerWinform
                 rt.SelectionColor = Color.White;
                 rt.AppendText(Environment.NewLine);
             }
-            richTextBoxMain.Select(rt.Text.Length, 0);
+            rt.AppendText(DateTime.Now.ToString(TimeUtil.FormatHMS));
+            rt.AppendText(" \t--- End of list ---");
+            rt.AppendText(Environment.NewLine);
+            rt.Select(rt.Text.Length, 0);
+            rt.ResumeLayout();
+            rt.Visible = true;
+            loadTime = DateTime.Now;
         }
 
         private string GetDisplayName(Id id)
