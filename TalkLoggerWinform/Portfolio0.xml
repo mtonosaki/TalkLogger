@@ -10,12 +10,14 @@
     <feature class="FeatureMoveSelectedPartsTop"/>
     <feature class="FeatureScrollZoomLock" />
   </GROUP>
+  <GROUP name="AUDIO">
+    <!--<feature class="FeatureAudioLoopback2" />
+    <feature class="FeatureAudioMic2" />-->
+    <feature class="FeatureDummyAudio" />
+  </GROUP>
   <GROUP name="APP">
     <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
-    <feature class="FeatureAudioLoopback2" />
-    <feature class="FeatureAudioMic2" />
-    <!--<feature class="FeatureDummyAudio" />-->
     <feature class="FeaturePartsSelect" />
     <feature class="FeatureTalkTextBox" />
     <feature class="FeatureJumpToInputValue" />
@@ -26,6 +28,7 @@
   </GROUP>
   <GROUP name="EditMenu">
     <feature class="FeatureCopy" menu="Edit/Copy" menuorder="1" image="Copy" shortcut="CtrlC" />
+    <menuitem menu="Edit/-" menuorder="9998" />
     <feature class="FeaturePreferences" menu="Edit/Preferences" menuorder="9999" image="Engine" shortcut="CtrlK" />
   </GROUP>
   <GROUP name="ViewMenu">

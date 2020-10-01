@@ -206,25 +206,30 @@ namespace TalkLoggerWinform
 
         private void OnSpeechStartDetected(object sender, RecognitionEventArgs e)
         {
+            LOG.NoJumpNext();
             LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnSpeechStartDetected : {e}");
         }
         private void OnSpeechEndDetected(object sender, RecognitionEventArgs e)
         {
+            LOG.NoJumpNext();
             LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnSpeechEndDetected : {e}");
         }
 
         private void OnSessionStarted(object sender, SessionEventArgs e)
         {
+            LOG.NoJumpNext();
             LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnSessionStarted : {e}");
         }
 
         private void OnSessionStopped(object sender, SessionEventArgs e)
         {
+            LOG.NoJumpNext();
             LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnSessionStopped : {e}");
         }
 
         private void OnRecognizing(object sender, SpeechRecognitionEventArgs e)
         {
+            LOG.NoJumpNext();
             LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnRecognizing : {e.Result.Text}");
 
             if (_talkID == null)
@@ -262,6 +267,7 @@ namespace TalkLoggerWinform
         {
             if (_talkID == null) return;
 
+            LOG.NoJumpNext();
             LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnRecognized : {e.Result.Text}");
             Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                 RowID = ID.Value,
@@ -278,6 +284,7 @@ namespace TalkLoggerWinform
         {
             if (_talkID == null) return;
 
+            LOG.NoJumpNext();
             LOG.WriteLine(LLV.DEV, $"{DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)} {GetType().Name}({GetTargetRecognizeLanguage()}).OnCancel : {e.Result.Text}");
             Hot.SpeechEventQueue.Enqueue(new SpeechEvent {
                 RowID = ID.Value,
