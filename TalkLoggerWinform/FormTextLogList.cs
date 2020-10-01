@@ -30,6 +30,50 @@ namespace TalkLoggerWinform
 
         public void SetTextData(IEnumerable<Talk> talks)
         {
+            var rt = richTextBoxMain;
+            foreach (var talk in talks)
+            {
+                var ep = richTextBoxMain.Text.Length;
+                rt.Font = new Font("Yu Gothic UI", 11.0f, FontStyle.Regular);
+                rt.AppendText(talk.TimeGenerated.ToString(TimeUtil.FormatHMS));
+                rt.AppendText("\t");
+                rt.AppendText(GetDisplayName(talk.ID));
+                rt.AppendText("\t");
+                rt.AppendText(talk.Text);
+                rt.Select(ep, rt.Text.Length - ep);
+                rt.SelectionBackColor = Color.FromArgb(255, talk.Color.R, talk.Color.G, talk.Color.B);
+                rt.SelectionColor = Color.White;
+                rt.AppendText(Environment.NewLine);
+            }
+            richTextBoxMain.Select(rt.Text.Length, 0);
+        }
+
+        private string GetDisplayName(Id id)
+        {
+            if (DisplayNames.TryGetValue(id, out var name))
+            {
+                return name;
+            } else
+            {
+                return $"(noname {id.Value})";
+            }
+        }
+
+        DateTime loadTime = DateTime.Now;
+        private void FormTextLogList_Load(object sender, EventArgs e)
+        {
+            loadTime = DateTime.Now;
+        }
+        private void richTextBoxMain_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F8)
+            {
+                if( (DateTime.Now - loadTime).TotalMilliseconds > 500)
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
         }
     }
 }

@@ -42,13 +42,14 @@ namespace TalkLoggerWinform
                 _form = new FormTextLogList();
                 _form.FormClosed += (s, e) =>
                 {
+                    _form.Dispose();
                     _form = null;
                 };
                 foreach (var fc in AudioFeatures())
                 {
                     _form.DisplayNames[fc.ID] = fc.DisplayName;
                 }
-                _form.Show(Pane.Control);
+                _form.Show();
             }
             List<FormTextLogList.Talk> talks = null;
             for (var i = 5; i > 0; i--)
