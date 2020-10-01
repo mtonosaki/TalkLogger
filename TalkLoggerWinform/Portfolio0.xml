@@ -11,9 +11,9 @@
     <feature class="FeatureScrollZoomLock" />
   </GROUP>
   <GROUP name="AUDIO">
-    <!--<feature class="FeatureAudioLoopback2" />
-    <feature class="FeatureAudioMic2" />-->
-    <feature class="FeatureDummyAudio" />
+    <feature class="FeatureAudioLoopback2" />
+    <feature class="FeatureAudioMic2" />
+    <!--<feature class="FeatureDummyAudio" />-->
   </GROUP>
   <GROUP name="APP">
     <feature class="FeatureTalkBar" />
