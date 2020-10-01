@@ -14,6 +14,8 @@ namespace TalkLoggerWinform
     {
         private TextBox Box;
         private IRichPane TarPane;
+        private Label ClickJump;
+
         private DataHot Hot
         {
             get
@@ -37,12 +39,27 @@ namespace TalkLoggerWinform
             Box.KeyDown += Box_KeyDown;
             Box.Validated += Box_Validated;
 
+            ClickJump = (Label)GetControl("LabelTalkBarTime");
+            if( ClickJump != null)
+            {
+                ClickJump.Click += ClickJump_Click;
+            }
+
             Box.FindForm().FormClosing += (s, e) =>
             {
                 IsFormClosing = true;
             };
 
             Timer.AddTrigger(500, UpdateBoxValue);
+        }
+
+        private void ClickJump_Click(object sender, EventArgs e)
+        {
+            if (sender is Control co)
+            {
+                Box.Text = co.Tag.ToString();
+                Jump(120);
+            }
         }
 
         private void UpdateBoxValue()
@@ -179,7 +196,7 @@ namespace TalkLoggerWinform
             }
         }
 
-        private void Jump()
+        private void Jump(int offsetSx = 0)
         {
             Box.BackColor = BgColor;
             var line = Box.Text;
@@ -216,7 +233,7 @@ namespace TalkLoggerWinform
                     Box.SelectAll();
 
                     var spos = Hot.TimelineParts.GetScRect(TarPane, CodeRect.FromLTWH((int)(settime - Hot.FirstSpeech).TotalSeconds, 0, 0, 0));
-                    Pane.Scroll = ScreenPos.FromInt(Pane.Scroll.X - spos.LT.X, Pane.Scroll.Y);
+                    Pane.Scroll = ScreenPos.FromInt(Pane.Scroll.X - spos.LT.X + offsetSx, Pane.Scroll.Y);
                     Token.Add(FeatureAutoScroll.TokenAutoScrollOFF, this);
                     Pane.Invalidate(null);
                     GetRoot().FlushFeatureTriggers();

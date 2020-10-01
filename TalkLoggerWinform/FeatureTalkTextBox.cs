@@ -31,7 +31,7 @@ namespace TalkLoggerWinform
             TextBox = GetControl("textBoxTalk") as RichTextBox;
             TextBox?.ResetText();
             TextBox.SelectionChanged += TextBox_SelectionChanged;
-            LabelTime = GetControl("labelTalkBarTime") as Label;
+            LabelTime = GetControl("LabelTalkBarTime") as Label;
         }
         private void TextBox_SelectionChanged(object sender, EventArgs e)
         {
@@ -68,6 +68,7 @@ namespace TalkLoggerWinform
                 {
                     var dt = Hot.FirstSpeech + TimeSpan.FromSeconds(SelectedBar.Rect.LT.X);
                     LabelTime.Text = dt.ToString(TimeUtil.FormatHM);
+                    LabelTime.Tag = dt.ToString(TimeUtil.FormatHMS);
                 }
             }
         }
