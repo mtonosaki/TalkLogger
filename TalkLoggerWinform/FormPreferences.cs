@@ -1,10 +1,10 @@
 ﻿// (c) 2020 Manabu Tonosaki
 // Licensed under the MIT license.
 
+using NAudio.CoreAudioApi;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using NAudio.CoreAudioApi;
 using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform

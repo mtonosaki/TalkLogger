@@ -11,7 +11,13 @@ namespace TalkLoggerWinform
 {
     public class FeatureTalkBar : CoreFeatureBase, ITokenListener
     {
-        public NamedId TokenTriggerID => TokenSpeechEventQueued;
+        public NamedId TokenTriggerID
+        {
+            get
+            {
+                return TokenSpeechEventQueued;
+            }
+        }
 
         public override void OnInitInstance()
         {
@@ -56,7 +62,8 @@ namespace TalkLoggerWinform
 
         private void ProcUpdate(SpeechEvent se, int totime, PartsTalkBar tar)
         {
-            if (tar == null) return;
+            if (tar == null)
+                return;
 
             tar.Text = se.Text;
             tar.Rect = CodeRect.FromLTRB(Math.Min(totime - 1, tar.Rect.LT.X), tar.Rect.LT.Y, totime, tar.Rect.RB.Y);
@@ -68,7 +75,8 @@ namespace TalkLoggerWinform
 
         private void ProcSetColor(SpeechEvent se, int totime, PartsTalkBar tar)
         {
-            if (tar == null) return;
+            if (tar == null)
+                return;
 
             tar.BarColor = Color.FromArgb(int.Parse(se.Text));
         }
@@ -81,7 +89,8 @@ namespace TalkLoggerWinform
                 p1 = totime - 1;
             }
 
-            var pt = new PartsTalkBar {
+            var pt = new PartsTalkBar
+            {
                 SessionID = se.SessionID,
                 PartsPositioner = base.TalkPositioner,
                 PartsPositionCorder = base.TalkPosCoder,

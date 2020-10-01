@@ -54,7 +54,8 @@ namespace TalkLoggerWinform
                 // SECOND  LABEL
                 if (time.Second != 0 && Math.Abs(r.LT.X - nowr.LT.X) > 16)
                 {
-                    rp.Graphics.DrawString(time.ToString("ss"), FontSec, Brushes.DarkGray, r.LT.X, sr.RB.Y - 6, new StringFormat {
+                    rp.Graphics.DrawString(time.ToString("ss"), FontSec, Brushes.DarkGray, r.LT.X, sr.RB.Y - 6, new StringFormat
+                    {
                         Alignment = StringAlignment.Center,
                         Trimming = StringTrimming.None,
                     });
@@ -79,7 +80,8 @@ namespace TalkLoggerWinform
                 x = Math.Max(r.LT.X, 16);
                 if (Math.Abs(x - nowr.LT.X) > 36)
                 {
-                    rp.Graphics.DrawString(time.ToString(TimeUtil.FormatHM), FontTime, br, x, sr.LT.Y + 2, new StringFormat {
+                    rp.Graphics.DrawString(time.ToString(TimeUtil.FormatHM), FontTime, br, x, sr.LT.Y + 2, new StringFormat
+                    {
                         Alignment = StringAlignment.Center,
                         Trimming = StringTrimming.None,
                     });
@@ -95,13 +97,15 @@ namespace TalkLoggerWinform
                 rp.Graphics.DrawLine(Pens.DarkGreen, nowr.LT.X, sr.RB.Y, nowr.LT.X, paneRect.RB.Y);
 
                 // SECOND  LABEL
-                rp.Graphics.DrawString(DateTime.Now.ToString("ss"), FontSecNow, Brushes.LimeGreen, nowr.LT.X, sr.RB.Y - 8, new StringFormat {
+                rp.Graphics.DrawString(DateTime.Now.ToString("ss"), FontSecNow, Brushes.LimeGreen, nowr.LT.X, sr.RB.Y - 8, new StringFormat
+                {
                     Alignment = StringAlignment.Center,
                     Trimming = StringTrimming.None,
                 });
 
                 // TIME LABEL
-                rp.Graphics.DrawString(DateTime.Now.ToString(TimeUtil.FormatHM), FontTimeNow, Brushes.LimeGreen, nowr.LT.X, sr.LT.Y + 1, new StringFormat {
+                rp.Graphics.DrawString(DateTime.Now.ToString(TimeUtil.FormatHM), FontTimeNow, Brushes.LimeGreen, nowr.LT.X, sr.LT.Y + 1, new StringFormat
+                {
                     Alignment = StringAlignment.Center,
                     Trimming = StringTrimming.None,
                 });

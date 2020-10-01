@@ -1,8 +1,7 @@
-﻿using System;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TalkLoggerWinform
 {
@@ -16,6 +15,7 @@ namespace TalkLoggerWinform
             {
                 return Name;
             }
+
             public override bool Equals(object obj)
             {
                 if (obj is LangCode tar)

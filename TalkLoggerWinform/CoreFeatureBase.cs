@@ -12,7 +12,13 @@ namespace TalkLoggerWinform
         public static readonly NamedId TokenSpeechEventQueued = NamedId.FromName("TokenSpeechEventQueued");
         public const int LayerTalkBar = 100;
         protected IRichPane TarPane { get; set; }
-        public DataHot Hot => (DataHot)base.Data;
+        public DataHot Hot
+        {
+            get
+            {
+                return (DataHot)base.Data;
+            }
+        }
 
         /// <summary>
         /// Top position (Layout coodinate)

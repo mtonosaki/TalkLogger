@@ -10,7 +10,14 @@ namespace TalkLoggerWinform
 {
     public class FeatureTalkTextBox : FeatureControlBridgeBase, IMouseListener
     {
-        private DataHot Hot => (DataHot)Data;
+        private DataHot Hot
+        {
+            get
+            {
+                return (DataHot)Data;
+            }
+        }
+
         private PartsCollectionBase SelectedParts;
         private PartsTalkBar SelectedBar = null;
         private RichTextBox TextBox { get; set; }
@@ -30,6 +37,7 @@ namespace TalkLoggerWinform
         {
             Hot.SelectedText = TextBox.SelectedText;
         }
+
         public void Update()
         {
             if (SelectedBar == null)
@@ -46,7 +54,7 @@ namespace TalkLoggerWinform
 
                 TextBox.Text = SelectedBar.Text;
 
-                if (slen > 0 && TextBox.Text.Substring(spos, slen) == stxt)
+                if (slen > 0 && StrUtil.Mid(TextBox.Text, spos, slen) == stxt)
                 {
                     TextBox.Select(spos, slen);
                 }
