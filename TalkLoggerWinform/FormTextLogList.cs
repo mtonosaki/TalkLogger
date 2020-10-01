@@ -16,6 +16,41 @@ namespace TalkLoggerWinform
             new FormShapePersister(this);
         }
 
+        DateTime loadTime = DateTime.Now;
+        private void FormTextLogList_Load(object sender, EventArgs e)
+        {
+            loadTime = DateTime.Now;
+        }
+        private void CheckBoxWrap_CheckedChanged(object sender, EventArgs e)
+        {
+            var ss = richTextBoxMain.SelectionStart;
+            var sl = richTextBoxMain.SelectionLength;
+            richTextBoxMain.WordWrap = CheckBoxWrap.Checked;
+            var timer = new Timer()
+            {
+                Interval = 200,
+            };
+            timer.Tick += (s, et) =>
+            {
+                ((Timer)s).Dispose();
+                richTextBoxMain.Select(ss, sl);
+                richTextBoxMain.Focus();
+            };
+            timer.Start();
+        }
+
+        private void richTextBoxMain_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F8)
+            {
+                if ((DateTime.Now - loadTime).TotalMilliseconds > 500)
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
+        }
+
         public class Talk
         {
             public Id ID { get; set; }
@@ -75,23 +110,6 @@ namespace TalkLoggerWinform
             } else
             {
                 return $"(noname {id.Value})";
-            }
-        }
-
-        DateTime loadTime = DateTime.Now;
-        private void FormTextLogList_Load(object sender, EventArgs e)
-        {
-            loadTime = DateTime.Now;
-        }
-        private void richTextBoxMain_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F8)
-            {
-                if( (DateTime.Now - loadTime).TotalMilliseconds > 500)
-                {
-                    DialogResult = DialogResult.OK;
-                    Close();
-                }
             }
         }
     }
