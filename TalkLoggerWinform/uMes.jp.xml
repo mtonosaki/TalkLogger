@@ -38,6 +38,7 @@
   <mes key="MenuItem" ver="MenuZoom100">100%</mes>
   <mes key="MenuItem" ver="MenuZoom200">200%</mes>
   <mes key="MenuItem" ver="MenuZoom400">400%</mes>
+  <mes key="MenuItem" ver="TextLogList">音声テキスト一覧(&amp;T)</mes>
 
   <mes key="MenuItem" ver="Tool">ツール(&amp;T)</mes>
 
@@ -114,4 +115,5 @@
   <mes key="FeatureApplicationQuit" ver="ConfirmQuitCaption">Confirming no saved data</mes>
   <mes key="FeatureAudioLoopback" ver="NoDeviceID">@E 次のレンダーデバイスIDが指定されていますが、レンダーデバイスが見つかりませんでした。 {0}</mes>
   <mes key="FeatureAudioMic2" ver="NoDeviceID">@E 次のマイクデバイスIDが指定されていますが、マイクデバイスが見つかりませんでした。 {0}</mes>
+  <mes key="FeatureTextLogList" ver="ConfrictError">@W データ更新ができません。少し時間をおいて再試行してください</mes>
 </xml>

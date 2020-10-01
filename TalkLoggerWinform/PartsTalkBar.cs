@@ -18,10 +18,12 @@ namespace TalkLoggerWinform
         public override bool Draw(IRichPane rp)
         {
             var sr = GetScRect(rp);
-            if (sr.RB.X < 0) return true;
+            if (sr.RB.X < 0)
+                return true;
 
             var srf = new RectangleF(sr.LT.X, sr.LT.Y, sr.Width, sr.Height);
-            var tf = new StringFormat {
+            var tf = new StringFormat
+            {
                 Alignment = StringAlignment.Far,
                 LineAlignment = StringAlignment.Center,
                 Trimming = StringTrimming.EllipsisCharacter,

@@ -65,7 +65,8 @@ namespace TalkLoggerWinform
         {
             base.Start(who);
 
-            var fo = new FormPreferences {
+            var fo = new FormPreferences
+            {
                 Setting = Hot.Setting,
                 IsPlaying = Hot.IsPlaying,
             };

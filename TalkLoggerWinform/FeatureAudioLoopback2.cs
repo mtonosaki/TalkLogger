@@ -1,13 +1,13 @@
 ﻿// (c) 2020 Manabu Tonosaki
 // Licensed under the MIT license.
 
-using System.Drawing;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
+using System.Drawing;
 
 namespace TalkLoggerWinform
 {
-    public class FeatureAudioLoopback2 : FeatureAudioCaptureBase
+    public class FeatureAudioLoopback2 : FeatureNAudioBase
     {
         public override void OnInitInstance()
         {
@@ -17,7 +17,19 @@ namespace TalkLoggerWinform
             Hot.AddRowID(0x8000 | ID.Value, 202, 4);    // Blank Space
         }
 
-        protected override Color GetBarColor() => Color.FromArgb(64, Color.DarkGreen);
+        public override string DisplayName
+        {
+            get
+            {
+                return $"SPK";
+            }
+        }
+
+        protected override Color GetBarColor()
+        {
+            return Color.FromArgb(64, Color.DarkGreen);
+        }
+
         protected override MMDeviceCollection GetDeviceEndpoints()
         {
             return new MMDeviceEnumerator().EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
@@ -27,6 +39,7 @@ namespace TalkLoggerWinform
         {
             return Hot.Setting.Device1ID;
         }
+
         protected override string GetTargetRecognizeLanguage()
         {
             return Hot.Setting.Device1LanguageCode;

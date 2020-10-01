@@ -14,7 +14,8 @@ namespace TalkLoggerWinform
             base.OnInitInstance();
             TarPane = Pane.GetPane("GuiViewMain");
 
-            Timer.AddTrigger(1100, () => {
+            Timer.AddTrigger(1100, () =>
+            {
                 Start(null);
             });
         }

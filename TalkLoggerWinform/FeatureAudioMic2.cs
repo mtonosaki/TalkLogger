@@ -1,14 +1,13 @@
 ﻿// (c) 2020 Manabu Tonosaki
 // Licensed under the MIT license.
 
-using System.CodeDom;
-using System.Drawing;
 using NAudio.CoreAudioApi;
 using NAudio.Wave;
+using System.Drawing;
 
 namespace TalkLoggerWinform
 {
-    public class FeatureAudioMic2 : FeatureAudioCaptureBase
+    public class FeatureAudioMic2 : FeatureNAudioBase
     {
         public override void OnInitInstance()
         {
@@ -17,7 +16,18 @@ namespace TalkLoggerWinform
             Hot.AddRowID(ID.Value, 211, 42);            // Device 2 : Mic
             Hot.AddRowID(0x8000 | ID.Value, 212, 4);    // Blank Space
         }
-        protected override Color GetBarColor() => Color.FromArgb(64, Color.DarkCyan);
+
+        public override string DisplayName
+        {
+            get
+            {
+                return "MIC";
+            }
+        }
+        protected override Color GetBarColor()
+        {
+            return Color.FromArgb(64, Color.DarkCyan);
+        }
 
         protected override MMDeviceCollection GetDeviceEndpoints()
         {

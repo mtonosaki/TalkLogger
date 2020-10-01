@@ -2,12 +2,8 @@
 // Licensed under the MIT license.
 
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tono.GuiWinForm;
 
 namespace TalkLoggerWinform
@@ -21,7 +17,8 @@ namespace TalkLoggerWinform
             base.OnInitInstance();
             TarPane = Pane.GetPane("GuiViewMain");
 
-            Parts.Add(TarPane, _parts = new PartsMask {
+            Parts.Add(TarPane, _parts = new PartsMask
+            {
                 Hot = Hot,
                 IsMasking = true,
                 PartsPositioner = TalkPositioner,
@@ -45,7 +42,7 @@ namespace TalkLoggerWinform
             public DataHot Hot { get; set; }
             public bool IsMasking { get; set; }
 
-            private Font _font = new Font("Tahoma", 8.0f, FontStyle.Bold);
+            private readonly Font _font = new Font("Tahoma", 8.0f, FontStyle.Bold);
             private int _cnt = 0;
 
             public override bool Draw(IRichPane rp)

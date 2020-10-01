@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
@@ -14,7 +14,14 @@ namespace TalkLoggerWinform
     {
         private TextBox Box;
         private IRichPane TarPane;
-        private DataHot Hot => (DataHot)Data;
+        private DataHot Hot
+        {
+            get
+            {
+                return (DataHot)Data;
+            }
+        }
+
         private bool IsInput = false;
         private Color BgColor;
         private bool IsFormClosing = false;
@@ -29,7 +36,8 @@ namespace TalkLoggerWinform
             Box.GotFocus += Box_GotFocus;
             Box.Validated += Box_Validated;
 
-            Box.FindForm().FormClosing += (s, e) => {
+            Box.FindForm().FormClosing += (s, e) =>
+            {
                 IsFormClosing = true;
             };
 
@@ -37,7 +45,7 @@ namespace TalkLoggerWinform
         }
         private void UpdateBoxValue()
         {
-            if( !IsInput && !IsFormClosing)
+            if (!IsInput && !IsFormClosing)
             {
                 try
                 {
@@ -49,7 +57,7 @@ namespace TalkLoggerWinform
                 {
                 }
             }
-            if( !IsFormClosing)
+            if (!IsFormClosing)
             {
                 Timer.AddTrigger(500, UpdateBoxValue);
             }
@@ -72,16 +80,18 @@ namespace TalkLoggerWinform
                 var tardate = new DateTime(tartime.Year, tartime.Month, tartime.Day);
                 var cs = line.Split(':').Select(a => a.Trim()).Where(a => !string.IsNullOrEmpty(a)).ToArray();
                 double sgn = 0.0;
-                if (cs[0].StartsWith("+")) sgn = 1.0;
-                if (cs[0].StartsWith("-")) sgn = -1.0;
+                if (cs[0].StartsWith("+"))
+                    sgn = 1.0;
+                if (cs[0].StartsWith("-"))
+                    sgn = -1.0;
 
-                if ( cs.Length == 1)
+                if (cs.Length == 1)
                 {
                     var val = int.Parse(StrUtil.Mid(cs[0], 1));
                     var H = val / 10000;
                     var M = val / 100 % 100;
                     var S = val % 100;
-                    var settime = (sgn == 0.0 ? tardate :  tartime) + TimeSpan.FromSeconds(sgn * H * 3600 + M * 60 + S);
+                    var settime = (sgn == 0.0 ? tardate : tartime) + TimeSpan.FromSeconds(sgn * H * 3600 + M * 60 + S);
                     Box.Text = settime.ToString(TimeUtil.FormatHMS);
                 }
                 if (cs.Length == 2)

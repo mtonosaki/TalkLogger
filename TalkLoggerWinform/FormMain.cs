@@ -37,11 +37,13 @@ namespace TalkLoggerWinform
 
 
             // Restore Form dimension
-            Location = new Point {
+            Location = new Point
+            {
                 X = (int)ConfigRegister.Current["X", 12],
                 Y = (int)ConfigRegister.Current["Y", 24],
             };
-            Size = new Size {
+            Size = new Size
+            {
                 Width = (int)ConfigRegister.Current["Width", 885],
                 Height = (int)ConfigRegister.Current["Height", 236],
             };
@@ -74,7 +76,8 @@ namespace TalkLoggerWinform
 
         private void FormMain_SizeChanged(object sender, EventArgs e)
         {
-            LabelClosing.Location = new Point {
+            LabelClosing.Location = new Point
+            {
                 X = Width / 2 - LabelClosing.Width / 2,
                 Y = Height / 2 - LabelClosing.Height / 2,
             };

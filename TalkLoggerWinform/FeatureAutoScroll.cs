@@ -10,7 +10,13 @@ namespace TalkLoggerWinform
     public class FeatureAutoScroll : CoreFeatureBase, ITokenListener
     {
         public static readonly NamedId TokenAutoScrollOFF = NamedId.FromName("TokenAutoScrollOFF");
-        public NamedId TokenTriggerID => TokenAutoScrollOFF;
+        public NamedId TokenTriggerID
+        {
+            get
+            {
+                return TokenAutoScrollOFF;
+            }
+        }
 
         private DataSharingManager.Boolean _isAutoScroll;
         private DateTime AnchorDate;
@@ -33,9 +39,15 @@ namespace TalkLoggerWinform
             }
         }
 
-        public override bool Enabled {
-            get => _isAutoScroll.value;
-            set {
+        public override bool Enabled
+        {
+            get
+            {
+                return _isAutoScroll.value;
+            }
+
+            set
+            {
                 _isAutoScroll.value = value;
                 AnchorZoomX = -1;   // Request to reset integer distributing
             }

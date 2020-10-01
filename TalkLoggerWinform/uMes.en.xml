@@ -36,6 +36,7 @@
   <mes key="MenuItem" ver="MenuZoom100">100%</mes>
   <mes key="MenuItem" ver="MenuZoom200">200%</mes>
   <mes key="MenuItem" ver="MenuZoom400">400%</mes>
+  <mes key="MenuItem" ver="TextLogList">&amp;TextLog List...</mes>
 
   <mes key="MenuItem" ver="Tool">&amp;Tools</mes>
 
@@ -113,5 +114,5 @@
   <mes key="FeatureAudioLoopback" ver="DeviceInitialized">@I Initialized loopback Device '{0}'</mes>
   <mes key="FeatureAudioMic2" ver="NoDeviceID">@E Selected Capture Device ID is not found on this machine {0}</mes>
   <mes key="FeatureAudioMic2" ver="DeviceInitialized">@I Initialized capture Device '{0}'</mes>
-  
+  <mes key="FeatureTextLogList" ver="ConfrictError">@W Could not update list. Try again later.</mes>
 </xml>

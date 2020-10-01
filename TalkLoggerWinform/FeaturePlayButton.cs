@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// (c) 2020 Manabu Tonosaki
+// Licensed under the MIT license.
+
+using System;
 using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
@@ -15,7 +14,13 @@ namespace TalkLoggerWinform
         public static readonly NamedId TokenStop = NamedId.FromName("TokenStop");
 
         private CheckBox Btn;
-        private DataHot Hot => (DataHot)base.Data;
+        private DataHot Hot
+        {
+            get
+            {
+                return (DataHot)base.Data;
+            }
+        }
 
         public override void OnInitInstance()
         {
