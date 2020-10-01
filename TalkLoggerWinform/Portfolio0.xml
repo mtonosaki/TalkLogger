@@ -11,10 +11,10 @@
     <feature class="FeatureScrollZoomLock" />
   </GROUP>
   <GROUP name="AUDIO">
-    <!--<feature class="FeatureAudioLoopback2" />
-    <feature class="FeatureAudioMic2" />-->
-    <feature class="FeatureDummyAudio">id=1001,#48ff0000,こんにちは。,ただいまマイクのテストをしております。,+1000,音量と音質はいかがでしょうか。</feature>
-    <feature class="FeatureDummyAudio">id=1002,#48008800,+2000,I have a pen.,I have an apple.,Uh!,Apple pen.,I have a pen.,I have a pineapple.,Ah!!,Pineapple-pen.,Apple-pen.,Pineapple-pen.,Oh!,Pen-pineapple-apple-pen.</feature>
+    <feature class="FeatureAudioLoopback2" />
+    <feature class="FeatureAudioMic2" />
+    <!--<feature class="FeatureDummyAudio">id=1001,#48ff0000,こんにちは。,ただいまマイクのテストをしております。,+1000,音量と音質はいかがでしょうか。</feature>
+    <feature class="FeatureDummyAudio">id=1002,#48008800,+2000,I have a pen.,I have an apple.,Uh!,Apple pen.,I have a pen.,I have a pineapple.,Ah!!,Pineapple-pen.,Apple-pen.,Pineapple-pen.,Oh!,Pen-pineapple-apple-pen.</feature>-->
   </GROUP>
   <GROUP name="APP">
     <feature class="FeatureTalkBar" />
