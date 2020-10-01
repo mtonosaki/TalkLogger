@@ -10,12 +10,14 @@
     <feature class="FeatureMoveSelectedPartsTop"/>
     <feature class="FeatureScrollZoomLock" />
   </GROUP>
+  <GROUP name="AUDIO">
+    <!--<feature class="FeatureAudioLoopback2" />
+    <feature class="FeatureAudioMic2" />-->
+    <feature class="FeatureDummyAudio" />
+  </GROUP>
   <GROUP name="APP">
     <feature class="FeatureTalkBar" />
     <feature class="FeatureTimeline" />
-    <feature class="FeatureAudioLoopback2" />
-    <feature class="FeatureAudioMic2" />
-    <!--<feature class="FeatureDummyAudio" />-->
     <feature class="FeaturePartsSelect" />
     <feature class="FeatureTalkTextBox" />
     <feature class="FeatureJumpToInputValue" />
