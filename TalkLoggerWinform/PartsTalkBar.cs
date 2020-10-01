@@ -1,6 +1,7 @@
 ﻿// (c) 2020 Manabu Tonosaki
 // Licensed under the MIT license.
 
+using System;
 using System.Drawing;
 using Tono.GuiWinForm;
 
@@ -13,7 +14,7 @@ namespace TalkLoggerWinform
         public bool IsSelected { get; set; }
         public bool IsCancelled { get; set; }
         public Color BarColor { get; set; } = Color.FromArgb(64, 192, 192, 192);
-
+        public DateTime TimeTalkStarted { get; set; }
 
         public override bool Draw(IRichPane rp)
         {

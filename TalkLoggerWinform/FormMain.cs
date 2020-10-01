@@ -49,7 +49,7 @@ namespace TalkLoggerWinform
             };
             splitContainerMain.SplitterDistance = (int)ConfigRegister.Current["PaneSplitterY", 25];
             textBoxTalk.Text = "";
-            labelTalkBarTime.Text = "";
+            LabelTalkBarTime.Text = "";
 
             IsInInit = false;
         }

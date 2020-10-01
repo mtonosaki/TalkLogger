@@ -38,7 +38,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GuiViewMain = new Tono.GuiWinForm.TGuiView(this.components);
             this.KeyEnablerMain = new Tono.GuiWinForm.TKeyEnabler();
-            this.labelTalkBarTime = new System.Windows.Forms.Label();
+            this.LabelTalkBarTime = new System.Windows.Forms.Label();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.textBoxTalk = new System.Windows.Forms.RichTextBox();
             this.LabelClosing = new System.Windows.Forms.Label();
@@ -124,17 +124,17 @@
             this.KeyEnablerMain.Size = new System.Drawing.Size(1, 1);
             this.KeyEnablerMain.TabIndex = 2;
             // 
-            // labelTalkBarTime
+            // LabelTalkBarTime
             // 
-            this.labelTalkBarTime.AutoSize = true;
-            this.labelTalkBarTime.BackColor = System.Drawing.Color.Transparent;
-            this.labelTalkBarTime.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTalkBarTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.labelTalkBarTime.Location = new System.Drawing.Point(3, 8);
-            this.labelTalkBarTime.Name = "labelTalkBarTime";
-            this.labelTalkBarTime.Size = new System.Drawing.Size(35, 13);
-            this.labelTalkBarTime.TabIndex = 5;
-            this.labelTalkBarTime.Text = "12:37";
+            this.LabelTalkBarTime.AutoSize = true;
+            this.LabelTalkBarTime.BackColor = System.Drawing.Color.Transparent;
+            this.LabelTalkBarTime.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTalkBarTime.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.LabelTalkBarTime.Location = new System.Drawing.Point(3, 8);
+            this.LabelTalkBarTime.Name = "LabelTalkBarTime";
+            this.LabelTalkBarTime.Size = new System.Drawing.Size(35, 13);
+            this.LabelTalkBarTime.TabIndex = 5;
+            this.LabelTalkBarTime.Text = "12:37";
             // 
             // splitContainerMain
             // 
@@ -149,7 +149,7 @@
             // splitContainerMain.Panel1
             // 
             this.splitContainerMain.Panel1.Controls.Add(this.textBoxTalk);
-            this.splitContainerMain.Panel1.Controls.Add(this.labelTalkBarTime);
+            this.splitContainerMain.Panel1.Controls.Add(this.LabelTalkBarTime);
             // 
             // splitContainerMain.Panel2
             // 
@@ -269,7 +269,7 @@
         private Tono.GuiWinForm.TGuiView GuiViewMain;
         private Tono.GuiWinForm.TKeyEnabler KeyEnablerMain;
         private System.Windows.Forms.ToolStripMenuItem toolToolStripMenuItem;
-        private System.Windows.Forms.Label labelTalkBarTime;
+        private System.Windows.Forms.Label LabelTalkBarTime;
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.RichTextBox textBoxTalk;
         private System.Windows.Forms.Label LabelClosing;
