@@ -65,6 +65,8 @@ namespace TalkLoggerWinform
         {
             base.Start(who);
 
+            Enabled = false;    // Considering Re-entering by FlushToken in timer trigger.
+
             var fo = new FormPreferences
             {
                 Setting = Hot.Setting,
@@ -76,6 +78,7 @@ namespace TalkLoggerWinform
                 SaveSetting(Hot.Setting);
                 Token.Add(TokenSettingsLoaded, this);
             }
+            Enabled = true;
         }
     }
 }

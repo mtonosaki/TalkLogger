@@ -20,6 +20,14 @@ namespace TalkLoggerWinform
             }
         }
 
+        public new DataParts Parts
+        {
+            get
+            {
+                return (DataParts)base.Parts;
+            }
+        }
+
         /// <summary>
         /// Top position (Layout coodinate)
         /// </summary>

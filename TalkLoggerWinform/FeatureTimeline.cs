@@ -27,7 +27,6 @@ namespace TalkLoggerWinform
                 PartsPositionCorder = TalkPosCoder,
             };
             Parts.Add(TarPane, Hot.TimelineParts);
-
         }
     }
 }

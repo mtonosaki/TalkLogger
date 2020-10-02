@@ -63,11 +63,10 @@
             // CheckBoxWrap
             // 
             this.CheckBoxWrap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CheckBoxWrap.AutoSize = true;
             this.CheckBoxWrap.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CheckBoxWrap.Location = new System.Drawing.Point(736, 12);
+            this.CheckBoxWrap.Location = new System.Drawing.Point(727, 12);
             this.CheckBoxWrap.Name = "CheckBoxWrap";
-            this.CheckBoxWrap.Size = new System.Drawing.Size(52, 17);
+            this.CheckBoxWrap.Size = new System.Drawing.Size(61, 17);
             this.CheckBoxWrap.TabIndex = 2;
             this.CheckBoxWrap.Text = "Wrap";
             this.CheckBoxWrap.UseVisualStyleBackColor = true;
@@ -87,7 +86,6 @@
             this.Text = "Text Log List";
             this.Load += new System.EventHandler(this.FormTextLogList_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
