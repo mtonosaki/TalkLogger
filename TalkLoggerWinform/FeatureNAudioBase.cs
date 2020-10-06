@@ -14,13 +14,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
+using static TalkLoggerWinform.CoreFeatureBase;
 
 namespace TalkLoggerWinform
 {
     /// <summary>
     /// Capture voice with NAudio
     /// </summary>
-    public abstract class FeatureNAudioBase : FeatureAudioCaptureBase, IMultiTokenListener
+    public abstract class FeatureNAudioBase : FeatureAudioCaptureBase, IMultiTokenListener, ICloseCallback
     {
         public NamedId[] MultiTokenTriggerID { get; } = new NamedId[] { FeaturePlayButton.TokenStart, FeaturePlayButton.TokenStop };
 
@@ -31,8 +32,10 @@ namespace TalkLoggerWinform
         {
             base.OnInitInstance();
 
-            Pane.Control.FindForm().FormClosing += FeatureAudioLoopback_FormClosing;
-
+            Finalizers.Add(() =>
+            {
+                Hot.AddWavToAllQueue(DisplayName, null, 0); // Prepqre buffer of DisplayName
+            });
         }
         public override void Start(NamedId who)
         {
@@ -85,13 +88,10 @@ namespace TalkLoggerWinform
                 }
             }
         }
-        private void FeatureAudioLoopback_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
-        {
-            var hs = _handlers.ToArray();
-            _handlers.Clear();
-            Reset(hs);
-        }
 
+        /// <summary>
+        /// Thread safe handler
+        /// </summary>
         private class SpeechHandler
         {
             public DateTime TimeGenerated { get; } = DateTime.Now;
@@ -99,7 +99,6 @@ namespace TalkLoggerWinform
             public SpeechRecognizer Recognizer { get; set; }
             public PushAudioInputStream AudioInputStream { get; set; }
             public AudioConfig AudioConfig { get; set; }
-            public byte[] buf = new byte[1024 * 80];
 
             public event EventHandler StopRequested;
 
@@ -151,30 +150,50 @@ namespace TalkLoggerWinform
         {
             Debug.Assert(handler.Device != null);
 
-            var wavein = CreateCaptureInstance(handler.Device);
-            var waveoutFormat = new WaveFormat(16000, 16, 1);
             var lastSpeakDT = DateTime.Now;
             var willStop = DateTime.MaxValue;
+
+            // NAudio Setting
+            var wavein = CreateCaptureInstance(handler.Device);
+            var waveoutFormat = WaveFormat.CreateIeeeFloatWaveFormat(16000, 1); //new WaveFormat(16000, 16, 1);
             wavein.StartRecording();
 
-            var audioformat = AudioStreamFormat.GetWaveFormatPCM(samplesPerSecond: 16000, bitsPerSample: 16, channels: 1);
+
+            // Azure Cognitive Service Setting
+            var audioformat = AudioStreamFormat.GetWaveFormatPCM((uint)waveoutFormat.SampleRate, (byte)waveoutFormat.BitsPerSample, (byte)waveoutFormat.Channels);
             handler.AudioInputStream = AudioInputStream.CreatePushStream(audioformat);
             handler.AudioConfig = AudioConfig.FromStreamInput(handler.AudioInputStream);
 
+            // NAudio Voice event
             wavein.DataAvailable += (s, e) =>
             {
                 if (e.BytesRecorded > 0)
                 {
+                    // Hot.SetWavFormat(DisplayName, wavein.WaveFormat);                // Clear Sound
+                    // Hot.AddWavToAllQueue(DisplayName, e.Buffer, e.BytesRecorded);    // Clear Sound
+
                     using (var ms = new MemoryStream(e.Buffer, 0, e.BytesRecorded))
                     using (var rs = new RawSourceWaveStream(ms, wavein.WaveFormat))
-                    using (var freq = new MediaFoundationResampler(rs, waveoutFormat.SampleRate))
+                    using (var freq = new MediaFoundationResampler(rs, waveoutFormat))
                     {
-                        var w16 = freq.ToSampleProvider().ToMono().ToWaveProvider16();
-                        var len = w16.Read(handler.buf, 0, handler.buf.Length);
-                        handler.AudioInputStream.Write(handler.buf, len);
+                        Hot.SetWavFormat(DisplayName, freq.WaveFormat);   // TESTING
+
+                        var buf = new byte[512];
+                        for( var len = 1; len != 0; )
+                        {
+                            len = freq.Read(buf, 0, buf.Length);
+                            if( len > 0)
+                            {
+                                handler.AudioInputStream.Write(buf, len);       // for Azure Cognitive Speech to Text
+                                Hot.AddWavToAllQueue(DisplayName, buf, len);    // for File Saving
+                            }
+                        }
+
                         lastSpeakDT = DateTime.Now;
                         willStop = DateTime.MaxValue;
+
                     }
+                    Token.Add(TokenWavDataQueued, this);    // TODO: Need Confirm it must be fixed with Tono.Gui.WinForm 1.1.2 - System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
                 }
                 else
                 {
@@ -185,20 +204,23 @@ namespace TalkLoggerWinform
                             willStop = DateTime.Now + TimeSpan.FromSeconds(10);
                         }
                         var silence = new SilenceProvider(waveoutFormat);
-                        var len = silence.Read(handler.buf, 0, waveoutFormat.BitsPerSample * waveoutFormat.SampleRate / 8 / 100);    // 10ms
+                        var buf = new byte[waveoutFormat.BitsPerSample * waveoutFormat.SampleRate / 8 / 100];       // 10ms
+                        var len = silence.Read(buf, 0, buf.Length);
                         var cnt = (int)((DateTime.Now - lastSpeakDT).TotalMilliseconds / 10);
                         for (var i = 0; i < cnt; i++)
                         {
-                            handler.AudioInputStream?.Write(handler.buf, len);
+                            handler.AudioInputStream?.Write(buf, len);      // for Azure Cognitive Speech to Text
+                            //Hot.AddWavToAllQueue(DisplayName, handler.buf, len);    // for File Saving
                         }
                         lastSpeakDT = DateTime.Now;
+                        //Token.Add(TokenWavDataQueued, this);  // for File Saving
                     }
                 }
             };
 
             handler.StopRequested += (s, e) =>
             {
-                wavein.StopRecording();     // Tono: 1.終了処理（NAudio）
+                wavein.StopRecording();     // Stop NAudio recording
             };
 
             return await Task.FromResult(true);
@@ -321,6 +343,13 @@ namespace TalkLoggerWinform
             _talkID = null;
             Token.Add(TokenSpeechEventQueued, this);
             GetRoot().FlushFeatureTriggers();
+        }
+
+        public void OnClosing()
+        {
+            var hs = _handlers.ToArray();
+            _handlers.Clear();
+            Reset(hs);
         }
     }
 }

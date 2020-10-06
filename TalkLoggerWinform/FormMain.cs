@@ -106,6 +106,14 @@ namespace TalkLoggerWinform
         {
             LabelClosing.Visible = true;
             Application.DoEvents();
+
+            foreach (var fc in GuiViewMain.GetFeatureRoot().GetChildFeatureInstance())
+            {
+                if (fc is CoreFeatureBase.ICloseCallback cfc)
+                {
+                    cfc.OnClosing();
+                }
+            }
         }
     }
 }

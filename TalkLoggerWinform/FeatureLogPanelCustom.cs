@@ -45,10 +45,10 @@ namespace TalkLoggerWinform
             protected override Brush createLogPanelBG(ScreenRect sr)
             {
                 return new System.Drawing.Drawing2D.LinearGradientBrush(
-sr.LT, sr.RT,
-Color.FromArgb(128, 0, 0, 0),
-Color.FromArgb(32, 0, 0, 0)
-);
+                        sr.LT, sr.RT,
+                        Color.FromArgb(128, 0, 0, 0),
+                        Color.FromArgb(32, 0, 0, 0)
+                    );
             }
             #endregion
         }
@@ -58,7 +58,7 @@ Color.FromArgb(32, 0, 0, 0)
             var h = (int)ConfigRegister.Current["LogPanelGroupHeight", -1];
             if (h < 0)
             {
-                ConfigRegister.Current["LogPanelGroupHeight"] = 96;
+                ConfigRegister.Current["LogPanelGroupHeight"] = 128;
             }
             GetParentForm().SizeChanged += Pane_SizeChanged;
             Timer.AddTrigger(200, () =>

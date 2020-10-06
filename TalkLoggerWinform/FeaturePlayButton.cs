@@ -30,17 +30,11 @@ namespace TalkLoggerWinform
             Btn.Click += Btn_Click;
         }
 
-        private bool isStarting = false;
         public override void Start(NamedId who)
         {
             base.Start(who);
 
-            if (isStarting == false)
-            {
-                isStarting = true;
-                Btn_Click(this, EventArgs.Empty);
-                isStarting = false;
-            }
+            Btn_Click(this, EventArgs.Empty);
         }
 
         private void Btn_Click(object sender, EventArgs e)
@@ -50,17 +44,13 @@ namespace TalkLoggerWinform
 
             if (Hot.IsPlaying)
             {
-                LOG.WriteLine(LLV.INF, $"STARTED at {DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)}");
+                LOG.WriteLine(LLV.INF, $"START at {DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)}");
                 Token.Add(TokenStart, this);
             }
             else
             {
-                LOG.WriteLine(LLV.INF, $"STOPPED at {DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)}");
-                Token.Add(TokenStop, this);
-            }
-            if (isStarting == false)
-            {
-                GetRoot().FlushFeatureTriggers();
+                LOG.WriteLine(LLV.INF, $"Requested to STOP at {DateTime.Now.ToString(TimeUtil.FormatYMDHMSms)}");
+                GetRoot().SetUrgentToken(TokenStop, TokenStop, null);
             }
         }
     }

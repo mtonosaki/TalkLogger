@@ -37,8 +37,8 @@
   <mes key="MenuItem" ver="MenuZoom200">200%</mes>
   <mes key="MenuItem" ver="MenuZoom400">400%</mes>
   <mes key="MenuItem" ver="TextLogList">&amp;TextLog List...</mes>
-
   <mes key="MenuItem" ver="Tool">&amp;Tools</mes>
+  <mes key="MenuItem" ver="SaveMp3Auto">Auto MP3 Save</mes>
 
   <mes key="MenuItem" ver="Help">&amp;Help</mes>
   <mes key="MenuItem" ver="Version">&amp;About...</mes>
