@@ -20,15 +20,15 @@ namespace TalkLoggerWinform
         public Queue<SpeechEvent> SpeechEventQueue { get; } = new Queue<SpeechEvent>();
         public string SelectedText { get; set; }
         private readonly Dictionary<string/*audioName*/, WaveFormat> WaveFormats = new Dictionary<string, WaveFormat>();
-        private readonly Dictionary<string/*dicName*/, Dictionary<string/*audioName*/, Queue<(byte[] Buffer, int Length)>>> WavQueue = new Dictionary<string, Dictionary<string, Queue<(byte[] Buffer, int Length)>>>();
+        private readonly Dictionary<string/*dicName*/, Dictionary<string/*audioName*/, Queue<(byte[] Buffer, int Length, DateTime TimeGenerated)>>> WavQueue = new Dictionary<string, Dictionary<string, Queue<(byte[] Buffer, int Length, DateTime TimeGenerated)>>>();
         public void AddWaveQueue(string dicName)
         {
             if (WavQueue.ContainsKey(dicName) == false)
             {
-                WavQueue[dicName] = new Dictionary<string, Queue<(byte[] Buffer, int Length)>>();
+                WavQueue[dicName] = new Dictionary<string, Queue<(byte[] Buffer, int Length, DateTime TimeGenerated)>>();
             }
         }
-        public void AddWavToAllQueue(string audioName, byte[] buf0, int len)
+        public void AddWavToAllQueue(string audioName, byte[] buf0, int len, DateTime timeGenerated)
         {
 
             var buf = new byte[len];
@@ -36,12 +36,12 @@ namespace TalkLoggerWinform
 
             foreach (var dic in WavQueue.Values)
             {
-                var queue = dic.GetValueOrDefault(audioName, true, a => new Queue<(byte[] Buffer, int Length)>());
+                var queue = dic.GetValueOrDefault(audioName, true, a => new Queue<(byte[] Buffer, int Length, DateTime TimeGenerated)>());
                 if( buf?.Length > 0)
                 {
                     lock (queue)
                     {
-                        queue.Enqueue((buf, len));
+                        queue.Enqueue((buf, len, timeGenerated));
                     }
                 }
             }
@@ -60,7 +60,7 @@ namespace TalkLoggerWinform
             return WaveFormats[audioName];
         }
 
-        public Dictionary<string/*audioName*/, Queue<(byte[] Buffer, int Length)>> GetWavDictionary(string dicName)
+        public Dictionary<string/*audioName*/, Queue<(byte[] Buffer, int Length, DateTime TimeGenerated)>> GetWavDictionary(string dicName)
         {
             return WavQueue[dicName];
         }

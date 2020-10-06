@@ -12,7 +12,7 @@
   </GROUP>
   <GROUP name="AUDIO">
     <feature class="FeatureAudioLoopback2" />
-    <!--<feature class="FeatureAudioMic2" />-->
+    <feature class="FeatureAudioMic2" />
     <!--<feature class="FeatureDummyAudio">id=1001,#48ff0000,こんにちは。,ただいまマイクのテストをしております。,+1000,音量と音質はいかがでしょうか。</feature>
     <feature class="FeatureDummyAudio">id=1002,#48008800,+2000,I have a pen.,I have an apple.,Uh!,Apple pen.,I have a pen.,I have a pineapple.,Ah!!,Pineapple-pen.,Apple-pen.,Pineapple-pen.,Oh!,Pen-pineapple-apple-pen.</feature>-->
   </GROUP>
@@ -42,8 +42,8 @@
   </GROUP>
   <GROUP name="ToolMenu">
     <feature class="FeaturePlayButton" menu="Tool/PlayStop" menuorder="10" shortcut="F4" image="PlayG"/>
-    <feature class="FeatureSaveMp3Auto" />
-    <feature class="FeatureSwitch" menu="Tool/SaveMp3Auto" menuorder="12" shortcut="CtrlShiftS" com="/f">FeatureSaveMp3Auto</feature>
+    <feature class="FeatureSaveAuto" />
+    <feature class="FeatureSwitch" menu="Tool/SaveMp3Auto" menuorder="12" shortcut="CtrlShiftS" com="/f">FeatureSaveAuto</feature>
     <menuitem menu="Tool/-" menuorder="19" />
     <feature class="FeatureTextLogList" menu="Tool/TextLogList" menuorder="20" shortcut="F8" />
     <menuitem menu="Tool/-" menuorder="29" />

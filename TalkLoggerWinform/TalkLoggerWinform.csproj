@@ -87,7 +87,7 @@
     <Compile Include="FeatureNAudioBase.cs" />
     <Compile Include="FeaturePlayButton.cs" />
     <Compile Include="FeaturePlayVisializer.cs" />
-    <Compile Include="FeatureSaveMp3Auto.cs" />
+    <Compile Include="FeatureSaveAuto.cs" />
     <Compile Include="FeatureScrollZoomLock.cs" />
     <Compile Include="FeatureTalkTextBox.cs" />
     <Compile Include="FeatureJumpToNow.cs" />
