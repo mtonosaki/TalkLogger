@@ -47,7 +47,7 @@ namespace TalkLoggerWinform
             {
                 ClearQueue();
             }
-            Timer.AddTrigger(1000, OnPorling);
+            Timer.AddTrigger(500, OnPorling);
         }
 
         public override void Start(NamedId who)
