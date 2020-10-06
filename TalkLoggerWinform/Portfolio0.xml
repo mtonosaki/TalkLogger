@@ -43,7 +43,7 @@
   <GROUP name="ToolMenu">
     <feature class="FeaturePlayButton" menu="Tool/PlayStop" menuorder="10" shortcut="F4" image="PlayG"/>
     <feature class="FeatureSaveAuto" />
-    <feature class="FeatureSwitch" menu="Tool/SaveMp3Auto" menuorder="12" shortcut="CtrlShiftS" com="/f">FeatureSaveAuto</feature>
+    <feature class="FeatureSwitch" name="RecSwitch" menu="Tool/SaveMp3Auto" menuorder="12" shortcut="CtrlShiftS" com="/f">FeatureSaveAuto</feature>
     <menuitem menu="Tool/-" menuorder="19" />
     <feature class="FeatureTextLogList" menu="Tool/TextLogList" menuorder="20" shortcut="F8" />
     <menuitem menu="Tool/-" menuorder="29" />

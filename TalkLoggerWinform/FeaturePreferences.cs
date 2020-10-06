@@ -1,6 +1,8 @@
 ﻿// (c) 2020 Manabu Tonosaki
 // Licensed under the MIT license.
 
+using System;
+using System.IO;
 using System.Text.Json;
 using System.Windows.Forms;
 using Tono;
@@ -57,6 +59,10 @@ namespace TalkLoggerWinform
             if (value.Device2LanguageCode == null)
             {
                 value.Device2LanguageCode = "ja-JP";
+            }
+            if (value.RecordingFilesPath == null)
+            {
+                value.RecordingFilesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TalkLogger");
             }
             return value;
         }

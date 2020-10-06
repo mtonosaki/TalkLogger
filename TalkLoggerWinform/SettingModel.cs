@@ -14,5 +14,6 @@ namespace TalkLoggerWinform
         public string Device1LanguageCode { get; set; }
         public string Device2ID { get; set; }
         public string Device2LanguageCode { get; set; }
+        public string RecordingFilesPath { get; set; }
     }
 }
