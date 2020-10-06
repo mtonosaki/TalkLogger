@@ -5,21 +5,21 @@ using System.Text.Json;
 using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
+using static TalkLoggerWinform.CoreFeatureBase;
 
 namespace TalkLoggerWinform
 {
-    public class FeaturePreferences : CoreFeatureBase
+    public class FeaturePreferences : CoreFeatureBase, ICloseCallback
     {
         public override void OnInitInstance()
         {
             base.OnInitInstance();
-            Pane.Control.FindForm().FormClosing += Application_FormClosing;
 
             Hot.Setting = LoadSetting();
             Token.Add(TokenSettingsLoaded, this);
         }
 
-        private void Application_FormClosing(object sender, FormClosingEventArgs e)
+        public void OnClosing()
         {
             SaveSetting(Hot.Setting);
         }
@@ -65,6 +65,8 @@ namespace TalkLoggerWinform
         {
             base.Start(who);
 
+            Enabled = false;    // Considering Re-entering by FlushToken in timer trigger.
+
             var fo = new FormPreferences
             {
                 Setting = Hot.Setting,
@@ -76,6 +78,7 @@ namespace TalkLoggerWinform
                 SaveSetting(Hot.Setting);
                 Token.Add(TokenSettingsLoaded, this);
             }
+            Enabled = true;
         }
     }
 }

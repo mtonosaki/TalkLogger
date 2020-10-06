@@ -87,6 +87,7 @@
     <Compile Include="FeatureNAudioBase.cs" />
     <Compile Include="FeaturePlayButton.cs" />
     <Compile Include="FeaturePlayVisializer.cs" />
+    <Compile Include="FeatureSaveAuto.cs" />
     <Compile Include="FeatureScrollZoomLock.cs" />
     <Compile Include="FeatureTalkTextBox.cs" />
     <Compile Include="FeatureJumpToNow.cs" />
@@ -214,7 +215,7 @@
       <Version>4.7.2</Version>
     </PackageReference>
     <PackageReference Include="Tono.GuiWinForm">
-      <Version>1.1.1</Version>
+      <Version>1.1.2</Version>
     </PackageReference>
     <PackageReference Include="Tono.Logic">
       <Version>1.0.7</Version>

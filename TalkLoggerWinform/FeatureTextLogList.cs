@@ -56,19 +56,7 @@ namespace TalkLoggerWinform
                 _form.Visible = true;
                 _form.WindowState = FormWindowState.Normal;
             }
-            List<FormTextLogList.Talk> talks = null;
-            for (var i = 5; i > 0; i--)
-            {
-                try
-                {
-                    talks = GetUnits().ToList();
-                    break;
-                }
-                catch
-                {
-                    Application.DoEvents(); // Wait a moment when pars collection thread confrict
-                }
-            }
+            var talks = GetUnits();
             if (talks != null)
             {
                 _form.SetTextData(talks.OrderBy(a => a.TimeGenerated));
@@ -79,11 +67,15 @@ namespace TalkLoggerWinform
             }
         }
 
+        /// <summary>
+        /// Collect parts
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<FormTextLogList.Talk> GetUnits()
         {
-            foreach (PartsEntry pe in Parts)
+            foreach (var p in Parts.GetLayerParts(LayerTalkBar))
             {
-                if (pe.Parts is PartsTalkBar talk)
+                if (p is PartsTalkBar talk)
                 {
                     yield return new FormTextLogList.Talk
                     {

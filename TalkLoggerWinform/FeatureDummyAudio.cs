@@ -74,7 +74,7 @@ namespace TalkLoggerWinform
                     {
                         var argb = Convert.ToInt32(StrUtil.Mid(line, 1), 16);
                         col = Color.FromArgb(argb);
-                        if( col.A == 0)
+                        if (col.A == 0)
                         {
                             col = Color.FromArgb(255, col.R, col.G, col.B);
                         }
@@ -139,9 +139,20 @@ namespace TalkLoggerWinform
                     item.ev.TimeGenerated = DateTime.Now;
                     Hot.SpeechEventQueue.Enqueue(item.ev);
                     Token.Add(TokenSpeechEventQueued, this);
-                    GetRoot().FlushFeatureTriggers();
+                    if (Pane.Control.InvokeRequired)
+                    {
+                        Pane.Control.Invoke(new InvokeMethod(() =>
+                        {
+                            GetRoot().FlushFeatureTriggers();
+                        }));
+                    }
+                    else
+                    {
+                        GetRoot().FlushFeatureTriggers();
+                    }
                 });
             }
         }
+        delegate void InvokeMethod();
     }
 }

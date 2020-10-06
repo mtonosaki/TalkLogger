@@ -39,8 +39,8 @@
   <mes key="MenuItem" ver="MenuZoom200">200%</mes>
   <mes key="MenuItem" ver="MenuZoom400">400%</mes>
   <mes key="MenuItem" ver="TextLogList">音声テキスト一覧(&amp;T)</mes>
-
   <mes key="MenuItem" ver="Tool">ツール(&amp;T)</mes>
+  <mes key="MenuItem" ver="SaveMp3Auto">自動MP3保存</mes>
 
   <mes key="MenuItem" ver="Help">ヘルプ(&amp;H)</mes>
   <mes key="MenuItem" ver="Version">バージョン情報(&amp;A)...</mes>
@@ -66,7 +66,7 @@
   <mes key="Label" ver="LabelListeningMicDevice">デバイス（マイク用）</mes>
   <mes key="Label" ver="LabelWarning">録音中は設定変更ができません</mes>
   <mes key="Label" ver="LabelClosing">Azure Cognitive Serviceが正常終了するまで待機しています</mes>
-  
+  <mes key="CheckBox" ver="CheckBoxWrap">折返し</mes>
 
   <!-- foFeatureSwitchList -->
   <mes key="Form" ver="foFeatureSwitchList">Feature switch</mes>

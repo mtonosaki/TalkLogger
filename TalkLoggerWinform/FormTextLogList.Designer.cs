@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTextLogList));
             this.richTextBoxMain = new System.Windows.Forms.RichTextBox();
             this.LabelWaitingTextLogList = new System.Windows.Forms.Label();
+            this.CheckBoxWrap = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // richTextBoxMain
@@ -59,11 +60,25 @@
             this.LabelWaitingTextLogList.Text = "Wait a moment. Building list...";
             this.LabelWaitingTextLogList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // CheckBoxWrap
+            // 
+            this.CheckBoxWrap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CheckBoxWrap.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckBoxWrap.Location = new System.Drawing.Point(727, 12);
+            this.CheckBoxWrap.Name = "CheckBoxWrap";
+            this.CheckBoxWrap.Size = new System.Drawing.Size(61, 17);
+            this.CheckBoxWrap.TabIndex = 2;
+            this.CheckBoxWrap.Text = "Wrap";
+            this.CheckBoxWrap.UseVisualStyleBackColor = true;
+            this.CheckBoxWrap.CheckedChanged += new System.EventHandler(this.CheckBoxWrap_CheckedChanged);
+            this.CheckBoxWrap.KeyUp += new System.Windows.Forms.KeyEventHandler(this.richTextBoxMain_KeyUp);
+            // 
             // FormTextLogList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CheckBoxWrap);
             this.Controls.Add(this.richTextBoxMain);
             this.Controls.Add(this.LabelWaitingTextLogList);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -78,5 +93,6 @@
 
         private System.Windows.Forms.RichTextBox richTextBoxMain;
         private System.Windows.Forms.Label LabelWaitingTextLogList;
+        private System.Windows.Forms.CheckBox CheckBoxWrap;
     }
 }

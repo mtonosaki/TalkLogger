@@ -7,10 +7,11 @@ using System.Linq;
 using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
+using static TalkLoggerWinform.CoreFeatureBase;
 
 namespace TalkLoggerWinform
 {
-    public class FeatureJumpToInputValue : FeatureControlBridgeBase
+    public class FeatureJumpToInputValue : FeatureControlBridgeBase, ICloseCallback
     {
         private TextBox Box;
         private IRichPane TarPane;
@@ -45,12 +46,11 @@ namespace TalkLoggerWinform
                 ClickJump.Click += ClickJump_Click;
             }
 
-            Box.FindForm().FormClosing += (s, e) =>
-            {
-                IsFormClosing = true;
-            };
-
             Timer.AddTrigger(500, UpdateBoxValue);
+        }
+        public void OnClosing()
+        {
+            IsFormClosing = true;
         }
 
         private void ClickJump_Click(object sender, EventArgs e)

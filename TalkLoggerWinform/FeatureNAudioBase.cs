@@ -14,13 +14,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
+using static TalkLoggerWinform.CoreFeatureBase;
 
 namespace TalkLoggerWinform
 {
     /// <summary>
     /// Capture voice with NAudio
     /// </summary>
-    public abstract class FeatureNAudioBase : FeatureAudioCaptureBase, IMultiTokenListener
+    public abstract class FeatureNAudioBase : FeatureAudioCaptureBase, IMultiTokenListener, ICloseCallback
     {
         public NamedId[] MultiTokenTriggerID { get; } = new NamedId[] { FeaturePlayButton.TokenStart, FeaturePlayButton.TokenStop };
 
@@ -30,9 +31,6 @@ namespace TalkLoggerWinform
         public override void OnInitInstance()
         {
             base.OnInitInstance();
-
-            Pane.Control.FindForm().FormClosing += FeatureAudioLoopback_FormClosing;
-
         }
         public override void Start(NamedId who)
         {
@@ -85,13 +83,10 @@ namespace TalkLoggerWinform
                 }
             }
         }
-        private void FeatureAudioLoopback_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
-        {
-            var hs = _handlers.ToArray();
-            _handlers.Clear();
-            Reset(hs);
-        }
 
+        /// <summary>
+        /// Thread safe handler
+        /// </summary>
         private class SpeechHandler
         {
             public DateTime TimeGenerated { get; } = DateTime.Now;
@@ -99,7 +94,6 @@ namespace TalkLoggerWinform
             public SpeechRecognizer Recognizer { get; set; }
             public PushAudioInputStream AudioInputStream { get; set; }
             public AudioConfig AudioConfig { get; set; }
-            public byte[] buf = new byte[1024 * 80];
 
             public event EventHandler StopRequested;
 
@@ -151,58 +145,122 @@ namespace TalkLoggerWinform
         {
             Debug.Assert(handler.Device != null);
 
+            // NAudio Setting
             var wavein = CreateCaptureInstance(handler.Device);
             var waveoutFormat = new WaveFormat(16000, 16, 1);
-            var lastSpeakDT = DateTime.Now;
-            var willStop = DateTime.MaxValue;
             wavein.StartRecording();
 
-            var audioformat = AudioStreamFormat.GetWaveFormatPCM(samplesPerSecond: 16000, bitsPerSample: 16, channels: 1);
+            // Azure Cognitive Service Setting
+            var audioformat = AudioStreamFormat.GetWaveFormatPCM((uint)waveoutFormat.SampleRate, (byte)waveoutFormat.BitsPerSample, (byte)waveoutFormat.Channels);
             handler.AudioInputStream = AudioInputStream.CreatePushStream(audioformat);
             handler.AudioConfig = AudioConfig.FromStreamInput(handler.AudioInputStream);
 
+            // Silence Generate
+            DateTime preEvent = DateTime.Now;
+            var silenceData = new byte[waveoutFormat.BlockAlign];
+
+            // Appliation Preparation
+            Hot.SetWavFormat(DisplayName, waveoutFormat);   // for file saving
+
+            // NAudio Voice event
             wavein.DataAvailable += (s, e) =>
             {
                 if (e.BytesRecorded > 0)
                 {
-                    using (var ms = new MemoryStream(e.Buffer, 0, e.BytesRecorded))
-                    using (var rs = new RawSourceWaveStream(ms, wavein.WaveFormat))
-                    using (var freq = new MediaFoundationResampler(rs, waveoutFormat.SampleRate))
+                    var now = DateTime.Now;
+                    using (var ms = new MemoryStream())
                     {
-                        var w16 = freq.ToSampleProvider().ToMono().ToWaveProvider16();
-                        var len = w16.Read(handler.buf, 0, handler.buf.Length);
-                        handler.AudioInputStream.Write(handler.buf, len);
-                        lastSpeakDT = DateTime.Now;
-                        willStop = DateTime.MaxValue;
+                        var memoryWriter = new WaveFileWriter(ms, waveoutFormat);
+                        ms.SetLength(0);    // Delete file header.
+
+                        var samples = Resample(wavein.WaveFormat, e.Buffer, e.BytesRecorded, waveoutFormat);
+                        foreach (var sample in samples)
+                        {
+                            memoryWriter.WriteSample(sample);
+                        }
+                        Hot.AddWavToAllQueue(DisplayName, ms.GetBuffer(), (int)ms.Length, now); // for file saving
+                        handler.AudioInputStream.Write(ms.GetBuffer(), (int)ms.Length);         // for Azure Cognitive Speech to Text
                     }
+                    Token.Add(TokenWavDataQueued, this);    // TODO: Need Confirm it must be fixed with Tono.Gui.WinForm 1.1.2 - System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
+                    preEvent = DateTime.Now;
                 }
                 else
                 {
-                    if (DateTime.Now < willStop)
+                    if (_talkID != null)
                     {
-                        if (willStop == DateTime.MaxValue)
+                        var spms = (double)waveoutFormat.SampleRate / 1000; // samples per ms
+                        var n = (int)(spms * (DateTime.Now - preEvent).TotalMilliseconds);
+
+                        for (var i = n; i >= 0; i--)
                         {
-                            willStop = DateTime.Now + TimeSpan.FromSeconds(10);
+                            handler.AudioInputStream.Write(silenceData, silenceData.Length);    // send silence to azure to get realtime event (othewise, azure will wait untile next event timing even if there is no event long time)
                         }
-                        var silence = new SilenceProvider(waveoutFormat);
-                        var len = silence.Read(handler.buf, 0, waveoutFormat.BitsPerSample * waveoutFormat.SampleRate / 8 / 100);    // 10ms
-                        var cnt = (int)((DateTime.Now - lastSpeakDT).TotalMilliseconds / 10);
-                        for (var i = 0; i < cnt; i++)
-                        {
-                            handler.AudioInputStream?.Write(handler.buf, len);
-                        }
-                        lastSpeakDT = DateTime.Now;
                     }
+                    preEvent = DateTime.Now;
                 }
             };
 
             handler.StopRequested += (s, e) =>
             {
-                wavein.StopRecording();     // Tono: 1.終了処理（NAudio）
+                wavein.StopRecording();     // Stop NAudio recording
             };
 
             return await Task.FromResult(true);
         }
+
+        private static IEnumerable<float> Resample(WaveFormat fmtin, byte[] buf, int len, WaveFormat fmtout)
+        {
+            if (fmtin.Channels > 2 || fmtin.Channels < 1)
+                throw new NotSupportedException($"Channel '{fmtin.Channels}' is not supported. (Mono / Stereo only)");
+
+            var blockAlign = fmtin.BlockAlign;
+            var N = len / blockAlign;
+            var sumRate = 0;
+
+            for (var i = 0; i < N; i++)
+            {
+                float L, R;
+                switch (fmtin.BitsPerSample)
+                {
+                    case 8:
+                        L = (buf[i * blockAlign] - 128) / 128f;
+                        R = fmtin.Channels == 1 ? L : (buf[i * blockAlign + blockAlign / 2] - 128) / 128f;
+                        break;
+                    case 16:
+                        L = BitConverter.ToInt16(buf, i * blockAlign) / 32768f;
+                        R = fmtin.Channels == 1 ? L : BitConverter.ToInt16(buf, i * blockAlign + blockAlign / 2) / 32768f;
+                        break;
+                    case 32:
+                        L = BitConverter.ToSingle(buf, i * blockAlign);
+                        R = fmtin.Channels == 1 ? L : BitConverter.ToSingle(buf, i * blockAlign + blockAlign / 2);
+                        break;
+                    default:
+                        throw new NotSupportedException($"BitsPerSample '{fmtin.BitsPerSample}' is not supported. (8 / 16 / 32 only)");
+                }
+
+                // OUTPUT
+                sumRate += fmtout.SampleRate;
+                while (sumRate >= fmtin.SampleRate)
+                {
+                    sumRate -= fmtin.SampleRate;
+
+                    switch (fmtout.Channels)
+                    {
+                        case 1:
+                            yield return (L + R) / 2;
+                            break;
+                        case 2:
+                            yield return L;
+                            yield return R;
+                            break;
+                        default:
+                            throw new NotSupportedException($"Channel '{fmtout.Channels}' is not supported. (Mono / Stereo only)");
+                    }
+                }
+            }
+        }
+
+
         private async Task<bool> StartRecognizeSpeechAsync(SpeechHandler handler)
         {
             handler.Recognizer = new SpeechRecognizer(SpeechConfig.FromSubscription(Hot.Setting.SubscriptionKey, Hot.Setting.ServiceRegion), GetTargetRecognizeLanguage(), handler.AudioConfig);
@@ -321,6 +379,13 @@ namespace TalkLoggerWinform
             _talkID = null;
             Token.Add(TokenSpeechEventQueued, this);
             GetRoot().FlushFeatureTriggers();
+        }
+
+        public void OnClosing()
+        {
+            var hs = _handlers.ToArray();
+            _handlers.Clear();
+            Reset(hs);
         }
     }
 }

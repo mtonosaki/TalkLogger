@@ -8,8 +8,13 @@ namespace TalkLoggerWinform
 {
     public class CoreFeatureBase : FeatureBase
     {
+        public interface ICloseCallback
+        {
+            void OnClosing();
+        };
         public static readonly NamedId TokenSettingsLoaded = NamedId.FromName("SettingsLoaded");
         public static readonly NamedId TokenSpeechEventQueued = NamedId.FromName("TokenSpeechEventQueued");
+        public static readonly NamedId TokenWavDataQueued = NamedId.FromName("TokenWavDataQueued");
         public const int LayerTalkBar = 100;
         protected IRichPane TarPane { get; set; }
         public DataHot Hot
@@ -17,6 +22,14 @@ namespace TalkLoggerWinform
             get
             {
                 return (DataHot)base.Data;
+            }
+        }
+
+        public new DataParts Parts
+        {
+            get
+            {
+                return (DataParts)base.Parts;
             }
         }
 
