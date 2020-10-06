@@ -38,21 +38,32 @@ namespace TalkLoggerWinform
 
         private void OnPorling()
         {
-            if(isPrePlaying && Hot.IsPlaying == false)
+            if (isPrePlaying && (Hot.IsPlaying == false || Enabled == false))
             {
                 isPrePlaying = false;
                 RecStop();
             }
-            Timer.AddTrigger(1000, OnPorling);
+            if( Hot.IsPlaying == false || Enabled == false)
+            {
+                ClearQueue();
+            }
+            Timer.AddTrigger(500, OnPorling);
         }
 
         public override void Start(NamedId who)
         {
             base.Start(who);
 
-            if (Hot.IsPlaying && TokenWavDataQueued.Equals(who))
+            if (TokenWavDataQueued.Equals(who))
             {
-                SaveWave();
+                if (Hot.IsPlaying && Enabled)
+                {
+                    SaveWave();
+                }
+                else
+                {
+                    ClearQueue();
+                }
             }
         }
 
@@ -95,6 +106,20 @@ namespace TalkLoggerWinform
                     LOG.WriteLine(LLV.WAR, $"Saved as {wavFileName}");
                 }
             });
+        }
+
+        private void ClearQueue()
+        {
+            var dic = Hot.GetWavDictionary(DicName);
+
+            foreach (var /*<audioName,queue>*/ kv in dic)
+            {
+                var queue = kv.Value;
+                lock (queue)
+                {
+                    queue.Clear();
+                }
+            }
         }
 
         private void SaveWave()
@@ -140,7 +165,7 @@ namespace TalkLoggerWinform
         {
             var fmt = Hot.GetWavFormat(audioName);
             var writer = new WaveFileWriter(
-                Path.Combine(@"C:\Users\ManabuTonosaki\Documents", $"TalkLog.{timeGenerated:yyyyMMddHHmmss}.{audioName}.wav"),
+                Path.Combine(@"C:\Users\ManabuTonosaki\Documents", $"TalkLog.{timeGenerated:yyyyMMdd.HHmmss}.{audioName}.wav"),
                 fmt);
             return writer;
         }
