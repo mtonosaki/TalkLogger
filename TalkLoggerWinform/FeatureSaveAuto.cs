@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Tono;
 using Tono.GuiWinForm;
 
@@ -31,7 +32,6 @@ namespace TalkLoggerWinform
             base.OnInitInstance();
             DicName = $"{GetType().Name}${ID.Value}";
             Hot.AddWaveQueue(DicName);
-
             Timer.AddTrigger(1000, OnPorling);
         }
         bool isPrePlaying = false;
@@ -43,7 +43,7 @@ namespace TalkLoggerWinform
                 isPrePlaying = false;
                 RecStop();
             }
-            if( Hot.IsPlaying == false || Enabled == false)
+            if (Hot.IsPlaying == false || Enabled == false)
             {
                 ClearQueue();
             }
@@ -54,7 +54,7 @@ namespace TalkLoggerWinform
         {
             base.Start(who);
 
-            if (TokenWavDataQueued.Equals(who))
+            if (CoreFeatureBase.TokenWavDataQueued.Equals(who))
             {
                 if (Hot.IsPlaying && Enabled)
                 {
@@ -143,11 +143,18 @@ namespace TalkLoggerWinform
                     if (Writers.TryGetValue(kv.Key, out var writer) == false)
                     {
                         writer = Writers.GetValueOrDefault(kv.Key, true, audioName => makeWriter(audioName, i0.TimeGenerated));
-                        isPrePlaying = true;
+                        if (writer != null)
+                        {
+                            isPrePlaying = true;
+                        }
+                        else
+                        {
+                            Writers.Remove(kv.Key);
+                        }
                     }
                     foreach (var item in items)
                     {
-                        writer.Write(item.Buffer, 0, item.Length);
+                        writer?.Write(item.Buffer, 0, item.Length);
                     }
                 }
             }
@@ -157,17 +164,24 @@ namespace TalkLoggerWinform
         {
             foreach (var writer in Writers.Values)
             {
-                writer.Dispose();
+                writer?.Dispose();
             }
         }
 
         private WaveFileWriter makeWriter(string audioName, DateTime timeGenerated)
         {
-            var fmt = Hot.GetWavFormat(audioName);
-            var writer = new WaveFileWriter(
-                Path.Combine(@"C:\Users\ManabuTonosaki\Documents", $"TalkLog.{timeGenerated:yyyyMMdd.HHmmss}.{audioName}.wav"),
-                fmt);
-            return writer;
+            var path = Path.Combine(Hot.Setting.RecordingFilesPath, $"TalkLog.{timeGenerated:yyyyMMdd.HHmmss}.{audioName}.wav");
+            try
+            {
+                var fmt = Hot.GetWavFormat(audioName);
+                FileUtil.PrepareDirectory(Path.GetDirectoryName(path));
+                var writer = new WaveFileWriter(path, fmt);
+                return writer;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

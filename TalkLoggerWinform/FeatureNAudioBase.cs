@@ -181,7 +181,15 @@ namespace TalkLoggerWinform
                         Hot.AddWavToAllQueue(DisplayName, ms.GetBuffer(), (int)ms.Length, now); // for file saving
                         handler.AudioInputStream.Write(ms.GetBuffer(), (int)ms.Length);         // for Azure Cognitive Speech to Text
                     }
-                    Token.Add(TokenWavDataQueued, this);    // TODO: Need Confirm it must be fixed with Tono.Gui.WinForm 1.1.2 - System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
+                    try
+                    {
+                        Token.Add(TokenWavDataQueued, this);    // TODO: Need Confirm it must be fixed with Tono.Gui.WinForm 1.1.2 - System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
+                                                                // It must be not fixed yet. so I added try-catch.
+                    }
+                    catch
+                    {
+                        // No Action because the above token is a QoS 0 message. But it's necessary to disappear exception messages that's why catch them here.
+                    }
                     preEvent = DateTime.Now;
                 }
                 else

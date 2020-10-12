@@ -42,6 +42,7 @@ namespace TalkLoggerWinform
                 comboBoxMicDevice.Enabled = sw;
                 textBoxServiceRegion.Enabled = sw;
                 textBoxSubscriptionKey.Enabled = sw;
+                textBoxRecFolder.Enabled = sw;
                 buttonOK.Enabled = sw;
                 LabelWarning.Visible = !sw;
             }
@@ -79,12 +80,14 @@ namespace TalkLoggerWinform
                     Device2ID = micDeviceID,
                     Device1LanguageCode = loopbackLanguageCode,
                     Device2LanguageCode = micLanguageCode,
+                    RecordingFilesPath = textBoxRecFolder.Text,
                 };
             }
             set
             {
                 textBoxSubscriptionKey.Text = value.SubscriptionKey;
                 textBoxServiceRegion.Text = value.ServiceRegion;
+                textBoxRecFolder.Text = value.RecordingFilesPath;
 
                 int i;
                 // Device Loopback

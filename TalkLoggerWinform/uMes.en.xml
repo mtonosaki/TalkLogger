@@ -65,6 +65,7 @@
   <mes key="Label" ver="LabelWarning">You cannot change the settings during recording.</mes>
   <mes key="Label" ver="LabelClosing">Waiting to close Azure Cognitive Service...</mes>
   <mes key="CheckBox" ver="CheckBoxWrap">Wrap</mes>
+  <mes key="Label" ver="LabelRecFolder">Recording files folder</mes>
 
   <!-- foFeatureSwitchList -->
   <mes key="Form" ver="foFeatureSwitchList">Feature switch</mes>
